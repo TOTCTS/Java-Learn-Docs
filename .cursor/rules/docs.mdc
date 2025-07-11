@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor 规则
+
+## 项目功能描述
+- 这是一份深入学习Java的纯文档项目
+- 这份文档主要面向Java初学者、Java开发人员、资深开发人员
+- 内容将涵盖以下主要技术栈：
+  - **核心语言:** Java (JVM, 并发编程, 集合框架)
+  - **主流框架:** Spring, Spring Boot, Spring Cloud, Spring MVC, MyBatis, Netty
+  - **数据库技术:** MySQL, PostgreSQL, Redis, MongoDB
+  - **消息队列 (MQ):** RabbitMQ, Kafka
+  - **搜索引擎:** Elasticsearch
+  - **容器化与微服务:** Docker, Kubernetes (K8s), 微服务架构
+  - **工程化与DevOps:** Maven, Gradle, Git, Jenkins
+
+## 项目结构
+- 所有文档源文件应存放在 `docs` 目录下。
+- 文档根据技术类别创建子目录，例如：`docs/java/`, `docs/spring/`。
+
+## 文件命名规范
+- 所有 Markdown 文件和目录名应使用全小写英文字母。
+- 单词之间使用短横线 (`-`) 连接，例如：`spring-boot-quick-start.md`。
+
+## 行文风格与措辞
+- 内容需面向不同水平的读者（初学者、资深开发者）。
+- 面向初学者的内容应通俗易懂，避免生僻术语。
+- 面向资深开发者的内容应保持技术深度、专业性和严谨性。 
+
+## 文档要求
+- 使用 Markdown (`.md`) 作为主要文档格式。
+- 采用静态网站生成器 (Static Site Generator) 进行构建和发布。
+- 文档需支持通过代码形式（如 Mermaid.js）生成流程图、时序图等。
+- 最终生成的文档网站应具备美观的样式和良好的阅读体验。 
+- 文档组成结构为大纲，大纲中涉及很多知识点，每个知识点对应新开一份文档专门描述
+
+## 知识点输出要求
+- 内容创作应图文并茂。
+- 优先使用图表（如流程图、时序图）来展示核心知识点。
+- 文字讲解部分需划分【核心讲解】和【详细讲解】两个模块。
+
+- 提供专门的【案例分析】或【代码示例】模块来巩固理解。 
