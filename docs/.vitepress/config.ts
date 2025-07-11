@@ -10,6 +10,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/' },
+      { text: '技术总览', link: '/overview' },
       { text: 'Java', link: '/java/introduction' }
     ],
 
