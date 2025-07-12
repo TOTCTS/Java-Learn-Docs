@@ -1,6 +1,6 @@
 # Java 线程生命周期与状态管理
 
-<img src="/public/assets/java/concurrent/thread-lifecycle-diagram.svg" alt="Java 线程生命周期状态图" style="max-width: 800px; margin: 0 auto; display: block;"/>
+<img src="/docs/public/assets/java/concurrent/thread-lifecycle-diagram.svg" alt="Java 线程生命周期状态图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 
