@@ -3,7 +3,7 @@
 
 ## 核心架构概览
 
-![JVM 运行时数据区架构图](https://raw.githubusercontent.com/TOTCTS/Java-Learn-Docs/main/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg)
+![JVM 运行时数据区架构图](https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg)
 
 ## 【核心讲解】
 
@@ -56,7 +56,7 @@ Java 堆是 JVM 所管理内存中最大、最核心的一块区域，承载着�
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">Java 对象分配与晋升流程图</h3>
-  <img src="https://raw.githubusercontent.com/TOTCTS/Java-Learn-Docs/main/docs/public/assets/java/jvm/object-allocation-flowchart.svg" alt="Java 对象分配与晋升流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/object-allocation-flowchart.svg" alt="Java 对象分配与晋升流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 1.  **诞生于 Eden**: 绝大多数新对象在 **Eden 区**通过 TLAB 快速分配。
