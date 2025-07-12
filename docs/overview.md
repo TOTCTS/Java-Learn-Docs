@@ -1,19 +1,19 @@
 # Java 技术体系学习大纲
-
+  
 ## 学习路径概览
 
 Java 技术栈庞大而深入，从语言核心到企业级应用开发，本学习路径将为您提供系统化的知识体系。
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">Java 全栈技术学习路径</h3>
-  <img src="public/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/public/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 ---
 
 ## 各模块介绍
 
-### 1. [Java 核心与基础](/java/introduction)
+### 1. [Java 核心与基础](/docs/java/introduction)
 **定位**：语言基础与虚拟机原理。
 **核心内容**：Java SE (OOP, 集合, 并发)、JVM (内存模型, GC)、构建工具 (Maven, Gradle)。
 本模块将带您深入 Java 的世界，从语言的底层机制到强大的并发处理，再到 JVM 的性能奥秘。掌握这些是成为一名优秀 Java 工程师的坚实一步，也是理解上层框架设计思想的前提。

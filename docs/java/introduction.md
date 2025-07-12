@@ -1,112 +1,124 @@
-# Java 核心技术体系大纲
+# Java 技术体系概览
 
-欢迎来到 Java 的世界！本大纲旨在为您提供一个结构化、由浅入深的 Java 技术学习路径，内容覆盖从语言核心、并发模型、虚拟机底层到现代 Java 新特性与核心生态。
-
-您可以将此视为您的学习地图，每个知识点未来都将链接到一篇深度解析的文档。
+**Java** 是目前最流行的企业级开发平台之一，拥有庞大的生态系统和丰富的开发工具。本模块将深入探讨 Java 的核心特性，从基础语法到高级特性，从 JVM 底层机制到并发编程，构建全面的 Java 技术体系。
 
 ---
 
-## 第一部分: Java 核心编程 (Core Java Programming)
+## 🎯 学习路径
 
-本模块专注于 Java 语言的内在机制和标准库，是构建一切上层应用的基础。
+### **Phase 1: Java 核心基础** 
+掌握 Java 语言的核心概念和基本语法，为后续深入学习奠定坚实基础。
 
-### 1.1 基础语法与面向对象
-- [ ] JDK 安装与环境配置
-- [ ] 程序基本结构与 `main` 方法
-- [ ] 数据类型、运算符与控制流
-- [ ] 面向对象三大特性：封装、继承、多态
-- [ ] `abstract` 类与 `interface` 接口的异同
-- [ ] `static`, `final` 关键字深度解析
-- [ ] `Object` 类的核心方法 (`equals`, `hashCode`, `toString`, `clone`)
+#### **面向对象编程 (OOP)**
+- [ ] 类与对象：封装、继承、多态
+- [ ] 抽象类与接口的设计原则
+- [ ] 内部类、匿名类与 Lambda 表达式
+- [ ] 泛型编程：类型安全与性能优化
 
-### 1.2 核心 API 与异常处理
-- [ ] `String`, `StringBuilder`, `StringBuffer` 的原理与应用场景
-- [ ] 常用工具类：`Math`, 包装类, 日期时间 API
-- [ ] 异常处理机制：`try-catch-finally`, `throw`, `throws`, 受检与非受检异常
+#### **异常处理机制**
+- [ ] 异常分类：检查异常 vs 非检查异常
+- [ ] try-catch-finally 与 try-with-resources
+- [ ] 自定义异常设计最佳实践
 
-### 1.3 集合框架与泛型
-- [ ] `Collection` 与 `Map` 接口体系
-- [ ] `List` 实现对比：`ArrayList` vs `LinkedList` 源码分析
-- [ ] `Set` 实现对比：`HashSet` vs `TreeSet` 源码分析
-- [ ] `Map` 实现对比：`HashMap` vs `ConcurrentHashMap` vs `TreeMap` 源码分析
-- [ ] 泛型：类型擦除、通配符与边界
+#### **集合框架 (Collections Framework)**
+- [ ] List、Set、Map 的选择与使用场景
+- [ ] 集合性能分析：时间复杂度与空间复杂度
+- [ ] 并发集合：ConcurrentHashMap、CopyOnWriteArrayList
+- [ ] 集合的函数式编程：Stream API 与操作符
 
-### 1.4 I/O 与文件操作
-- [ ] 字节流 (`InputStream`/`OutputStream`) 与字符流 (`Reader`/`Writer`)
-- [ ] 缓冲流 (`Buffered...`) 与性能提升
-- [ ] 文件与目录操作 (`File`, `Paths`, `Files`)
-- [ ] NIO (New I/O) 核心概念：`Channel`, `Buffer`, `Selector`
-
-### 1.5 反射机制
-- [ ] `Class` 对象的获取与使用
-- [ ] 动态创建对象、调用方法、访问字段
-- [ ] 反射的应用场景与性能考量
+#### **I/O 操作与文件处理**
+- [ ] 字节流与字符流的区别和应用
+- [ ] NIO 与传统 I/O 的性能对比
+- [ ] 文件操作：Path、Files 类的现代化用法
 
 ---
 
-## 第二部分: 并发编程 (Concurrent Programming)
+### **Phase 2: 并发编程深度** 
+深入理解 Java 并发机制，掌握高性能多线程程序设计。
 
-本模块深入探讨 Java 的并发模型与工具，这是开发高性能、高并发系统的关键。
+#### **线程基础与管理**
+- [x] [线程的创建、状态与生命周期](/java/concurrent/thread-lifecycle-and-states)
+- [ ] 线程池：ThreadPoolExecutor 与 ForkJoinPool
+- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](/java/concurrent/volatile-keyword-deep-dive)
+- [x] [Java 内存模型 (JMM) 深度解读](/java/concurrent/jmm-deep-dive)
 
-### 2.1 线程基础与内存模型
-- [x] [线程的创建、状态与生命周期](/docs/java/concurrent/thread-lifecycle-and-states.md)
-- [ ] `synchronized` 关键字：用法、原理与锁优化 (偏向锁, 轻量级锁, 重量级锁)
-- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](/docs/java/concurrent/volatile-keyword-deep-dive.md)
-- [x] [Java 内存模型 (JMM) 深度解读](/docs/java/concurrent/jmm-deep-dive.md)
+#### **同步与锁机制**
+- [ ] `synchronized` 关键字：偏向锁、轻量级锁、重量级锁
+- [ ] `ReentrantLock` 与 `ReadWriteLock`：公平锁与非公平锁
+- [ ] `StampedLock`：乐观读锁的性能优势
+- [ ] 锁优化：锁消除、锁粗化、自适应自旋
 
-### 2.2 J.U.C 并发包详解
-- [ ] `Lock` 体系：`ReentrantLock`, `ReentrantReadWriteLock`
-- [ ] 原子类：`AtomicInteger`, `LongAdder` 的原理与性能对比
-- [ ] 线程池：`ThreadPoolExecutor` 核心参数、工作流程与拒绝策略
-- [ ] 并发工具类：`CountDownLatch`, `CyclicBarrier`, `Semaphore`
-- [ ] `ThreadLocal` 原理与内存泄漏风险
+#### **高级并发工具**
+- [ ] `CountDownLatch`、`CyclicBarrier`、`Semaphore`
+- [ ] `CompletableFuture`：异步编程与组合式操作
+- [ ] `Disruptor`：高性能并发框架
 
-### 2.3 异步编程模型
-- [ ] `Future` 与 `Callable`
-- [ ] `CompletableFuture`：组合式异步编程
-
----
-
-## 第三部分: JVM 深度探索 (Deep Dive into the JVM)
-
-本模块深入虚拟机底层，揭示 Java 跨平台、自动化内存管理的奥秘。
-
-### 3.1 内存结构与对象生命周期
-- [x] [JVM 内存结构 (运行时数据区)](/docs/java/jvm/jvm-memory-structure.md)
-- [x] [对象的创建过程、内存布局与访问定位](/docs/java/jvm/object-creation-and-memory-layout.md)
-- [ ] TLAB (Thread-Local Allocation Buffer)
-- [ ] 逃逸分析与栈上分配
-
-### 3.2 垃圾回收机制
-- [ ] GC Roots 与可达性分析算法
-- [ ] GC 核心算法：标记-清除, 标记-复制, 标记-整理
-- [ ] HotSpot 主流垃圾收集器：Serial, Parallel, CMS, G1, ZGC
-- [ ] 分代回收模型与跨代引用问题
-
-### 3.3 类加载与执行引擎
-- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](/docs/java/jvm/class-loading-process.md)
-- [ ] 类加载器与双亲委派模型
-- [ ] 执行引擎：解释器与 JIT (Just-In-Time) 编译器
-
-### 3.4 性能调优与故障排查
-- [ ] JVM 常用参数配置
-- [ ] 命令行工具：`jps`, `jstat`, `jmap`, `jstack`
-- [ ] 可视化工具：JConsole, VisualVM, MAT
-- [ ] OOM 与 StackOverflowError 案例分析
+#### **并发设计模式**
+- [ ] 生产者-消费者模式
+- [ ] 读写者模式
+- [ ] Future 模式与 Promise 模式
 
 ---
 
-## 第四部分: 现代 Java 与生态 (Modern Java & Ecosystem)
+### **Phase 3: JVM 底层原理** 
+深入 JVM 内部机制，理解性能调优和故障排查的本质。
 
-本模块关注 Java 的演进方向和核心开发工具，确保技术栈的先进性。
+#### **内存管理与垃圾回收**
+- [x] [JVM 内存结构 (运行时数据区)](/java/jvm/jvm-memory-structure)
+- [x] [对象的创建过程、内存布局与访问定位](/java/jvm/object-creation-and-memory-layout)
+- [ ] 垃圾回收算法：标记-清除、复制、标记-整理
+- [ ] 垃圾收集器：Serial、Parallel、CMS、G1、ZGC
+- [ ] 内存泄漏与内存溢出的诊断与解决
 
-### 4.1 Java 8-21 关键新特性
-- [ ] Java 8: Lambda 表达式、Stream API, `Optional`
-- [ ] Java 9: 模块化系统 (Project Jigsaw)
-- [ ] Java 11: `var` 局部变量类型推断, 新 `String` API
-- [ ] Java 17: Records, Sealed Classes, `switch` 表达式增强
-- [ ] Java 21: 虚拟线程 (Project Loom), 结构化并发, Record Patterns
+#### **字节码与执行引擎**
+- [ ] 字节码指令集与操作数栈
+- [ ] 方法调用：解析、分派 (静态分派、动态分派)
+- [ ] JIT 编译器：热点代码检测与优化
+- [ ] 逃逸分析与标量替换
 
-### 4.2 核心生态与构建工具
-- [ ] 构建工具：Maven (POM, 生命周期, 依赖管理)
-- [ ] 构建工具：Gradle (Groovy/Kotlin DSL, 任务模型) 
+#### **类加载机制**
+- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](/java/jvm/class-loading-process)
+- [ ] 类加载器：启动类加载器、扩展类加载器、应用类加载器
+- [ ] 双亲委派模型与自定义类加载器
+- [ ] 模块系统 (JPMS)：Jigsaw 项目的模块化设计
+
+#### **性能监控与调优**
+- [ ] JVM 参数调优：堆大小、垃圾收集器选择
+- [ ] 性能分析工具：JProfiler、VisualVM、JConsole
+- [ ] 故障排查：堆转储分析、线程转储分析
+- [ ] APM 工具集成：监控指标与告警机制
+
+---
+
+## 💼 实践项目
+
+### **项目 1: 高并发聊天室** 
+**技术栈**: Netty + 线程池 + 并发集合  
+**核心能力**: 网络编程、并发控制、内存管理
+
+### **项目 2: 内存敏感的缓存系统** 
+**技术栈**: 自定义数据结构 + JVM 调优 + 性能监控  
+**核心能力**: 算法设计、内存优化、性能调优
+
+### **项目 3: 多线程爬虫框架** 
+**技术栈**: CompletableFuture + 线程池 + 限流器  
+**核心能力**: 异步编程、资源控制、异常处理
+
+---
+
+## 📚 进阶学习资源
+
+### **经典书籍推荐**
+- 《Java并发编程实战》- Brian Goetz
+- 《深入理解Java虚拟机》- 周志明  
+- 《Effective Java》- Joshua Bloch
+- 《Java性能调优指南》- Charlie Hunt
+
+### **官方文档与规范**
+- [OpenJDK Documentation](https://openjdk.java.net/)
+- [Java Language Specification](https://docs.oracle.com/javase/specs/)
+- [JVM Specification](https://docs.oracle.com/javase/specs/jvms/se11/html/)
+
+---
+
+**下一步**: 开始深入学习 [JVM 内存结构](/java/jvm/jvm-memory-structure)，理解 Java 程序的底层执行机制。 

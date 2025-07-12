@@ -1,11 +1,9 @@
-# JVM 内存结构：架构设计的艺术与生产实践的智慧
+# JVM 内存结构深度解析
+> JVM 内存结构是理解 Java 程序执行的核心，本文将深入剖析各个内存区域的作用、特点和管理机制。
 
-> “代码是写给人看的，附带在机器上运行。” — Abelson & Sussman, SICP。理解 JVM 内存的底层设计，是写出传世代码的第一步。
+## 核心架构概览
 
-<div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
-  <h3 style="margin-bottom: 15px; color: #333;">JVM 运行时数据区架构图</h3>
-  <img src="/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg" alt="JVM 运行时数据区架构图" style="max-width: 100%; height: auto; border-radius: 4px;" />
-</div>
+<img src="/public/assets/java/jvm/jvm-memory-structure-diagram.svg" alt="JVM 运行时数据区架构图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 
 ## 【核心讲解】
 
@@ -58,7 +56,7 @@ Java 堆是 JVM 所管理内存中最大、最核心的一块区域，承载着�
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">Java 对象分配与晋升流程图</h3>
-  <img src="/docs/public/assets/java/jvm/object-allocation-flowchart.svg" alt="Java 对象分配与晋升流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/public/assets/java/jvm/object-allocation-flowchart.svg" alt="Java 对象分配与晋升流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 1.  **诞生于 Eden**: 绝大多数新对象在 **Eden 区**通过 TLAB 快速分配。
