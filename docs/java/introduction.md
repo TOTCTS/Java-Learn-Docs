@@ -49,10 +49,10 @@
 本模块深入探讨 Java 的并发模型与工具，这是开发高性能、高并发系统的关键。
 
 ### 2.1 线程基础与内存模型
-- [x] [线程的创建、状态与生命周期](/java/concurrent/thread-lifecycle-and-states.md)
+- [x] [线程的创建、状态与生命周期](/docs/java/concurrent/thread-lifecycle-and-states.md)
 - [ ] `synchronized` 关键字：用法、原理与锁优化 (偏向锁, 轻量级锁, 重量级锁)
-- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](/java/concurrent/volatile-keyword-deep-dive.md)
-- [x] [Java 内存模型 (JMM) 深度解读](/java/concurrent/jmm-deep-dive.md)
+- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](/docs/java/concurrent/volatile-keyword-deep-dive.md)
+- [x] [Java 内存模型 (JMM) 深度解读](/docs/java/concurrent/jmm-deep-dive.md)
 
 ### 2.2 J.U.C 并发包详解
 - [ ] `Lock` 体系：`ReentrantLock`, `ReentrantReadWriteLock`
@@ -72,8 +72,8 @@
 本模块深入虚拟机底层，揭示 Java 跨平台、自动化内存管理的奥秘。
 
 ### 3.1 内存结构与对象生命周期
-- [x] [JVM 内存结构 (运行时数据区)](/java/jvm/jvm-memory-structure.md)
-- [x] [对象的创建过程、内存布局与访问定位](/java/jvm/object-creation-and-memory-layout.md)
+- [x] [JVM 内存结构 (运行时数据区)](/docs/java/jvm/jvm-memory-structure.md)
+- [x] [对象的创建过程、内存布局与访问定位](/docs/java/jvm/object-creation-and-memory-layout.md)
 - [ ] TLAB (Thread-Local Allocation Buffer)
 - [ ] 逃逸分析与栈上分配
 
@@ -84,7 +84,7 @@
 - [ ] 分代回收模型与跨代引用问题
 
 ### 3.3 类加载与执行引擎
-- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](/java/jvm/class-loading-process.md)
+- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](/docs/java/jvm/class-loading-process.md)
 - [ ] 类加载器与双亲委派模型
 - [ ] 执行引擎：解释器与 JIT (Just-In-Time) 编译器
 
