@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="950" viewBox="0 0 600 950">
+    <defs>
+        <linearGradient id="grad-step" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f9fafb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f3f4f6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-linking" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#eff6ff;stop-opacity:0.7" />
+            <stop offset="100%" style="stop-color:#dbeafe;stop-opacity:0.7" />
+        </linearGradient>
+        <style>
+            .bg { fill: #ffffff; }
+            .step-box { fill: url(#grad-step); stroke: #d1d5db; stroke-width: 1.5; rx: 12; ry: 12; }
+            .step-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; fill: #1f2937; }
+            .step-desc { font-family: 'Inter', 'Arial', sans-serif; font-size: 13px; text-anchor: middle; fill: #4b5563; }
+
+            .linking-panel { fill: url(#grad-linking); stroke: #a5b4fc; stroke-width: 1.5; rx: 16; ry: 16; }
+            .linking-title { font-size: 18px; font-weight: 600; fill: #3730a3; text-anchor: middle; }
+
+            .sub-step-box { fill: #ffffff; stroke: #93c5fd; stroke-width: 1; rx: 8; ry: 8; }
+            .sub-step-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 16px; font-weight: 500; text-anchor: middle; fill: #1e3a8a; }
+
+            .connector { fill: none; stroke: #9ca3af; stroke-width: 2; marker-end: url(#arrowhead); }
+            .connector-dashed { fill: none; stroke: #9ca3af; stroke-width: 2; stroke-dasharray: 5 5; }
+             #arrowhead path { fill: #9ca3af; }
+        </style>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+    </defs>
+
+    <rect x="0" y="0" width="600" height="950" class="bg"/>
+
+    <g transform="translate(300, 0)">
+        <!-- Loading -->
+        <g transform="translate(0, 50)">
+            <rect x="-180" y="0" width="360" height="70" class="step-box"/>
+            <text y="35" class="step-text">1. 加载 (Loading)</text>
+            <text y="58" class="step-desc">获取.class字节流, 转为运行时结构, 创建Class对象</text>
+        </g>
+        <path d="M 0 120 v 30" class="connector"/>
+        
+        <!-- Linking -->
+        <g transform="translate(0, 150)">
+            <rect x="-250" y="0" width="500" height="400" class="linking-panel"/>
+            <text x="0" y="40" class="linking-title">2. 链接 (Linking)</text>
+            
+            <g transform="translate(0, 80)">
+                <rect x="-150" y="0" width="300" height="60" class="sub-step-box"/>
+                <text y="35" class="sub-step-text">2.1 验证 (Verification)</text>
+            </g>
+            <path d="M 0 140 v 20" class="connector"/>
+            
+            <g transform="translate(0, 160)">
+                <rect x="-150" y="0" width="300" height="60" class="sub-step-box"/>
+                <text y="35" class="sub-step-text">2.2 准备 (Preparation)</text>
+            </g>
+            <path d="M 0 220 v 20" class="connector"/>
+
+            <g transform="translate(0, 240)">
+                <rect x="-150" y="0" width="300" height="60" class="sub-step-box"/>
+                <text y="35" class="sub-step-text">2.3 解析 (Resolution)</text>
+            </g>
+        </g>
+        <path d="M 0 550 v 30" class="connector"/>
+        
+        <!-- Initialization -->
+        <g transform="translate(0, 610)">
+            <rect x="-180" y="0" width="360" height="70" class="step-box"/>
+            <text y="35" class="step-text">3. 初始化 (Initialization)</text>
+            <text y="58" class="step-desc">执行类构造器 &lt;clinit&gt;()</text>
+        </g>
+
+        <!-- Dotted line for lazy resolution -->
+        <path d="m 150, 430 c 120,0 120,150 0,150" class="connector-dashed" marker-end="url(#arrowhead)"/>
+        <text x="220" y="535" class="step-desc" transform="rotate(20, 220, 535)">解析可能延迟</text>
+        <text x="210" y="555" class="step-desc" transform="rotate(20, 210, 555)">至首次使用时</text>
+
+    </g>
+</svg> 

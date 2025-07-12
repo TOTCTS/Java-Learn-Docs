@@ -1,0 +1,124 @@
+<svg width="800" height="680" viewBox="0 0 800 680" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+    <style>
+        .flow-rect, .flow-proc, .flow-term { transition: opacity 0.5s; }
+        .flow-rect { fill: #e3f2fd; stroke: #1976d2; stroke-width: 1.5; }
+        .flow-proc { fill: #e8f5e9; stroke: #388e3c; stroke-width: 1.5; }
+        .flow-term { fill: #ffebee; stroke: #c62828; stroke-width: 1.5; }
+        .flow-text { font: normal 12px sans-serif; text-anchor: middle; fill: #333; }
+        .flow-line { stroke: #333; stroke-width: 1.5; marker-end: url(#arrow); stroke-dasharray: 100; stroke-dashoffset: 100; }
+    </style>
+  </defs>
+
+  <g id="step1">
+    <rect x="350" y="40" width="100" height="40" rx="20" class="flow-term" />
+    <text x="400" y="65" class="flow-text">程序开始</text>
+  </g>
+  
+  <g id="line1" opacity="0">
+    <path d="M 400 80 V 110" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="0.5s" fill="freeze" />
+    </path>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.5s" fill="freeze" />
+  </g>
+
+  <g id="step2" opacity="0">
+    <rect x="300" y="110" width="200" height="50" rx="5" class="flow-rect" />
+    <text x="400" y="130" class="flow-text">1. main() 方法被调用</text>
+    <text x="400" y="145" class="flow-text">JVM 为其创建栈帧</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1s" fill="freeze" />
+  </g>
+  
+  <g id="line2" opacity="0">
+      <path d="M 400 160 V 190" class="flow-line">
+        <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="1.5s" fill="freeze" />
+      </path>
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze" />
+  </g>
+
+  <g id="step3" opacity="0">
+    <rect x="300" y="190" width="200" height="50" rx="5" class="flow-rect" />
+    <text x="400" y="210" class="flow-text">2. 声明 int a = 10;</text>
+    <text x="400" y="225" class="flow-text">值直接存入 main 栈帧</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2s" fill="freeze" />
+  </g>
+  
+  <g id="line3" opacity="0">
+      <path d="M 400 240 V 270" class="flow-line">
+        <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="2.5s" fill="freeze" />
+      </path>
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.5s" fill="freeze" />
+  </g>
+  
+  <g id="step4" opacity="0">
+    <rect x="300" y="270" width="200" height="50" rx="5" class="flow-proc" />
+    <text x="400" y="290" class="flow-text">3. new DataObject()</text>
+    <text x="400" y="305" class="flow-text">在 Java 堆中分配内存</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="3s" fill="freeze" />
+  </g>
+
+  <g id="split-lines" opacity="0">
+    <path d="M 400 320 V 350" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="3.5s" fill="freeze" />
+    </path>
+    <path d="M 200 375 H 300" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="3.7s" fill="freeze" />
+    </path>
+    <path d="M 500 375 H 600" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="3.7s" fill="freeze" />
+    </path>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="3.5s" fill="freeze" />
+  </g>
+  
+  <g id="step5-stack" opacity="0">
+    <rect x="50" y="350" width="150" height="70" rx="5" class="flow-rect" />
+    <text x="125" y="370" class="flow-text">4a. 栈中存储引用</text>
+    <text x="125" y="390" class="flow-text" font-family="monospace" font-size="11px">DataObject obj</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="4s" fill="freeze" />
+  </g>
+  
+  <g id="step5-heap" opacity="0">
+    <rect x="600" y="350" width="150" height="70" rx="5" class="flow-proc" />
+    <text x="675" y="370" class="flow-text">4b. 堆中存储实例</text>
+    <text x="675" y="390" class="flow-text" font-family="monospace" font-size="11px">new DataObject()</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="4s" fill="freeze" />
+  </g>
+
+  <g id="rejoin-lines" opacity="0">
+    <path d="M 125 420 V 450" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="4.5s" fill="freeze" />
+    </path>
+    <path d="M 675 420 V 450" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="4.5s" fill="freeze" />
+    </path>
+    <path d="M 125 465 H 400" fill="none" stroke="#333" stroke-width="1.5" />
+    <path d="M 675 465 H 400" fill="none" stroke="#333" stroke-width="1.5" />
+    <path d="M 400 450 V 480" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="4.7s" fill="freeze" />
+    </path>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="4.5s" fill="freeze" />
+  </g>
+
+  <g id="step6" opacity="0">
+    <rect x="300" y="480" width="200" height="50" rx="5" class="flow-rect" />
+    <text x="400" y="500" class="flow-text">5. 方法执行完毕</text>
+    <text x="400" y="515" class="flow-text">栈帧出栈, 内存释放</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="5s" fill="freeze" />
+  </g>
+
+  <g id="line-final" opacity="0">
+    <path d="M 400 530 V 560" class="flow-line">
+      <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.8s" begin="5.5s" fill="freeze" />
+    </path>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="5.5s" fill="freeze" />
+  </g>
+
+  <g id="step-final" opacity="0">
+    <rect x="350" y="560" width="100" height="40" rx="20" class="flow-term" />
+    <text x="400" y="585" class="flow-text">程序结束</text>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="6s" fill="freeze" />
+  </g>
+</svg> 

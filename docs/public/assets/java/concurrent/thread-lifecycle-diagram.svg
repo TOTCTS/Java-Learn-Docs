@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+    <defs>
+        <linearGradient id="grad-new" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FEF3C7;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FDE68A;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-runnable" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#D1FAE5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#A7F3D0;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-blocked" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FEE2E2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FECACA;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-waiting" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#E0E7FF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#C7D2FE;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-timed-waiting" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#F3E8FF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#E9D5FF;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-terminated" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#F3F4F6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#E5E7EB;stop-opacity:1" />
+        </linearGradient>
+        
+        <style>
+            .bg { fill: #ffffff; }
+            
+            .state-box { stroke: #374151; stroke-width: 2; rx: 12; ry: 12; }
+            .state-title { font-family: 'Inter', 'Arial', sans-serif; font-size: 16px; font-weight: 700; text-anchor: middle; fill: #1F2937; }
+            .state-desc { font-family: 'Inter', 'Arial', sans-serif; font-size: 12px; text-anchor: middle; fill: #4B5563; }
+            
+            .arrow { fill: none; stroke: #6B7280; stroke-width: 2.5; marker-end: url(#arrowhead); }
+            .arrow-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 11px; font-weight: 500; text-anchor: middle; fill: #374151; }
+            
+            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 24px; font-weight: 700; text-anchor: middle; fill: #111827; }
+            .subtitle { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #6B7280; }
+            
+            .method-text { font-family: 'monospace', 'Courier New'; font-size: 10px; fill: #059669; }
+            .condition-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 10px; fill: #DC2626; }
+        </style>
+        
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280"/>
+        </marker>
+    </defs>
+
+    <rect x="0" y="0" width="1000" height="700" class="bg"/>
+    
+    <!-- Title -->
+    <text x="500" y="40" class="title">Java 线程生命周期状态转换图</text>
+    <text x="500" y="65" class="subtitle">Thread.State 枚举定义的六种状态及其转换条件</text>
+
+    <!-- NEW State -->
+    <g transform="translate(150, 150)">
+        <rect x="-70" y="-30" width="140" height="60" class="state-box" fill="url(#grad-new)"/>
+        <text y="-5" class="state-title">NEW</text>
+        <text y="15" class="state-desc">新建状态</text>
+    </g>
+
+    <!-- RUNNABLE State -->
+    <g transform="translate(500, 150)">
+        <rect x="-80" y="-40" width="160" height="80" class="state-box" fill="url(#grad-runnable)"/>
+        <text y="-15" class="state-title">RUNNABLE</text>
+        <text y="5" class="state-desc">可运行状态</text>
+        <text y="20" class="state-desc">(包含 READY 和 RUNNING)</text>
+    </g>
+
+    <!-- BLOCKED State -->
+    <g transform="translate(150, 350)">
+        <rect x="-70" y="-30" width="140" height="60" class="state-box" fill="url(#grad-blocked)"/>
+        <text y="-5" class="state-title">BLOCKED</text>
+        <text y="15" class="state-desc">阻塞状态</text>
+    </g>
+
+    <!-- WAITING State -->
+    <g transform="translate(500, 350)">
+        <rect x="-70" y="-30" width="140" height="60" class="state-box" fill="url(#grad-waiting)"/>
+        <text y="-5" class="state-title">WAITING</text>
+        <text y="15" class="state-desc">等待状态</text>
+    </g>
+
+    <!-- TIMED_WAITING State -->
+    <g transform="translate(850, 350)">
+        <rect x="-80" y="-30" width="160" height="60" class="state-box" fill="url(#grad-timed-waiting)"/>
+        <text y="-5" class="state-title">TIMED_WAITING</text>
+        <text y="15" class="state-desc">超时等待状态</text>
+    </g>
+
+    <!-- TERMINATED State -->
+    <g transform="translate(500, 550)">
+        <rect x="-80" y="-30" width="160" height="60" class="state-box" fill="url(#grad-terminated)"/>
+        <text y="-5" class="state-title">TERMINATED</text>
+        <text y="15" class="state-desc">终止状态</text>
+    </g>
+
+    <!-- Arrows and Transitions -->
+    
+    <!-- NEW to RUNNABLE -->
+    <path d="M 220 150 L 420 150" class="arrow"/>
+    <text x="320" y="140" class="arrow-text method-text">start()</text>
+    
+    <!-- RUNNABLE to BLOCKED -->
+    <path d="M 450 190 Q 300 250 220 350" class="arrow"/>
+    <text x="330" y="270" class="arrow-text condition-text">等待synchronized锁</text>
+    
+    <!-- BLOCKED to RUNNABLE -->
+    <path d="M 220 320 Q 350 260 450 190" class="arrow"/>
+    <text x="340" y="250" class="arrow-text condition-text">获得锁</text>
+    
+    <!-- RUNNABLE to WAITING -->
+    <path d="M 500 190 L 500 320" class="arrow"/>
+    <g transform="translate(520, 255)">
+        <text y="0" class="arrow-text method-text">wait()</text>
+        <text y="12" class="arrow-text method-text">join()</text>
+        <text y="24" class="arrow-text method-text">park()</text>
+    </g>
+    
+    <!-- WAITING to RUNNABLE -->
+    <path d="M 470 320 L 470 190" class="arrow"/>
+    <g transform="translate(450, 255)">
+        <text y="0" class="arrow-text condition-text">notify()</text>
+        <text y="12" class="arrow-text condition-text">线程结束</text>
+        <text y="24" class="arrow-text condition-text">unpark()</text>
+    </g>
+    
+    <!-- RUNNABLE to TIMED_WAITING -->
+    <path d="M 580 150 Q 715 250 770 350" class="arrow"/>
+    <g transform="translate(680, 250)">
+        <text y="0" class="arrow-text method-text">sleep(time)</text>
+        <text y="12" class="arrow-text method-text">wait(time)</text>
+        <text y="24" class="arrow-text method-text">join(time)</text>
+    </g>
+    
+    <!-- TIMED_WAITING to RUNNABLE -->
+    <path d="M 770 320 Q 715 250 580 190" class="arrow"/>
+    <g transform="translate(675, 230)">
+        <text y="0" class="arrow-text condition-text">超时</text>
+        <text y="12" class="arrow-text condition-text">notify()</text>
+        <text y="24" class="arrow-text condition-text">interrupt()</text>
+    </g>
+    
+    <!-- RUNNABLE to TERMINATED -->
+    <path d="M 500 190 L 500 520" class="arrow"/>
+    <g transform="translate(520, 355)">
+        <text y="0" class="arrow-text condition-text">run()方法结束</text>
+        <text y="12" class="arrow-text condition-text">未捕获异常</text>
+    </g>
+    
+    <!-- Interrupt arrows -->
+    <!-- WAITING to RUNNABLE (interrupt) -->
+    <path d="M 430 350 Q 350 280 430 190" class="arrow" stroke="#DC2626" stroke-dasharray="5,5"/>
+    <text x="380" y="295" class="arrow-text condition-text" fill="#DC2626">interrupt()</text>
+    
+    <!-- TIMED_WAITING to RUNNABLE (interrupt) -->
+    <path d="M 770 350 Q 650 280 570 190" class="arrow" stroke="#DC2626" stroke-dasharray="5,5"/>
+    <text x="670" y="295" class="arrow-text condition-text" fill="#DC2626">interrupt()</text>
+
+    <!-- Legend -->
+    <g transform="translate(50, 600)">
+        <rect x="0" y="0" width="300" height="80" fill="none" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+        <text x="150" y="20" class="arrow-text" font-weight="600" text-anchor="middle">图例说明</text>
+        
+        <line x1="20" y1="35" x2="50" y2="35" stroke="#6B7280" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+        <text x="60" y="40" class="arrow-text">正常状态转换</text>
+        
+        <line x1="20" y1="55" x2="50" y2="55" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+        <text x="60" y="60" class="arrow-text" fill="#DC2626">中断触发的转换</text>
+    </g>
+
+    <!-- Key Points -->
+    <g transform="translate(650, 600)">
+        <rect x="0" y="0" width="320" height="80" fill="none" stroke="#E5E7EB" stroke-width="1" rx="8"/>
+        <text x="160" y="20" class="arrow-text" font-weight="600" text-anchor="middle">关键要点</text>
+        
+        <text x="10" y="35" class="arrow-text">• BLOCKED 状态不响应 interrupt() 中断</text>
+        <text x="10" y="50" class="arrow-text">• TERMINATED 状态不可逆，线程无法重新启动</text>
+        <text x="10" y="65" class="arrow-text">• RUNNABLE 包含就绪(READY)和运行(RUNNING)两个子状态</text>
+    </g>
+</svg> 

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" font-family="Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow-v2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+    <style>
+      .node-v2 { fill: #f9f9f9; stroke: #666; stroke-width: 1.5; rx: 8; }
+      .decision-v2 { fill: #EBF5FB; stroke: #3498DB; stroke-width: 1.5; rx: 8; }
+      .process-v2 { fill: #E9F7EF; stroke: #2ECC71; stroke-width: 1.5; rx: 8; }
+      .line-v2 { stroke: #333; stroke-width: 1.5; marker-end: url(#arrow-v2); }
+      .text-v2 { text-anchor: middle; font-size: 13px; }
+      .label-v2 { font-size: 11px; fill: #555; }
+    </style>
+  </defs>
+
+  <text x="400" y="40" font-size="20" font-weight="bold" text-anchor="middle">对象分配与晋升流程</text>
+
+  <!-- Start -->
+  <rect x="325" y="80" width="150" height="50" class="node-v2" />
+  <text x="400" y="110" class="text-v2">1. 对象创建请求</text>
+  <path class="line-v2" d="M 400 130 V 160" />
+
+  <!-- TLAB -->
+  <rect x="300" y="160" width="200" height="70" class="decision-v2" />
+  <text x="400" y="195" class="text-v2">2. TLAB 优先分配？</text>
+  <path class="line-v2" d="M 500 195 L 580 195" />
+  <text x="540" y="190" class="label-v2">否 (空间不足/大对象)</text>
+  <path class="line-v2" d="M 400 230 V 260" />
+  <text x="420" y="245" class="label-v2">是</text>
+  
+  <rect x="325" y="260" width="150" height="50" class="process-v2" />
+  <text x="400" y="290" class="text-v2">分配到 TLAB</text>
+  <path class="line-v2" d="M 400 310 V 340 L 700 340 V 870 H 400 V 900" />
+  <text x="550" y="335" class="label-v2">分配成功</text>
+  
+  <!-- Eden Allocation -->
+  <rect x="580" y="160" width="200" height="70" class="decision-v2"/>
+  <text x="680" y="195" class="text-v2">3. Eden 区空间足够？</text>
+  <path class="line-v2" d="M 680 230 V 260" />
+  <text x="700" y="245" class="label-v2">是</text>
+  <path class="line-v2" d="M 580 195 H 400 V 420" />
+  <text x="500" y="220" class="label-v2">否</text>
+
+  <rect x="605" y="260" width="150" height="50" class="process-v2" />
+  <text x="680" y="290" class="text-v2">分配到 Eden 区</text>
+  <path class="line-v2" d="M 680 310 V 340 L 700 340" />
+  <text x="720" y="335" class="label-v2">分配成功</text>
+
+  <!-- Minor GC -->
+  <rect x="325" y="420" width="150" height="50" class="node-v2" style="fill:#FDEDEC; stroke:#E74C3C;" />
+  <text x="400" y="450" class="text-v2">4. 触发 Minor GC</text>
+  <path class="line-v2" d="M 400 470 V 500" />
+
+  <!-- Survive GC? -->
+  <rect x="300" y="500" width="200" height="70" class="decision-v2"/>
+  <text x="400" y="535" class="text-v2">5. GC 后对象存活？</text>
+  <path class="line-v2" d="M 300 535 H 150 V 580" />
+  <text x="225" y="530" class="label-v2">否</text>
+  <rect x="75" y="580" width="150" height="50" class="node-v2" />
+  <text x="150" y="610" class="text-v2">空间被回收</text>
+  <path class="line-v2" d="M 400 570 V 580" />
+  <text x="420" y="570" class="label-v2">是</text>
+  
+  <!-- To Survivor -->
+  <rect x="325" y="580" width="150" height="50" class="process-v2"/>
+  <text x="400" y="600" class="text-v2">移入 Survivor(To)区</text>
+  <text x="400" y="620" class="text-v2">年龄+1</text>
+  <path class="line-v2" d="M 400 630 V 660" />
+  
+  <!-- Age check -->
+  <rect x="300" y="660" width="200" height="70" class="decision-v2"/>
+  <text x="400" y="695" class="text-v2">6. 年龄达到阈值？</text>
+  <path class="line-v2" d="M 500 695 L 580 695" />
+  <text x="540" y="690" class="label-v2">否</text>
+  <path class="line-v2" d="M 400 730 V 760" />
+  <text x="450" y="745" class="label-v2">是 (或动态年龄/空间担保)</text>
+  
+  <rect x="580" y="660" width="200" height="70" class="process-v2" />
+  <text x="680" y="695" class="text-v2">等待下一次 Minor GC</text>
+  <path class="line-v2" d="M 680 730 V 750 H 150 V 500" />
+  <text x="415" y="745" class="label-v2">循环</text>
+
+  <!-- To Old Gen -->
+  <rect x="325" y="760" width="150" height="50" class="process-v2" style="fill:#FEF9E7; stroke:#F1C40F;" />
+  <text x="400" y="790" class="text-v2">7. 晋升到老年代</text>
+  <path class="line-v2" d="M 400 810 V 900" />
+  
+  <!-- End -->
+  <rect x="325" y="900" width="150" height="50" class="node-v2" />
+  <text x="400" y="930" class="text-v2">分配结束</text>
+  
+</svg> 

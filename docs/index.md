@@ -19,5 +19,5 @@ features:
   - title: 主流框架
     details: 全面覆盖Spring家族 (Spring Boot/Cloud/MVC)，以及MyBatis、Netty等企业级开发必备框架。
   - title: 面向实战
-    details: 大量代码示例和案例分析，结合图表（Mermaid.js）进行直观展示，助您快速上手。
+    details: 大量代码示例和案例分析，结合精美的图表进行直观展示，助您快速上手。
 --- 

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="550" viewBox="0 0 1000 550">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .panel { fill: rgba(249, 250, 251, 0.8); stroke: #d1d5db; stroke-width: 1.5; rx: 16; ry: 16; }
+      .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; fill: #1f2937; }
+      .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: start; fill: #374151; }
+      .item-text-highlight { font-weight: 600; fill: #15803d; }
+      .line { stroke: #d1d5db; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="550" class="bg"/>
+
+  <!-- Category 1: Creation Process -->
+  <g transform="translate(180, 50)">
+    <rect x="-170" y="0" width="340" height="450" class="panel"/>
+    <text y="40" class="title">创建过程 (The Birth)</text>
+    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
+    <foreignObject x="-160" y="80" width="320" height="350">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
+                <li>类加载检查</li>
+                <li>内存分配
+                    <ul style="line-height: 1.8;">
+                        <li style="color:#1e40af;">TLAB (线程本地分配)</li>
+                        <li style="color:#52525b;">CAS + 失败重试</li>
+                    </ul>
+                </li>
+                <li>零值初始化</li>
+                <li>对象头设置</li>
+                <li>构造函数执行 `(&lt;init&gt;)`</li>
+            </ul>
+        </body>
+    </foreignObject>
+  </g>
+
+  <!-- Category 2: Memory Layout -->
+  <g transform="translate(500, 50)">
+    <rect x="-170" y="0" width="340" height="450" class="panel"/>
+    <text y="40" class="title">内存布局 (The Anatomy)</text>
+    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
+     <foreignObject x="-160" y="80" width="320" height="350">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
+                <li><b>对象头 (Header)</b>
+                    <ul style="line-height: 1.8;">
+                        <li style="color:#1e40af;">Mark Word</li>
+                        <li style="color:#1e40af;">Klass Pointer</li>
+                    </ul>
+                </li>
+                <li><b>实例数据 (Instance Data)</b></li>
+                <li><b>对齐填充 (Padding)</b></li>
+            </ul>
+        </body>
+    </foreignObject>
+  </g>
+
+  <!-- Category 3: Access Method -->
+  <g transform="translate(820, 50)">
+    <rect x="-170" y="0" width="340" height="450" class="panel"/>
+    <text y="40" class="title">访问定位 (The Access)</text>
+    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
+    <foreignObject x="-160" y="80" width="320" height="350">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
+                <li style="color: #15803d; font-weight: 600;">直接指针 (HotSpot 选用)</li>
+                <li>句柄访问</li>
+            </ul>
+        </body>
+    </foreignObject>
+  </g>
+</svg> 

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+    <defs>
+        <linearGradient id="grad-main-mem" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fffbeb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-thread" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+        </linearGradient>
+        <style>
+            .bg { fill: #f9fafb; }
+            .panel { stroke-width: 1.5; rx: 16; ry: 16; }
+            .panel-main { fill: url(#grad-main-mem); stroke: #fcd34d; }
+            .panel-thread { fill: url(#grad-thread); stroke: #7dd3fc; }
+            
+            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 20px; font-weight: 600; text-anchor: middle; }
+            .title-main { fill: #b45309; }
+            .title-thread { fill: #075985; }
+
+            .item-box { fill: #ffffff; stroke: #d1d5db; stroke-width: 1; rx: 8; ry: 8; }
+            .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #374151; }
+            
+            .connector { fill: none; stroke: #9ca3af; stroke-width: 2; marker-end: url(#arrowhead-solid); marker-start: url(#arrowhead-solid); }
+            .connector-dashed { stroke-dasharray: 6 6; }
+            .label { font-family: 'Inter', 'Arial', sans-serif; font-size: 13px; fill: #4b5563; text-anchor: middle; }
+        </style>
+        <marker id="arrowhead-solid" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af"/>
+        </marker>
+    </defs>
+
+    <rect x="0" y="0" width="900" height="600" class="bg"/>
+
+    <!-- Main Memory -->
+    <g transform="translate(450, 300)">
+        <rect x="-200" y="-250" width="400" height="500" class="panel panel-main"/>
+        <text y="-210" class="title title-main">主内存 (Main Memory)</text>
+        <text y="-185" class="label">(所有线程共享)</text>
+        
+        <rect x="-120" y="-100" width="240" height="50" class="item-box"/>
+        <text y="-75" class="item-text">共享变量 A</text>
+        <rect x="-120" y="-30" width="240" height="50" class="item-box"/>
+        <text y="-5" class="item-text">共享变量 B</text>
+        <rect x="-120" y="40" width="240" height="50" class="item-box"/>
+        <text y="65" class="item-text">...</text>
+    </g>
+
+    <!-- Thread 1 -->
+    <g transform="translate(150, 150)">
+        <rect x="-125" y="-100" width="250" height="250" class="panel panel-thread"/>
+        <text y="-65" class="title title-thread">线程 A</text>
+        <text y="-40" class="label">工作内存</text>
+        <rect x="-80" y="-10" width="160" height="40" class="item-box"/>
+        <text y="15" class="item-text">变量 A 副本</text>
+    </g>
+    
+    <!-- Thread 2 -->
+    <g transform="translate(150, 450)">
+        <rect x="-125" y="-100" width="250" height="250" class="panel panel-thread"/>
+        <text y="-65" class="title title-thread">线程 B</text>
+        <text y="-40" class="label">工作内存</text>
+        <rect x="-80" y="-10" width="160" height="40" class="item-box"/>
+        <text y="15" class="item-text">变量 A 副本</text>
+        <rect x="-80" y="50" width="160" height="40" class="item-box"/>
+        <text y="75" class="item-text">变量 B 副本</text>
+    </g>
+
+    <!-- Connectors -->
+    <path d="M 260 150 H 300" class="connector"/>
+    <text x="280" y="135" class="label">Load / Store</text>
+    
+    <path d="M 260 410 H 300" class="connector"/>
+    <text x="280" y="395" class="label">Load</text>
+    <path d="M 260 490 H 300" class="connector"/>
+    <text x="280" y="475" class="label">Load / Store</text>
+
+    <!-- Communication Flow -->
+    <g transform="translate(680, 0)">
+        <path d="M 0 150 Q 80 225, 0 300" class="connector connector-dashed"/>
+        <path d="M 0 300 Q -80 375, 0 450" class="connector connector-dashed"/>
+        <text x="-40" y="80" class="title title-thread">线程间通信</text>
+        <text x="-125" y="110" class="label">1. 线程 A 修改变量 A</text>
+        <text x="-125" y="130" class="label">2. Store 到主内存</text>
+        <text x="-125" y="150" class="label">3. 线程 B 从主内存 Load</text>
+
+    </g>
+</svg> 

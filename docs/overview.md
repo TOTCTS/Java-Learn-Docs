@@ -6,38 +6,37 @@
 
 下图展示了从一名 Java 开发者成长为全栈专家的完整学习路径：
 
-<JavaOverviewDiagramFixed />
+<div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
+  <h3 style="margin-bottom: 15px; color: #333;">Java 全栈开发学习路径</h3>
+  <img src="/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <p style="margin-top: 15px; font-size: 14px; color: #666;">按阶段循序渐进，每个阶段都有具体的技术栈和学习目标</p>
+</div>
 
 ---
 
 ## 各模块介绍
 
-### 1. [Java 核心](/java/introduction)
+### 1. [Java 核心与基础](/java/introduction)
+**定位**：语言基础与虚拟机原理。
+**核心内容**：Java SE (OOP, 集合, 并发)、JVM (内存模型, GC)、构建工具 (Maven, Gradle)。
+本模块将带您深入 Java 的世界，从语言的底层机制到强大的并发处理，再到 JVM 的性能奥秘。掌握这些是成为一名优秀 Java 工程师的坚实一步，也是理解上层框架设计思想的前提。
 
-**定位**：编程语言的基石。
+### 2. [后端框架](/spring/introduction) (待撰写)
+**定位**：应用开发与业务实现。
+**核心内容**：Spring (IoC, AOP)、Spring Boot、Spring MVC/WebFlux、Spring Data、Spring Security、MyBatis、Netty。
+本模块是 Java 企业级应用的核心。我们将解构 Spring 的设计哲学，学习如何利用 Spring Boot 快速构建健壮、可扩展的应用程序，并掌握数据持久化与网络通信的关键技术，从而高效地将业务需求转化为高质量的软件。
 
-这是所有后续学习的基础。本模块将深入探讨 Java 语言的底层机制，包括面向对象思想、并发编程、JVM 虚拟机原理以及从 Java 8 到 21 的核心新特性。扎实的 Java 核心功底是您解决复杂问题的关键。
+### 3. [数据存储](/database/introduction) (待撰写)
+**定位**：持久化、缓存与检索方案。
+**核心内容**：关系型数据库 (MySQL, PostgreSQL)、缓存 (Redis)、文档数据库 (MongoDB)、搜索引擎 (Elasticsearch)。
+任何强大的应用都离不开高效的数据管理。本模块将介绍如何根据业务场景选择最合适的数据存储方案——从传统的关系型数据库，到用于提升性能的分布式缓存，再到灵活的 NoSQL 数据库和强大的全文搜索引擎。
 
-### 2. 主流框架 (待撰写)
+### 4. [微服务生态](/microservices/introduction) (待撰写)
+**定位**：分布式系统架构与治理。
+**核心内容**：Spring Cloud (Nacos, Gateway, OpenFeign)、消息队列 (RabbitMQ, Kafka)、RPC 框架 (Dubbo)、分布式追踪 (SkyWalking)。
+本模块将带您进入大规模分布式系统的世界。我们将学习如何利用 Spring Cloud 全家桶和各类中间件，构建一个高内聚、松耦合的微服务架构，解决服务治理、系统通信、链路监控等一系列复杂挑战，确保系统在规模化时依然稳定可靠。
 
-**定位**：企业级开发的加速器。
-
-我们将学习以 Spring 全家桶（Spring Boot, Spring Cloud）为核心的现代开发框架。这些框架通过提供诸如 IoC、AOP 等通用解决方案，让开发者能更专注于业务逻辑，极大地提升了开发效率和软件质量。
-
-### 3. 数据存储 (待撰写)
-
-**定位**：应用数据的"仓库"。
-
-任何应用都离不开数据。本模块将涵盖关系型数据库（如 MySQL）、非关系型数据库（如 Redis, MongoDB）的使用和原理，学习如何设计高效的数据库模式、如何利用缓存提升性能。
-
-### 4. 分布式组件 (待撰写)
-
-**定位**：构建大规模应用的"粘合剂"。
-
-在微服务时代，我们需要一系列的中间件来支撑庞大的分布式系统。这里我们将学习消息队列（RabbitMQ, Kafka）以实现系统解耦，学习搜索引擎（Elasticsearch）以提供强大的检索能力。
-
-### 5. 工程化与 DevOps (待撰写)
-
-**定位**：保障软件高质量交付的流程与工具。
-
-本模块将介绍如何使用 Docker 和 Kubernetes (K8s) 实现应用的容器化部署，如何通过 Git 进行版本控制，以及如何利用 Jenkins 等工具搭建 CI/CD 自动化流水线，完成从代码到产品的最后一公里。 
+### 5. [工程化与 DevOps](/devops/introduction) (待撰写)
+**定位**：软件交付与运维自动化。
+**核心内容**：版本控制 (Git)、CI/CD (Jenkins)、容器化 (Docker, Kubernetes)、监控 (Prometheus, Grafana)。
+“代码写完只是开始”。本模块聚焦于软件开发的全生命周期管理，介绍如何通过版本控制、自动化构建与部署、容器化以及全方位的监控，建立一套高效、可靠的 DevOps 流程，实现从代码到产品的快速、高质量交付。 
