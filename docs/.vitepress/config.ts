@@ -7,6 +7,15 @@ export default defineConfig({
   // 移除 base 设置，避免路径重复
   // base: '/docs/',
   
+  // 添加 vite 配置来处理路径别名
+  vite: {
+    resolve: {
+      alias: {
+        '/docs/public': '/public'
+      }
+    }
+  },
+  
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
@@ -31,11 +40,11 @@ export default defineConfig({
           ]
         },
         {
-          text: '并发编程',
+          text: 'Java 并发编程',
           items: [
-            { text: '线程生命周期', link: '/java/concurrent/thread-lifecycle-and-states' },
-            { text: 'volatile 关键字', link: '/java/concurrent/volatile-keyword-deep-dive' },
-            { text: 'Java 内存模型', link: '/java/concurrent/jmm-deep-dive' }
+            { text: '线程生命周期与状态', link: '/java/concurrent/thread-lifecycle-and-states' },
+            { text: 'volatile 关键字深度解析', link: '/java/concurrent/volatile-keyword-deep-dive' },
+            { text: 'Java 内存模型 (JMM)', link: '/java/concurrent/jmm-deep-dive' }
           ]
         }
       ]

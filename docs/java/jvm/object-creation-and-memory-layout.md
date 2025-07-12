@@ -3,7 +3,7 @@
 > 在 Java 的世界里，万物皆对象。但一个 `new` 关键字背后，究竟隐藏着虚拟机怎样的精妙操作？本篇将如庖丁解牛般，深入 JVM 底层，系统性地揭示一个 Java 对象从指令到内存，再到被引用的完整生命周期。
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
-  <img src="/public/assets/java/jvm/object-model-overview.svg" alt="Java 对象模型核心概览" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/docs/public/assets/java/jvm/object-model-overview.svg" alt="Java 对象模型核心概览" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 ## 【核心讲解】
@@ -40,7 +40,7 @@ JVM 的对象模型设计，旨在达成三大相互制约又需兼顾的目标�
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">Java 对象创建流程图</h3>
-  <img src="/public/assets/java/jvm/object-creation-flowchart.svg" alt="Java 对象创建流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/docs/public/assets/java/jvm/object-creation-flowchart.svg" alt="Java 对象创建流程图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 当 JVM 遇到一条 `new` 字节码指令时，它会按部就班地执行以下步骤，这是一个高度优化的精密流程：
@@ -91,7 +91,7 @@ JVM 的对象模型设计，旨在达成三大相互制约又需兼顾的目标�
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">HotSpot虚拟机对象内存布局图</h3>
-  <img src="/public/assets/java/jvm/object-memory-layout.svg" alt="HotSpot虚拟机对象内存布局图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/docs/public/assets/java/jvm/object-memory-layout.svg" alt="HotSpot虚拟机对象内存布局图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 在 HotSpot 虚拟机中，一个对象在堆内存中的存储布局可以划分为三个紧凑排列的部分：
@@ -128,7 +128,7 @@ JVM 的对象模型设计，旨在达成三大相互制约又需兼顾的目标�
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">对象访问方式对比图</h3>
-  <img src="/public/assets/java/jvm/object-access-comparison.svg" alt="对象访问方式对比图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/docs/public/assets/java/jvm/object-access-comparison.svg" alt="对象访问方式对比图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 Java 程序通过栈上的 `reference` 数据来操作堆上的具体对象。主流的对象访问方式有两种，HotSpot 的选择体现了其对性能的追求。

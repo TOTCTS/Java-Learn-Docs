@@ -255,6 +255,100 @@
     - **对应资源路径**: `docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg`
 - **引用规则**: 在 Markdown 文件中引用资源时，应使用相对于 `public` 目录的根路径，例如 `/assets/java/jvm/your-diagram.svg`。
 
+## 双重兼容性规范 (Dual Compatibility Standards)
+**核心原则**: 项目需要同时支持 GitHub 和 VitePress 两个平台的完美显示，确保在任何平台上都能正常访问文档内容和图片资源。
+
+### **路径兼容性策略 (Path Compatibility Strategy)**
+
+#### **图片路径统一标准**
+- **标准格式**: 所有 Markdown 文件中的图片路径**必须**使用 `/docs/public/assets/...` 格式
+- **GitHub 解析**: GitHub 会将此路径解析为 `https://github.com/TOTCTS/Java-Learn-Docs/blob/main/docs/public/assets/...`
+- **VitePress 解析**: 通过 Vite 别名配置，将 `/docs/public` 映射到 `/public`，确保 VitePress 能正确解析
+
+#### **内部链接统一标准**
+- **标准格式**: 所有内部文档链接**必须**使用相对路径格式，例如：
+  - `./concurrent/thread-lifecycle-and-states.md`
+  - `../jvm/jvm-memory-structure.md`
+- **GitHub 解析**: GitHub 会自动解析相对路径为完整的 GitHub 路径
+- **VitePress 解析**: VitePress 会自动添加 `.html` 扩展名并处理路径
+
+#### **VitePress 配置要求**
+- **路径别名**: 必须在 `docs/.vitepress/config.ts` 中配置路径别名：
+  ```typescript
+  vite: {
+    resolve: {
+      alias: {
+        '/docs/public': '/public'
+      }
+    }
+  }
+  ```
+- **基础路径**: 不设置 `base` 路径，避免路径冲突
+- **侧边栏配置**: 使用不带 `/docs/` 前缀的路径
+
+#### **文件组织要求**
+- **文档位置**: 所有 Markdown 文件存放在 `docs/` 目录及其子目录中
+- **资源位置**: 所有图片、SVG 等资源文件存放在 `docs/public/assets/` 目录中
+- **路径映射**: 资源文件的目录结构应与文档结构保持一致
+
+### **兼容性验证流程 (Compatibility Verification Process)**
+
+#### **GitHub 兼容性检查**
+1. **图片显示**: 确保所有图片在 GitHub 上正常显示，无 404 错误
+2. **内部链接**: 验证所有内部链接能正确跳转到对应的文档页面
+3. **路径正确性**: 确保链接包含正确的 `docs/` 前缀和文件扩展名
+
+#### **VitePress 兼容性检查**
+1. **本地开发**: 确保 `npm run docs:dev` 能正常启动，无路径错误
+2. **图片显示**: 验证所有图片在 VitePress 中正常显示
+3. **内部链接**: 确保所有内部链接能正确跳转，自动添加 `.html` 扩展名
+4. **导航功能**: 验证侧边栏导航、顶部导航、分页导航都正常工作
+
+#### **双重兼容性测试清单**
+- [ ] 所有图片路径使用 `/docs/public/assets/...` 格式
+- [ ] 所有内部链接使用相对路径格式
+- [ ] VitePress 配置包含必要的路径别名
+- [ ] GitHub 上所有图片正常显示
+- [ ] GitHub 上所有内部链接正常工作
+- [ ] VitePress 开发环境正常运行
+- [ ] VitePress 中所有图片正常显示
+- [ ] VitePress 中所有内部链接正常工作
+
+### **常见问题与解决方案 (Common Issues & Solutions)**
+
+#### **图片显示问题**
+- **问题**: 图片在某一平台显示 404 错误
+- **解决**: 确保图片路径使用 `/docs/public/assets/...` 格式，并检查文件是否存在
+
+#### **内部链接问题**
+- **问题**: 内部链接在某一平台无法正常跳转
+- **解决**: 使用相对路径格式，避免硬编码绝对路径
+
+#### **VitePress 路径冲突**
+- **问题**: VitePress 显示路径重复错误（如 `/docs/docs/...`）
+- **解决**: 移除 `base` 配置，使用路径别名处理
+
+#### **Git 文件跟踪问题**
+- **问题**: 图片文件存在本地但 GitHub 上显示 404
+- **解决**: 确保图片文件已添加到 Git 仓库并正确提交
+
+### **维护与更新策略 (Maintenance & Update Strategy)**
+
+#### **批量路径检查**
+- **定期检查**: 每次大规模更新后，使用工具批量检查所有路径的正确性
+- **自动化验证**: 考虑使用 GitHub Actions 或类似工具自动验证路径兼容性
+
+#### **新文档创建规范**
+- **路径检查**: 创建新文档时，必须遵循双重兼容性路径规范
+- **测试验证**: 新文档创建后，必须在两个平台上进行兼容性测试
+
+#### **文档更新流程**
+1. **本地修改**: 按照双重兼容性规范修改文档
+2. **本地测试**: 在 VitePress 环境中测试修改效果
+3. **提交推送**: 将修改提交到 Git 仓库
+4. **GitHub 验证**: 在 GitHub 上验证修改效果
+5. **问题修复**: 如发现兼容性问题，及时修复
+
 ## 最终审查与修正流程 (Final Review & Refinement Process)
 - **核心原则**: 文档初稿完成后，必须进行一次**最终审查**，以确保完全遵循本文档中定义的所有规范。
 - **审查流程**:

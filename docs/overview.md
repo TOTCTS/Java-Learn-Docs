@@ -6,7 +6,7 @@ Java 技术栈庞大而深入，从语言核心到企业级应用开发，本学
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
   <h3 style="margin-bottom: 15px; color: #333;">Java 全栈技术学习路径</h3>
-  <img src="/public/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
+  <img src="/docs/public/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 ---
