@@ -1,6 +1,6 @@
 # `volatile` 关键字深度解析
 
-<img src="/assets/java/concurrent/volatile-memory-barrier.svg" alt="volatile 内存屏障" style="max-width: 800px; margin: 0 auto; display: block;"/>
+<img src="../../public/assets/java/concurrent/volatile-memory-barrier.svg" alt="volatile 内存屏障" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

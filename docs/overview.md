@@ -1,15 +1,12 @@
-# 技术图谱与模块总览
+# Java 技术体系学习大纲
 
-欢迎来到 Java 全栈学习文档。本页旨在为您提供一个清晰的学习路线图和技术雷达，帮助您理解各项技术在现代软件开发中的定位与关联。
+## 学习路径概览
 
-## 整体知识图谱
-
-下图展示了从一名 Java 开发者成长为全栈专家的完整学习路径：
+Java 技术栈庞大而深入，从语言核心到企业级应用开发，本学习路径将为您提供系统化的知识体系。
 
 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #fafbfc; border: 1px solid #e1e5e9; border-radius: 8px;">
-  <h3 style="margin-bottom: 15px; color: #333;">Java 全栈开发学习路径</h3>
-  <img src="/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
-  <p style="margin-top: 15px; font-size: 14px; color: #666;">按阶段循序渐进，每个阶段都有具体的技术栈和学习目标</p>
+  <h3 style="margin-bottom: 15px; color: #333;">Java 全栈技术学习路径</h3>
+  <img src="public/assets/java-overview-diagram.svg" alt="Java 全栈开发学习路径" style="max-width: 100%; height: auto; border-radius: 4px;" />
 </div>
 
 ---

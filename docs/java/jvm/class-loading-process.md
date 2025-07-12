@@ -1,6 +1,6 @@
-# Java类加载过程深度解析
+# 类加载过程：加载、链接、初始化的完整剖析
 
-<img src="/assets/java/jvm/class-loading-overview.svg" alt="类加载过程概览" style="max-width: 600px; margin: 0 auto; display: block;"/>
+<img src="../../public/assets/java/jvm/class-loading-overview.svg" alt="Java 类加载过程概览图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 
