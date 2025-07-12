@@ -37,10 +37,10 @@
 深入理解 Java 并发机制，掌握高性能多线程程序设计。
 
 #### **线程基础与管理**
-- [x] [线程的创建、状态与生命周期](/java/concurrent/thread-lifecycle-and-states)
+- [x] [线程的创建、状态与生命周期](./concurrent/thread-lifecycle-and-states.md)
 - [ ] 线程池：ThreadPoolExecutor 与 ForkJoinPool
-- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](/java/concurrent/volatile-keyword-deep-dive)
-- [x] [Java 内存模型 (JMM) 深度解读](/java/concurrent/jmm-deep-dive)
+- [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](./concurrent/volatile-keyword-deep-dive.md)
+- [x] [Java 内存模型 (JMM) 深度解读](./concurrent/jmm-deep-dive.md)
 
 #### **同步与锁机制**
 - [ ] `synchronized` 关键字：偏向锁、轻量级锁、重量级锁
@@ -64,8 +64,8 @@
 深入 JVM 内部机制，理解性能调优和故障排查的本质。
 
 #### **内存管理与垃圾回收**
-- [x] [JVM 内存结构 (运行时数据区)](/java/jvm/jvm-memory-structure)
-- [x] [对象的创建过程、内存布局与访问定位](/java/jvm/object-creation-and-memory-layout)
+- [x] [JVM 内存结构 (运行时数据区)](./jvm/jvm-memory-structure.md)
+- [x] [对象的创建过程、内存布局与访问定位](./jvm/object-creation-and-memory-layout.md)
 - [ ] 垃圾回收算法：标记-清除、复制、标记-整理
 - [ ] 垃圾收集器：Serial、Parallel、CMS、G1、ZGC
 - [ ] 内存泄漏与内存溢出的诊断与解决
@@ -77,7 +77,7 @@
 - [ ] 逃逸分析与标量替换
 
 #### **类加载机制**
-- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](/java/jvm/class-loading-process)
+- [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](./jvm/class-loading-process.md)
 - [ ] 类加载器：启动类加载器、扩展类加载器、应用类加载器
 - [ ] 双亲委派模型与自定义类加载器
 - [ ] 模块系统 (JPMS)：Jigsaw 项目的模块化设计
@@ -121,4 +121,4 @@
 
 ---
 
-**下一步**: 开始深入学习 [JVM 内存结构](/java/jvm/jvm-memory-structure)，理解 Java 程序的底层执行机制。 
+**下一步**: 开始深入学习 [JVM 内存结构](./jvm/jvm-memory-structure.md)，理解 Java 程序的底层执行机制。 
