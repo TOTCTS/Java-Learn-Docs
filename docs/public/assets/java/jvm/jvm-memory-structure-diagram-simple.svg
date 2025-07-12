@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Arial, sans-serif" font-size="14">
+  <!-- Thread Shared Area -->
+  <rect x="50" y="60" width="900" height="370" fill="#FFF8E1" stroke="#F0B27A" stroke-width="2" rx="10"/>
+  <text x="500" y="90" font-size="16" font-weight="bold" text-anchor="middle">线程共享区域</text>
+
+  <!-- Heap -->
+  <rect x="70" y="120" width="560" height="280" fill="#FFDDC1" stroke="#333" stroke-width="1.5" rx="8"/>
+  <text x="350" y="150" font-size="16" font-weight="bold" text-anchor="middle">Java 堆 (Heap)</text>
+  <text x="350" y="170" font-size="12" text-anchor="middle">(所有对象实例和数组)</text>
+  
+  <!-- Young Gen -->
+  <rect x="90" y="190" width="240" height="190" fill="rgba(255,255,255,0.3)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="210" y="215" font-size="16" font-weight="bold" text-anchor="middle">新生代</text>
+  <rect x="100" y="230" width="220" height="70" fill="rgba(255,255,255,0.4)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="210" y="265" text-anchor="middle">Eden 区</text>
+  <rect x="100" y="310" width="100" height="60" fill="rgba(255,255,255,0.4)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="150" y="340" text-anchor="middle">Survivor 0</text>
+  <rect x="220" y="310" width="100" height="60" fill="rgba(255,255,255,0.4)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="270" y="340" text-anchor="middle">Survivor 1</text>
+  
+  <!-- Old Gen -->
+  <rect x="350" y="190" width="260" height="190" fill="rgba(255,255,255,0.3)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="480" y="215" font-size="16" font-weight="bold" text-anchor="middle">老年代</text>
+  <text x="480" y="235" font-size="12" text-anchor="middle">(主要存放)</text>
+  <rect x="380" y="260" width="200" height="40" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="480" y="285" font-size="12" text-anchor="middle">长生命周期对象</text>
+  <rect x="380" y="310" width="200" height="40" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="480" y="335" font-size="12" text-anchor="middle">体积较大的对象</text>
+
+  <!-- Method Area -->
+  <rect x="650" y="120" width="280" height="280" fill="#EAEAEA" stroke="#333" stroke-width="1.5" rx="8"/>
+  <text x="790" y="150" font-size="16" font-weight="bold" text-anchor="middle">方法区 (Method Area)</text>
+  <rect x="670" y="175" width="120" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="730" y="195" font-size="12" text-anchor="middle">类信息</text>
+  <rect x="800" y="175" width="110" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="855" y="195" font-size="12" text-anchor="middle">常量</text>
+  <rect x="670" y="215" width="120" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="730" y="235" font-size="12" text-anchor="middle">静态变量</text>
+  <rect x="800" y="215" width="110" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="855" y="235" font-size="12" text-anchor="middle">JIT编译后代码</text>
+  <text x="790" y="275" text-anchor="middle" font-weight="bold">实现: 元空间 (Metaspace)</text>
+  <text x="790" y="295" font-size="12" text-anchor="middle">(使用本地内存)</text>
+  <rect x="670" y="320" width="240" height="50" fill="rgba(0,0,0,0.05)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="3 3"/>
+  <text x="790" y="345" text-anchor="middle">运行时常量池</text>
+
+  <!-- Thread Private Area -->
+  <rect x="50" y="450" width="900" height="240" fill="#E1F5FE" stroke="#76D7C4" stroke-width="2" rx="10"/>
+  <text x="500" y="480" font-size="16" font-weight="bold" text-anchor="middle">线程私有区域 (每个线程独立)</text>
+
+  <!-- JVM Stack -->
+  <rect x="70" y="510" width="380" height="160" fill="#D4F1F4" stroke="#333" stroke-width="1.5" rx="8"/>
+  <text x="260" y="535" font-size="16" font-weight="bold" text-anchor="middle">Java 虚拟机栈</text>
+  <rect x="90" y="555" width="340" height="105" fill="rgba(255,255,255,0.4)" stroke="#555" stroke-width="1" rx="4" stroke-dasharray="4 4"/>
+  <text x="260" y="575" font-size="13" font-weight="bold" text-anchor="middle">栈帧 (Stack Frame)</text>
+  <rect x="100" y="590" width="150" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="175" y="608" font-size="12" text-anchor="middle">局部变量表</text>
+  <rect x="270" y="590" width="150" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="345" y="608" font-size="12" text-anchor="middle">操作数栈</text>
+  <rect x="100" y="625" width="150" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="175" y="643" font-size="12" text-anchor="middle">动态链接</text>
+  <rect x="270" y="625" width="150" height="30" fill="rgba(255,255,255,0.6)" stroke="#888" stroke-width="0.8" rx="3"/>
+  <text x="345" y="643" font-size="12" text-anchor="middle">方法返回地址</text>
+
+  <!-- Native Method Stack -->
+  <rect x="460" y="510" width="220" height="160" fill="#D4F1F4" stroke="#333" stroke-width="1.5" rx="8"/>
+  <text x="570" y="570" font-size="16" font-weight="bold" text-anchor="middle">本地方法栈</text>
+  <text x="570" y="610" text-anchor="middle">为 Native 方法服务</text>
+
+  <!-- PC Register -->
+  <rect x="690" y="510" width="240" height="160" fill="#D4F1F4" stroke="#333" stroke-width="1.5" rx="8"/>
+  <text x="810" y="570" font-size="16" font-weight="bold" text-anchor="middle">程序计数器</text>
+  <text x="810" y="600" text-anchor="middle">指向当前线程执行的</text>
+  <text x="810" y="620" text-anchor="middle">字节码指令地址</text>
+</svg> 

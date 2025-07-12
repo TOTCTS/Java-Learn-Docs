@@ -3,7 +3,7 @@
 
 ## 核心架构概览
 
-<img src="/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg" alt="JVM 运行时数据区架构图" style="max-width: 100%; height: auto; border-radius: 4px;" />
+<img src="/docs/public/assets/java/jvm/jvm-memory-structure-diagram-simple.svg" alt="JVM 运行时数据区架构图" style="max-width: 100%; height: auto; border-radius: 4px;" />
 
 ## 【核心讲解】
 
