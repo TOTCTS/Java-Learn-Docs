@@ -1,6 +1,6 @@
-# Java 类加载过程深度剖析
+# Java 类加载过程深度解析
 
-<img src="/docs/public/assets/java/jvm/class-loading-overview.svg" alt="Java 类加载过程概览图" style="max-width: 800px; margin: 0 auto; display: block;"/>
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/class-loading-overview.svg" alt="Java 类加载过程概览图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 
