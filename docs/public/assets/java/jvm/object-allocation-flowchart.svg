@@ -1,92 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" font-family="Arial, sans-serif" font-size="14">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" font-family="Arial, sans-serif" font-size="14">
   <defs>
-    <marker id="arrow-v2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    <!-- 协调的渐变色系统和样式 -->
+    <linearGradient id="grad-decision-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D4F1F4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A9D3E0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-process-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8F0FE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2E3FC;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-critical-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFDDC1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC3A0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-promote-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FDE2E4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FAD2E1;stop-opacity:1" />
+    </linearGradient>
+
+    <marker id="arrowhead-v2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280" />
     </marker>
     <style>
-      .node-v2 { fill: #f9f9f9; stroke: #666; stroke-width: 1.5; rx: 8; }
-      .decision-v2 { fill: #EBF5FB; stroke: #3498DB; stroke-width: 1.5; rx: 8; }
-      .process-v2 { fill: #E9F7EF; stroke: #2ECC71; stroke-width: 1.5; rx: 8; }
-      .line-v2 { stroke: #333; stroke-width: 1.5; marker-end: url(#arrow-v2); }
-      .text-v2 { text-anchor: middle; font-size: 13px; }
-      .label-v2 { font-size: 11px; fill: #555; }
+        .bg-v2 { fill: #FEFEFE; }
+        .area-bg-v2 { fill: rgba(255, 248, 225, 0.4); stroke: #F0B27A; stroke-width: 1.5; rx: 10; ry: 10; }
+        .main-title-v2 { font-size: 24px; font-weight: bold; text-anchor: middle; fill: #1F2937; }
+        .box-v2 { stroke-width: 1.5; rx: 8; ry: 8; }
+        .text-v2 { font-size: 14px; text-anchor: middle; font-weight: 500; fill: #1F2937; }
+        .label-v2 { font-size: 13px; text-anchor: middle; fill: #4B5563; }
+        .connector-v2 { fill: none; stroke: #6B7280; stroke-width: 2; marker-end: url(#arrowhead-v2); }
     </style>
   </defs>
 
-  <text x="400" y="40" font-size="20" font-weight="bold" text-anchor="middle">对象分配与晋升流程</text>
+  <rect x="0" y="0" width="1000" height="1000" class="bg-v2"/>
+  <rect x="10" y="10" width="980" height="980" class="area-bg-v2"/>
 
-  <!-- Start -->
-  <rect x="325" y="80" width="150" height="50" class="node-v2" />
-  <text x="400" y="110" class="text-v2">1. 对象创建请求</text>
-  <path class="line-v2" d="M 400 130 V 160" />
+  <text x="500" y="60" class="main-title-v2">对象内存分配与晋升流程</text>
 
-  <!-- TLAB -->
-  <rect x="300" y="160" width="200" height="70" class="decision-v2" />
-  <text x="400" y="195" class="text-v2">2. TLAB 优先分配？</text>
-  <path class="line-v2" d="M 500 195 L 580 195" />
-  <text x="540" y="190" class="label-v2">否 (空间不足/大对象)</text>
-  <path class="line-v2" d="M 400 230 V 260" />
-  <text x="420" y="245" class="label-v2">是</text>
+  <!-- 主流程：垂直中央布局 -->
   
-  <rect x="325" y="260" width="150" height="50" class="process-v2" />
-  <text x="400" y="290" class="text-v2">分配到 TLAB</text>
-  <path class="line-v2" d="M 400 310 V 340 L 700 340 V 870 H 400 V 900" />
-  <text x="550" y="335" class="label-v2">分配成功</text>
-  
-  <!-- Eden Allocation -->
-  <rect x="580" y="160" width="200" height="70" class="decision-v2"/>
-  <text x="680" y="195" class="text-v2">3. Eden 区空间足够？</text>
-  <path class="line-v2" d="M 680 230 V 260" />
-  <text x="700" y="245" class="label-v2">是</text>
-  <path class="line-v2" d="M 580 195 H 400 V 420" />
-  <text x="500" y="220" class="label-v2">否</text>
+  <!-- 1. 对象创建请求 -->
+  <rect x="375" y="100" width="250" height="50" class="box-v2" fill="url(#grad-process-v2)" stroke="#A9D3E0"/>
+  <text x="500" y="130" class="text-v2">1. 对象创建请求</text>
+  <path d="M 500 150 V 180" class="connector-v2" />
 
-  <rect x="605" y="260" width="150" height="50" class="process-v2" />
-  <text x="680" y="290" class="text-v2">分配到 Eden 区</text>
-  <path class="line-v2" d="M 680 310 V 340 L 700 340" />
-  <text x="720" y="335" class="label-v2">分配成功</text>
+  <!-- 2. TLAB 优先分配? -->
+  <rect x="375" y="180" width="250" height="70" class="box-v2" fill="url(#grad-decision-v2)" stroke="#76D7C4"/>
+  <text x="500" y="220" class="text-v2">2. TLAB 优先分配?</text>
+  
+  <!-- TLAB 分支 -->
+  <path d="M 625 215 H 720" class="connector-v2" />
+  <text x="670" y="210" class="label-v2">是</text>
+  <rect x="720" y="190" width="200" height="50" class="box-v2" fill="url(#grad-process-v2)" stroke="#A9D3E0"/>
+  <text x="820" y="220" class="text-v2">分配到 TLAB</text>
+  <path d="M 820 240 V 885 H 625" class="connector-v2" />
+  
+  <!-- 主流程继续 -->
+  <path d="M 500 250 V 280" class="connector-v2" />
+  <text x="485" y="270" class="label-v2">否</text>
 
-  <!-- Minor GC -->
-  <rect x="325" y="420" width="150" height="50" class="node-v2" style="fill:#FDEDEC; stroke:#E74C3C;" />
-  <text x="400" y="450" class="text-v2">4. 触发 Minor GC</text>
-  <path class="line-v2" d="M 400 470 V 500" />
+  <!-- 3. Eden 区空间足够? -->
+  <rect x="375" y="280" width="250" height="70" class="box-v2" fill="url(#grad-decision-v2)" stroke="#76D7C4"/>
+  <text x="500" y="320" class="text-v2">3. Eden 区空间足够?</text>
+  
+  <!-- Eden 分支 -->
+  <path d="M 625 315 H 720" class="connector-v2" />
+  <text x="670" y="310" class="label-v2">是</text>
+  <rect x="720" y="290" width="200" height="50" class="box-v2" fill="url(#grad-process-v2)" stroke="#A9D3E0"/>
+  <text x="820" y="320" class="text-v2">分配到 Eden 区</text>
+  <path d="M 820 340 V 885 H 625" class="connector-v2" />
+  
+  <!-- 主流程继续 -->
+  <path d="M 500 350 V 380" class="connector-v2" />
+  <text x="485" y="370" class="label-v2">否</text>
 
-  <!-- Survive GC? -->
-  <rect x="300" y="500" width="200" height="70" class="decision-v2"/>
-  <text x="400" y="535" class="text-v2">5. GC 后对象存活？</text>
-  <path class="line-v2" d="M 300 535 H 150 V 580" />
-  <text x="225" y="530" class="label-v2">否</text>
-  <rect x="75" y="580" width="150" height="50" class="node-v2" />
-  <text x="150" y="610" class="text-v2">空间被回收</text>
-  <path class="line-v2" d="M 400 570 V 580" />
-  <text x="420" y="570" class="label-v2">是</text>
-  
-  <!-- To Survivor -->
-  <rect x="325" y="580" width="150" height="50" class="process-v2"/>
-  <text x="400" y="600" class="text-v2">移入 Survivor(To)区</text>
-  <text x="400" y="620" class="text-v2">年龄+1</text>
-  <path class="line-v2" d="M 400 630 V 660" />
-  
-  <!-- Age check -->
-  <rect x="300" y="660" width="200" height="70" class="decision-v2"/>
-  <text x="400" y="695" class="text-v2">6. 年龄达到阈值？</text>
-  <path class="line-v2" d="M 500 695 L 580 695" />
-  <text x="540" y="690" class="label-v2">否</text>
-  <path class="line-v2" d="M 400 730 V 760" />
-  <text x="450" y="745" class="label-v2">是 (或动态年龄/空间担保)</text>
-  
-  <rect x="580" y="660" width="200" height="70" class="process-v2" />
-  <text x="680" y="695" class="text-v2">等待下一次 Minor GC</text>
-  <path class="line-v2" d="M 680 730 V 750 H 150 V 500" />
-  <text x="415" y="745" class="label-v2">循环</text>
+  <!-- 4. 触发 Minor GC -->
+  <rect x="375" y="380" width="250" height="50" class="box-v2" fill="url(#grad-critical-v2)" stroke="#FFC3A0"/>
+  <text x="500" y="410" class="text-v2">4. 触发 Minor GC</text>
+  <path d="M 500 430 V 460" class="connector-v2" />
 
-  <!-- To Old Gen -->
-  <rect x="325" y="760" width="150" height="50" class="process-v2" style="fill:#FEF9E7; stroke:#F1C40F;" />
-  <text x="400" y="790" class="text-v2">7. 晋升到老年代</text>
-  <path class="line-v2" d="M 400 810 V 900" />
+  <!-- 5. GC 后对象存活? -->
+  <rect x="375" y="460" width="250" height="70" class="box-v2" fill="url(#grad-decision-v2)" stroke="#76D7C4"/>
+  <text x="500" y="500" class="text-v2">5. GC 后对象存活?</text>
   
-  <!-- End -->
-  <rect x="325" y="900" width="150" height="50" class="node-v2" />
-  <text x="400" y="930" class="text-v2">分配结束</text>
+  <!-- 空间回收分支 -->
+  <path d="M 375 495 H 280" class="connector-v2" />
+  <text x="325" y="490" class="label-v2">否</text>
+  <rect x="80" y="470" width="200" height="50" class="box-v2" fill="#EAEAEA" stroke="#DCDCDC"/>
+  <text x="180" y="500" class="text-v2">空间被回收</text>
   
+  <!-- 主流程继续 -->
+  <path d="M 500 530 V 560" class="connector-v2" />
+  <text x="515" y="550" class="label-v2">是</text>
+
+  <!-- 6. 移入 Survivor(To) 区 -->
+  <rect x="375" y="560" width="250" height="70" class="box-v2" fill="url(#grad-process-v2)" stroke="#A9D3E0"/>
+  <text x="500" y="585" class="text-v2">6. 移入 Survivor(To) 区</text>
+  <text x="500" y="605" class="text-v2">年龄 +1</text>
+  <path d="M 500 630 V 660" class="connector-v2" />
+
+  <!-- 7. 年龄达到阈值? -->
+  <rect x="375" y="660" width="250" height="70" class="box-v2" fill="url(#grad-decision-v2)" stroke="#76D7C4"/>
+  <text x="500" y="700" class="text-v2">7. 年龄达到阈值?</text>
+  
+  <!-- 等待 GC 分支 -->
+  <path d="M 625 695 H 720" class="connector-v2" />
+  <text x="670" y="690" class="label-v2">否 (循环)</text>
+  <rect x="720" y="670" width="200" height="50" class="box-v2" fill="url(#grad-process-v2)" stroke="#A9D3E0"/>
+  <text x="820" y="700" class="text-v2">等待下一次 Minor GC</text>
+  <path d="M 820 670 V 495 H 625" class="connector-v2" />
+  
+  <!-- 主流程继续 -->
+  <path d="M 500 730 V 760" class="connector-v2" />
+  <text x="515" y="750" class="label-v2">是</text>
+
+  <!-- 8. 晋升到老年代 -->
+  <rect x="375" y="760" width="250" height="50" class="box-v2" fill="url(#grad-promote-v2)" stroke="#FAD2E1"/>
+  <text x="500" y="790" class="text-v2">8. 晋升到老年代</text>
+  <path d="M 500 810 V 860" class="connector-v2" />
+  
+  <!-- 分配结束 -->
+  <rect x="375" y="860" width="250" height="50" class="box-v2" fill="#EAEAEA" stroke="#DCDCDC"/>
+  <text x="500" y="890" class="text-v2">分配结束</text>
 </svg> 

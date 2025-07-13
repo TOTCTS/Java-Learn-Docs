@@ -1,73 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="550" viewBox="0 0 1000 550">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
   <defs>
+    <!-- 协调的渐变色系统 -->
+    <linearGradient id="grad-birth-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D4F1F4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A9D3E0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-anatomy-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFDDC1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC3A0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-access-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F3E8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E9D5FF;stop-opacity:1" />
+    </linearGradient>
     <style>
-      .bg { fill: #ffffff; }
-      .panel { fill: rgba(249, 250, 251, 0.8); stroke: #d1d5db; stroke-width: 1.5; rx: 16; ry: 16; }
-      .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; fill: #1f2937; }
-      .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: start; fill: #374151; }
-      .item-text-highlight { font-weight: 600; fill: #15803d; }
-      .line { stroke: #d1d5db; stroke-width: 1.5; }
+      .bg-v2 { fill: #FEFEFE; }
+      .area-bg-v2 { fill: rgba(255, 248, 225, 0.4); stroke: #F0B27A; stroke-width: 1.5; rx: 12; ry: 12; }
+      .main-title-v2 { font-size: 24px; font-weight: bold; text-anchor: middle; fill: #111827; }
+      
+      .panel-v2 { stroke-width: 1.5; rx: 10; ry: 10; }
+      .panel-title-v2 { font-size: 20px; font-weight: 600; text-anchor: middle; fill: #1F2937; }
+      
+      .list-item-v2 { font-family: 'Arial', sans-serif; font-size: 15px; fill: #374151; }
+      .list-item-sub-v2 { font-size: 14px; fill: #4B5563; }
+      .list-item-highlight-v2 { font-weight: 600; fill: #166534; }
+      
+      .arrow-v2 { fill: none; stroke: #6B7280; stroke-width: 2.5; marker-end: url(#arrowhead-v2); }
     </style>
+     <marker id="arrowhead-v2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280" />
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="550" class="bg"/>
+  <rect x="0" y="0" width="1200" height="600" class="bg-v2"/>
+  
+  <!-- 主分区 -->
+  <rect x="20" y="20" width="1160" height="560" class="area-bg-v2"/>
+  <text x="600" y="65" class="main-title-v2">Java 对象的生命周期三大方面</text>
 
-  <!-- Category 1: Creation Process -->
-  <g transform="translate(180, 50)">
-    <rect x="-170" y="0" width="340" height="450" class="panel"/>
-    <text y="40" class="title">创建过程 (The Birth)</text>
-    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
-    <foreignObject x="-160" y="80" width="320" height="350">
-        <body xmlns="http://www.w3.org/1999/xhtml">
-            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
-                <li>类加载检查</li>
-                <li>内存分配
-                    <ul style="line-height: 1.8;">
-                        <li style="color:#1e40af;">TLAB (线程本地分配)</li>
-                        <li style="color:#52525b;">CAS + 失败重试</li>
-                    </ul>
-                </li>
-                <li>零值初始化</li>
-                <li>对象头设置</li>
-                <li>构造函数执行 `(&lt;init&gt;)`</li>
-            </ul>
-        </body>
-    </foreignObject>
+  <!-- 创建过程 -->
+  <g transform="translate(220, 310)">
+    <rect x="-180" y="-200" width="360" height="400" class="panel-v2" fill="url(#grad-birth-v2)" stroke="#76D7C4"/>
+    <text y="-160" class="panel-title-v2">创建过程 (The Birth)</text>
+    <g class="list-item-v2" transform="translate(-140, -110)">
+        <text y="0">• 类加载检查</text>
+        <text y="30">• 内存分配</text>
+        <text x="20" y="55" class="list-item-sub-v2">- TLAB (线程本地分配)</text>
+        <text x="20" y="75" class="list-item-sub-v2">- CAS + 失败重试</text>
+        <text y="105">• 零值初始化</text>
+        <text y="135">• 对象头设置</text>
+        <text y="165">• 构造函数执行 `(&lt;init&gt;)`</text>
+    </g>
   </g>
 
-  <!-- Category 2: Memory Layout -->
-  <g transform="translate(500, 50)">
-    <rect x="-170" y="0" width="340" height="450" class="panel"/>
-    <text y="40" class="title">内存布局 (The Anatomy)</text>
-    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
-     <foreignObject x="-160" y="80" width="320" height="350">
-        <body xmlns="http://www.w3.org/1999/xhtml">
-            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
-                <li><b>对象头 (Header)</b>
-                    <ul style="line-height: 1.8;">
-                        <li style="color:#1e40af;">Mark Word</li>
-                        <li style="color:#1e40af;">Klass Pointer</li>
-                    </ul>
-                </li>
-                <li><b>实例数据 (Instance Data)</b></li>
-                <li><b>对齐填充 (Padding)</b></li>
-            </ul>
-        </body>
-    </foreignObject>
+  <!-- 内存布局 -->
+  <g transform="translate(600, 310)">
+    <rect x="-180" y="-200" width="360" height="400" class="panel-v2" fill="url(#grad-anatomy-v2)" stroke="#F0B27A"/>
+    <text y="-160" class="panel-title-v2">内存布局 (The Anatomy)</text>
+    <g class="list-item-v2" transform="translate(-140, -110)">
+        <text y="0" font-weight="bold">• 对象头 (Header)</text>
+        <text x="20" y="25" class="list-item-sub-v2">- Mark Word (运行时数据)</text>
+        <text x="20" y="45" class="list-item-sub-v2">- Klass Pointer (类型指针)</text>
+        <text y="85" font-weight="bold">• 实例数据 (Instance Data)</text>
+        <text y="115" font-weight="bold">• 对齐填充 (Padding)</text>
+    </g>
   </g>
+  
+  <!-- 访问定位 -->
+  <g transform="translate(980, 310)">
+    <rect x="-180" y="-200" width="360" height="400" class="panel-v2" fill="url(#grad-access-v2)" stroke="#B19CD9"/>
+    <text y="-160" class="panel-title-v2">访问定位 (The Access)</text>
+    <g class="list-item-v2" transform="translate(-140, -110)">
+        <text y="0" class="list-item-highlight-v2">• 直接指针 (HotSpot 默认)</text>
+        <text y="30">• 句柄访问</text>
+    </g>
+  </g>
+  
+  <!-- 连接箭头 -->
+  <path d="M 400 310 h 20" class="arrow-v2"/>
+  <path d="M 780 310 h 20" class="arrow-v2"/>
 
-  <!-- Category 3: Access Method -->
-  <g transform="translate(820, 50)">
-    <rect x="-170" y="0" width="340" height="450" class="panel"/>
-    <text y="40" class="title">访问定位 (The Access)</text>
-    <line x1="-140" y1="60" x2="140" y2="60" class="line"/>
-    <foreignObject x="-160" y="80" width="320" height="350">
-        <body xmlns="http://www.w3.org/1999/xhtml">
-            <ul style="font-family: 'Inter', 'Arial', sans-serif; font-size: 15px; color: #374151; line-height: 2;">
-                <li style="color: #15803d; font-weight: 600;">直接指针 (HotSpot 选用)</li>
-                <li>句柄访问</li>
-            </ul>
-        </body>
-    </foreignObject>
-  </g>
 </svg> 

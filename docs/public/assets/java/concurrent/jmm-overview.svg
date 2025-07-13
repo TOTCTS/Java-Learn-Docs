@@ -1,88 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
     <defs>
-        <linearGradient id="grad-main-mem" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="grad-main-mem-v3" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color:#fffbeb;stop-opacity:1" />
             <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:1" />
         </linearGradient>
-        <linearGradient id="grad-thread" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="grad-thread-v3" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
             <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
         </linearGradient>
         <style>
-            .bg { fill: #f9fafb; }
+            .bg { fill: #f8fafc; }
             .panel { stroke-width: 1.5; rx: 16; ry: 16; }
-            .panel-main { fill: url(#grad-main-mem); stroke: #fcd34d; }
-            .panel-thread { fill: url(#grad-thread); stroke: #7dd3fc; }
+            .panel-main { fill: url(#grad-main-mem-v3); stroke: #facc15; }
+            .panel-thread { fill: url(#grad-thread-v3); stroke: #38bdf8; }
             
-            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 20px; font-weight: 600; text-anchor: middle; }
-            .title-main { fill: #b45309; }
+            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
+            .title-main { fill: #854d0e; }
             .title-thread { fill: #075985; }
 
-            .item-box { fill: #ffffff; stroke: #d1d5db; stroke-width: 1; rx: 8; ry: 8; }
-            .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #374151; }
+            .subtitle { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #52525b; }
             
-            .connector { fill: none; stroke: #9ca3af; stroke-width: 2; marker-end: url(#arrowhead-solid); marker-start: url(#arrowhead-solid); }
-            .connector-dashed { stroke-dasharray: 6 6; }
-            .label { font-family: 'Inter', 'Arial', sans-serif; font-size: 13px; fill: #4b5563; text-anchor: middle; }
+            .item-box { fill: #ffffff; stroke: #e5e7eb; stroke-width: 1; rx: 8; ry: 8; }
+            .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #3f3f46; }
+            .item-comment { font-size: 11px; text-anchor: middle; fill: #71717a; }
+            
+            .connector { fill: none; stroke: #9ca3af; stroke-width: 2; }
+            .arrow-start { marker-start: url(#arrowhead-v3); }
+            .arrow-end { marker-end: url(#arrowhead-v3); }
+            .label { font-family: 'Inter', 'Arial', sans-serif; font-size: 13px; font-weight: 500; fill: #4b5563; text-anchor: middle; }
         </style>
-        <marker id="arrowhead-solid" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <marker id="arrowhead-v3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af"/>
         </marker>
     </defs>
 
-    <rect x="0" y="0" width="900" height="600" class="bg"/>
+    <rect x="0" y="0" width="900" height="500" class="bg"/>
 
     <!-- Main Memory -->
-    <g transform="translate(450, 300)">
-        <rect x="-200" y="-250" width="400" height="500" class="panel panel-main"/>
-        <text y="-210" class="title title-main">主内存 (Main Memory)</text>
-        <text y="-185" class="label">(所有线程共享)</text>
+    <g transform="translate(450, 250)">
+        <rect x="-150" y="-200" width="300" height="400" class="panel panel-main"/>
+        <text y="-165" class="title title-main">主内存 (Main Memory)</text>
+        <text y="-140" class="subtitle">(所有线程共享)</text>
         
-        <rect x="-120" y="-100" width="240" height="50" class="item-box"/>
-        <text y="-75" class="item-text">共享变量 A</text>
-        <rect x="-120" y="-30" width="240" height="50" class="item-box"/>
-        <text y="-5" class="item-text">共享变量 B</text>
-        <rect x="-120" y="40" width="240" height="50" class="item-box"/>
-        <text y="65" class="item-text">...</text>
+        <rect x="-110" y="-80" width="220" height="50" class="item-box"/>
+        <text y="-55" class="item-text">共享变量 A = 0</text>
+        
+        <rect x="-110" y="-10" width="220" height="50" class="item-box"/>
+        <text y="15" class="item-text">共享变量 B = "abc"</text>
+        
+        <rect x="-110" y="60" width="220" height="50" class="item-box"/>
+        <text y="85" class="item-text">...</text>
     </g>
 
-    <!-- Thread 1 -->
-    <g transform="translate(150, 150)">
-        <rect x="-125" y="-100" width="250" height="250" class="panel panel-thread"/>
-        <text y="-65" class="title title-thread">线程 A</text>
-        <text y="-40" class="label">工作内存</text>
-        <rect x="-80" y="-10" width="160" height="40" class="item-box"/>
-        <text y="15" class="item-text">变量 A 副本</text>
+    <!-- Thread A -->
+    <g transform="translate(150, 250)">
+        <rect x="-125" y="-150" width="250" height="300" class="panel panel-thread"/>
+        <text y="-115" class="title title-thread">线程 A</text>
+        
+        <rect x="-100" y="-85" width="200" height="180" style="fill:rgba(255,255,255,0.4); stroke:#bae6fd; rx:8; stroke-dasharray: 4 4;"/>
+        <text y="-60" class="subtitle">工作内存</text>
+
+        <rect x="-80" y="0" width="160" height="60" class="item-box"/>
+        <text y="25" class="item-text">变量 A 副本 = 0</text>
+        <text y="40" class="item-comment">(从主内存 load)</text>
     </g>
     
-    <!-- Thread 2 -->
-    <g transform="translate(150, 450)">
-        <rect x="-125" y="-100" width="250" height="250" class="panel panel-thread"/>
-        <text y="-65" class="title title-thread">线程 B</text>
-        <text y="-40" class="label">工作内存</text>
-        <rect x="-80" y="-10" width="160" height="40" class="item-box"/>
-        <text y="15" class="item-text">变量 A 副本</text>
-        <rect x="-80" y="50" width="160" height="40" class="item-box"/>
-        <text y="75" class="item-text">变量 B 副本</text>
+    <!-- Thread B -->
+    <g transform="translate(750, 250)">
+        <rect x="-125" y="-150" width="250" height="300" class="panel panel-thread"/>
+        <text y="-115" class="title title-thread">线程 B</text>
+
+        <rect x="-100" y="-85" width="200" height="180" style="fill:rgba(255,255,255,0.4); stroke:#bae6fd; rx:8; stroke-dasharray: 4 4;"/>
+        <text y="-60" class="subtitle">工作内存</text>
+
+        <rect x="-80" y="0" width="160" height="60" class="item-box"/>
+        <text y="25" class="item-text">变量 B 副本 = "abc"</text>
+        <text y="40" class="item-comment">(从主内存 load)</text>
     </g>
 
     <!-- Connectors -->
-    <path d="M 260 150 H 300" class="connector"/>
-    <text x="280" y="135" class="label">Load / Store</text>
-    
-    <path d="M 260 410 H 300" class="connector"/>
-    <text x="280" y="395" class="label">Load</text>
-    <path d="M 260 490 H 300" class="connector"/>
-    <text x="280" y="475" class="label">Load / Store</text>
+    <!-- Thread A <--> Main Memory -->
+    <path d="M 275 240 C 310 240, 310 240, 300 240" class="connector arrow-end"/>
+    <text x="312" y="230" class="label">Load</text>
+    <path d="M 300 260 C 310 260, 310 260, 275 260" class="connector arrow-start"/>
+    <text x="312" y="275" class="label">Store</text>
 
-    <!-- Communication Flow -->
-    <g transform="translate(680, 0)">
-        <path d="M 0 150 Q 80 225, 0 300" class="connector connector-dashed"/>
-        <path d="M 0 300 Q -80 375, 0 450" class="connector connector-dashed"/>
-        <text x="-40" y="80" class="title title-thread">线程间通信</text>
-        <text x="-125" y="110" class="label">1. 线程 A 修改变量 A</text>
-        <text x="-125" y="130" class="label">2. Store 到主内存</text>
-        <text x="-125" y="150" class="label">3. 线程 B 从主内存 Load</text>
-
-    </g>
+    <!-- Thread B <--> Main Memory -->
+    <path d="M 600 240 C 590 240, 590 240, 625 240" class="connector arrow-start"/>
+    <text x="588" y="230" class="label">Load</text>
+    <path d="M 625 260 C 590 260, 590 260, 600 260" class="connector arrow-end"/>
+    <text x="588" y="275" class="label">Store</text>
 </svg> 

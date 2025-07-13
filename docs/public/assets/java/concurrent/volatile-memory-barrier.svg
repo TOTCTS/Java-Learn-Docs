@@ -1,84 +1,130 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
     <defs>
-        <linearGradient id="grad-panel" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#fafafa;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#f4f4f5;stop-opacity:1" />
+        <linearGradient id="grad-cpu" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f3f4f6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e5e7eb;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-mem" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fefce8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fef9c3;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-barrier" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#fee2e2;stop-opacity:0" />
+            <stop offset="50%" style="stop-color:#ef4444;stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:#fee2e2;stop-opacity:0" />
         </linearGradient>
         <style>
             .bg { fill: #ffffff; }
-            .panel { fill: url(#grad-panel); stroke: #e4e4e7; stroke-width: 1.5; rx: 16; ry: 16; }
+            .zone-panel { stroke: #d1d5db; stroke-width: 1; rx: 16; ry: 16; }
+            .cpu-panel { fill: url(#grad-cpu); }
+            .mem-panel { fill: url(#grad-mem); }
             
-            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; fill: #18181b; }
-            .subtitle { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; font-weight: 500; text-anchor: middle; fill: #52525b; }
-            .op-text { font-family: 'monospace', 'Courier New'; font-size: 14px; text-anchor: middle; fill: #3f3f46; }
+            .title { font-family: 'Inter', 'Arial', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; fill: #1f2937; letter-spacing: 0.5px; }
+            .step-title { font-family: 'monospace', 'Courier New'; font-size: 14px; text-anchor: middle; fill: #4b5563; letter-spacing: 0.2px; }
+            .code-box { fill: #f9fafb; stroke: #e5e7eb; stroke-width: 1; rx: 8; ry: 8; }
+            .code-text { font-family: 'monospace', 'Courier New'; font-size: 14px; text-anchor: middle; fill: #111827; }
+            .code-volatile { fill: #b91c1c; font-weight: 600; }
+            .code-comment { fill: #6b7280; text-anchor: middle; }
 
-            .barrier { stroke: #ef4444; stroke-width: 2.5; stroke-dasharray: 8 4; }
-            .barrier-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 13px; font-weight: 600; fill: #dc2626; text-anchor: middle; }
+            .barrier-line { stroke: #ef4444; stroke-width: 2; stroke-dasharray: 6 3; }
+            .barrier-rect { fill: url(#grad-barrier); }
+            .barrier-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 12px; font-weight: 600; text-anchor: middle; fill: #dc2626; letter-spacing: 0.3px; }
+            .barrier-desc { font-size: 11px; font-weight: 400; fill: #f87171; }
 
-            .volatile-op { fill: #fef2f2; stroke: #fca5a5; stroke-width: 1.5; rx: 8; ry:8; }
-            .volatile-text { fill: #b91c1c; font-weight: 600; }
-            
-            .connector { fill: none; stroke: #a1a1aa; stroke-width: 2; marker-end: url(#arrowhead); }
+            .connector { fill: none; stroke: #9ca3af; stroke-width: 2; marker-end: url(#arrowhead); }
         </style>
         <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a1a1aa"/>
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af"/>
         </marker>
     </defs>
 
     <rect x="0" y="0" width="900" height="500" class="bg"/>
 
-    <!-- Left side: Volatile Write -->
-    <g transform="translate(225, 250)">
-        <rect x="-200" y="-200" width="400" height="400" class="panel"/>
-        <text y="-165" class="title">Volatile 写操作</text>
-        <text y="-140" class="subtitle">禁止写与其之前的操作重排序</text>
-
-        <path d="M 0 -120 V -80" class="connector" />
-        <text y="-100" class="op-text">普通写操作 A</text>
+    <!-- CPU 0 / Writer -->
+    <g transform="translate(175, 325)">
+        <rect x="-150" y="-275" width="300" height="425" class="zone-panel cpu-panel"/>
+        <text y="-240" class="title">CPU 0 (写入线程)</text>
         
-        <path d="M 0 -80 V -40" class="connector" />
-        <text y="-60" class="op-text">普通写操作 B</text>
+        <!-- Step 1: Normal writes -->
+        <text y="-180" class="step-title">1. 普通读/写</text>
+        <rect x="-100" y="-160" width="200" height="50" class="code-box"/>
+        <text y="-140" class="code-text">x = 10;</text>
+        <text y="-122" class="code-text">y = true;</text>
 
-        <line x1="-150" y1="-25" x2="150" y2="-25" class="barrier"/>
-        <text y="-5" class="barrier-text">StoreStore 内存屏障</text>
-        <text y="15" class="barrier-text">(确保屏障前操作完成并可见)</text>
-        
-        <g transform="translate(0, 50)">
-            <rect x="-100" y="0" width="200" height="40" class="volatile-op" />
-            <text y="25" class="op-text volatile-text">volatile a = 1;</text>
+        <!-- StoreStore Barrier -->
+        <g transform="translate(0, -90)">
+            <rect x="-150" y="-10" width="300" height="20" class="barrier-rect"/>
+            <line x1="-150" y1="0" x2="150" y2="0" class="barrier-line"/>
+            <text y="20" class="barrier-text">StoreStore Barrier</text>
+            <text y="38" class="barrier-desc barrier-text">禁止上方普通写与下方volatile写重排序</text>
         </g>
-        <path d="M 0 40 V 90" class="connector" />
+
+        <!-- Step 2: Volatile write -->
+        <g transform="translate(0, -5)">
+            <text y="-15" class="step-title">2. volatile 写</text>
+            <rect x="-120" y="0" width="240" height="50" class="code-box" id="volatile-write-box"/>
+            <text y="22" class="code-text">instance.flag = <tspan class="code-volatile">true</tspan>;</text>
+            <text y="40" class="code-comment">// 触发刷新到主存</text>
+        </g>
         
-        <line x1="-150" y1="105" x2="150" y2="105" class="barrier"/>
-        <text y="125" class="barrier-text">StoreLoad 内存屏障</text>
-        
-        <path d="M 0 135 V 160" class="connector" />
+        <!-- StoreLoad Barrier -->
+        <g transform="translate(0, 85)">
+            <rect x="-150" y="-10" width="300" height="20" class="barrier-rect"/>
+            <line x1="-150" y1="0" x2="150" y2="0" class="barrier-line"/>
+            <text y="20" class="barrier-text">StoreLoad Barrier</text>
+            <text y="38" class="barrier-desc barrier-text">禁止下方读/写操作重排序</text>
+        </g>
+    </g>
+    
+    <!-- Main Memory -->
+    <g transform="translate(450, 325)">
+        <rect x="-100" y="-100" width="200" height="200" class="zone-panel mem-panel" id="main-memory-box"/>
+        <text y="-65" class="title">主内存</text>
+        <rect x="-70" y="-35" width="140" height="70" class="code-box"/>
+        <text y="-5" class="code-text">instance.flag</text>
+        <text y="15" class="code-text code-volatile">true</text>
     </g>
 
-    <!-- Right side: Volatile Read -->
-    <g transform="translate(675, 250)">
-        <rect x="-200" y="-200" width="400" height="400" class="panel"/>
-        <text y="-165" class="title">Volatile 读操作</text>
-        <text y="-140" class="subtitle">禁止读与其之后的操作重排序</text>
+    <!-- CPU 1 / Reader -->
+    <g transform="translate(725, 325)">
+        <rect x="-150" y="-275" width="300" height="425" class="zone-panel cpu-panel"/>
+        <text y="-240" class="title">CPU 1 (读取线程)</text>
         
-        <path d="M 0 -120 V -80" class="connector" />
-
-        <g transform="translate(0, -65)">
-            <rect x="-100" y="0" width="200" height="40" class="volatile-op" />
-            <text y="25" class="op-text volatile-text">int b = a;</text>
+        <!-- Step 3: Volatile read -->
+        <g transform="translate(0, -95)">
+             <text y="-15" class="step-title">3. volatile 读</text>
+            <rect x="-120" y="0" width="240" height="50" class="code-box" id="volatile-read-box"/>
+            <text y="22" class="code-text">ready = instance.<tspan class="code-volatile">flag</tspan>;</text>
+            <text y="40" class="code-comment">// 触发从主存读取</text>
         </g>
-        <path d="M 0 -25 V 15" class="connector" />
+        
+        <!-- LoadLoad/LoadStore Barrier -->
+        <g transform="translate(0, -10)">
+            <rect x="-150" y="-10" width="300" height="20" class="barrier-rect"/>
+            <line x1="-150" y1="0" x2="150" y2="0" class="barrier-line"/>
+            <text y="20" class="barrier-text">LoadLoad &amp; LoadStore Barrier</text>
+            <text y="38" class="barrier-desc barrier-text">禁止下方操作访问到旧值</text>
+        </g>
 
-        <line x1="-150" y1="30" x2="150" y2="30" class="barrier"/>
-        <text y="50" class="barrier-text">LoadLoad &amp; LoadStore 屏障</text>
-        <text y="70" class="barrier-text">(确保屏障后操作能看到 a 的新值)</text>
-        
-        <path d="M 0 80 V 110" class="connector" />
-        <text y="100" class="op-text">依赖 b 的操作 C</text>
-        
-        <path d="M 0 110 V 140" class="connector" />
-        <text y="130" class="op-text">依赖 b 的操作 D</text>
-        
-        <path d="M 0 140 V 160" class="connector" />
+        <!-- Step 4: Normal operations -->
+        <g transform="translate(0, 60)">
+            <text y="-15" class="step-title">4. 后续依赖操作</text>
+            <rect x="-100" y="0" width="200" height="50" class="code-box"/>
+            <text y="22" class="code-text">if (ready) {</text>
+            <text y="40" class="code-text">  // do something...</text>
+        </g>
+    </g>
+    
+    <!-- Final, Corrected and Labeled Connectors (Horizontal Straight Lines) -->
+    <!-- 2a. Flush to Main Memory -->
+    <g>
+        <path d="M 295 345 H 350" class="connector" />
+        <text x="322.5" y="335" font-size="11px" fill="#4b5563" text-anchor="middle">刷新</text>
+    </g>
+    
+    <!-- 3a. Read from Main Memory -->
+    <g>
+        <path d="M 550 255 H 605" class="connector" />
+        <text x="577.5" y="245" font-size="11px" fill="#4b5563" text-anchor="middle">读取</text>
     </g>
 </svg> 

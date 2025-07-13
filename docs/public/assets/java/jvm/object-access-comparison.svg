@@ -28,7 +28,7 @@
             
             .item-box { fill: #ffffff; stroke: #d1d5db; stroke-width: 1; rx: 8; ry: 8; }
             .item-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; text-anchor: middle; fill: #374151; }
-            .item-text-sm { font-size: 12px; }
+            .item-text-sm { font-size: 12px; text-anchor: middle; }
             .item-text-highlight { fill: #15803d; font-weight: 600;}
 
             .connector { fill: none; stroke: #9ca3af; stroke-width: 2; marker-end: url(#arrowhead); }
@@ -48,29 +48,43 @@
         <text x="0" y="545" class="label">优点: reference稳定, 对象移动成本低</text>
         <text x="0" y="565" class="label">缺点: 访问速度慢 (两次指针解引用)</text>
 
+        <!-- 虚拟机栈 -->
         <rect x="-200" y="80" width="400" height="80" class="panel panel-stack"/>
         <text x="0" y="105" class="area-title">虚拟机栈</text>
         <rect x="-80" y="120" width="160" height="30" class="item-box"/>
         <text x="0" y="140" class="item-text">reference</text>
 
+        <!-- Java堆 -->
         <rect x="-200" y="190" width="400" height="150" class="panel panel-heap"/>
         <text x="0" y="215" class="area-title">Java堆</text>
-        <rect x="-150" y="240" width="120" height="80" class="item-box"/>
-        <text x="-90" y="270" class="item-text">句柄池</text>
-        <text x="-90" y="290" class="item-text-sm">to: Instance</text>
-        <text x="-90" y="305" class="item-text-sm">to: Klass</text>
-        <rect x="30" y="260" width="140" height="40" class="item-box"/>
-        <text x="100" y="285" class="item-text">对象实例数据</text>
+        
+        <!-- 句柄池 - 重新设计布局 -->
+        <rect x="-170" y="235" width="140" height="95" class="item-box"/>
+        <text x="-100" y="255" class="item-text">句柄池</text>
+        <rect x="-160" y="265" width="120" height="25" style="fill: #f9fafb; stroke: #e5e7eb; stroke-width: 1; rx: 4; ry: 4;"/>
+        <text x="-100" y="280" class="item-text-sm">→ Instance Data</text>
+        <rect x="-160" y="295" width="120" height="25" style="fill: #f9fafb; stroke: #e5e7eb; stroke-width: 1; rx: 4; ry: 4;"/>
+        <text x="-100" y="310" class="item-text-sm">→ Class Data</text>
+        
+        <!-- 对象实例数据 -->
+        <rect x="50" y="250" width="140" height="50" class="item-box"/>
+        <text x="120" y="280" class="item-text">对象实例数据</text>
 
+        <!-- 方法区 -->
         <rect x="-200" y="370" width="400" height="150" class="panel panel-meta"/>
         <text x="0" y="395" class="area-title">方法区</text>
         <rect x="-80" y="430" width="160" height="40" class="item-box"/>
         <text x="0" y="455" class="item-text">对象类型数据</text>
 
-        <!-- Connectors for Handle Access -->
-        <path d="M 0 150 V 255 H -30" class="connector"/>
-        <path d="M -90 280 H 30" class="connector"/>
-        <path d="M -90 300 Q -90 360, 0 430" class="connector"/>
+        <!-- 优化后的连线 -->
+        <!-- reference → 句柄池 -->
+        <path d="M 0 150 V 200 H -100 V 235" class="connector"/>
+        
+        <!-- 句柄池 → 对象实例数据 -->
+        <path d="M -40 277 H 50" class="connector"/>
+        
+        <!-- 句柄池 → 对象类型数据 -->
+        <path d="M -100 330 Q -100 380, 0 430" class="connector"/>
     </g>
 
     <!-- Right Side: Direct Pointer Access -->
@@ -80,25 +94,30 @@
         <text x="0" y="545" class="label item-text-highlight">优点: 访问速度快 (一次指针解引用)</text>
         <text x="0" y="565" class="label">缺点: reference需维护, 对象移动成本高</text>
 
+        <!-- 虚拟机栈 -->
         <rect x="-200" y="80" width="400" height="80" class="panel panel-stack"/>
         <text x="0" y="105" class="area-title">虚拟机栈</text>
         <rect x="-80" y="120" width="160" height="30" class="item-box"/>
         <text x="0" y="140" class="item-text">reference</text>
 
+        <!-- Java堆 -->
         <rect x="-200" y="190" width="400" height="150" class="panel panel-heap"/>
         <text x="0" y="215" class="area-title">Java堆</text>
         <rect x="-120" y="250" width="240" height="80" class="item-box"/>
         <text x="0" y="280" class="item-text">对象实例数据</text>
-        <text x="0" y="305" class="item-text-sm">[Header] to: Klass</text>
+        <text x="0" y="305" class="item-text-sm">[Header] → Class Data</text>
 
-
+        <!-- 方法区 -->
         <rect x="-200" y="370" width="400" height="150" class="panel panel-meta"/>
         <text x="0" y="395" class="area-title">方法区</text>
         <rect x="-80" y="430" width="160" height="40" class="item-box"/>
         <text x="0" y="455" class="item-text">对象类型数据</text>
 
-        <!-- Connectors for Direct Pointer Access -->
+        <!-- 直接指针连线 -->
+        <!-- reference → 对象实例数据 -->
         <path d="M 0 150 V 250" class="connector"/>
+        
+        <!-- 对象实例数据 → 对象类型数据 -->
         <path d="M 0 330 V 430" class="connector"/>
     </g>
 </svg> 
