@@ -4,6 +4,11 @@
 
 本项目使用 [VitePress](https://vitepress.dev/) 进行构建。
 
+## 在线访问
+
+- **项目主页**：[https://totcts.github.io/Java-Learn-Docs/](https://totcts.github.io/Java-Learn-Docs/)
+- **Java 技术总览**：[https://totcts.github.io/Java-Learn-Docs/java/introduction](https://totcts.github.io/Java-Learn-Docs/java/introduction)
+
 ## 快速开始
 
 1.  **克隆项目**
