@@ -6,7 +6,7 @@
 
 ## 在线访问
 
-- [**Java 技术总览**](./docs/overview)
+- [**Java 技术总览**](./docs/overview.md)
 
 ## 快速开始
 
