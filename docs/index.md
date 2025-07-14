@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /java/
+      link: ./overview/
     - theme: alt
       text: 在 GitHub 上查看
       link: https://github.com/your-repo
