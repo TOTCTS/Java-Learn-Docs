@@ -6,8 +6,7 @@
 
 ## 在线访问
 
-- **项目主页**：[https://totcts.github.io/Java-Learn-Docs/](https://totcts.github.io/Java-Learn-Docs/)
-- **Java 技术总览**：[https://totcts.github.io/Java-Learn-Docs/java/introduction](https://totcts.github.io/Java-Learn-Docs/java/introduction)
+- [**Java 技术总览**](./docs/overview)
 
 ## 快速开始
 
