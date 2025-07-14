@@ -4,7 +4,7 @@ title: "垃圾回收基础算法：标记-清除、复制、标记-整理"
 
 # 垃圾回收基础算法：标记-清除、复制、标记-整理
 
-![垃圾回收算法概览](/docs/public/assets/java/jvm/garbage-collection-algorithms-overview.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/garbage-collection-algorithms-overview.svg" alt="垃圾回收算法概览" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 
@@ -26,19 +26,19 @@ title: "垃圾回收基础算法：标记-清除、复制、标记-整理"
 
 垃圾回收算法的设计源于对程序内存使用模式的深入观察。根据 IBM 和 Oracle 的大量实证研究，绝大多数对象的生命周期呈现明显的分布特征：约 98% 的对象在分配后很快成为垃圾，而存活下来的对象往往具有较长的生命周期。这一观察直接影响了三种基础算法的设计方向。
 
-![标记-清除算法工作原理](/docs/public/assets/java/jvm/mark-sweep-algorithm-detail.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/mark-sweep-algorithm-detail.svg" alt="标记-清除算法工作原理" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **标记-清除算法的实现基于可达性分析理论**。算法分为两个阶段：标记阶段从 GC Roots 开始，通过引用链遍历所有可达对象并进行标记；清除阶段扫描整个堆空间，回收所有未被标记的对象。现代实现中，标记过程通常采用三色标记法来支持并发执行：白色表示未访问对象，灰色表示已访问但其引用对象未完全扫描的对象，黑色表示已完全处理的对象。
 
 清除阶段的实现涉及空闲内存的管理策略。最简单的实现是维护一个空闲链表，记录所有可用的内存块。当需要分配新对象时，从链表中搜索合适大小的空闲块。这种方式的主要问题是内存碎片：频繁的分配和回收会产生大量小的不连续空闲块，导致无法分配大对象，即使总的空闲空间足够。
 
-![复制算法工作原理](/docs/public/assets/java/jvm/copying-algorithm-detail.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/copying-algorithm-detail.svg" alt="复制算法工作原理" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **复制算法的设计灵感来自双缓冲技术**。算法将可用内存分为大小相等的两个区域，称为 From 空间和 To 空间。所有对象最初都在 From 空间中分配。垃圾回收时，算法遍历 From 空间中的所有存活对象，将它们复制到 To 空间，然后清空整个 From 空间。复制完成后，From 空间和 To 空间的角色互换。
 
 复制过程中最关键的技术挑战是引用更新。当一个对象被复制到新位置后，所有指向该对象的引用都需要更新为新地址。经典的 Cheney 算法通过广度优先遍历来解决这个问题：它使用 To 空间本身作为队列，维护两个指针 scan 和 free，scan 指向下一个需要处理的已复制对象，free 指向下一个可用的空闲位置。
 
-![标记-整理算法工作原理](/docs/public/assets/java/jvm/mark-compact-algorithm-detail.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/mark-compact-algorithm-detail.svg" alt="标记-整理算法工作原理" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **标记-整理算法结合了前两种算法的优点**。标记阶段与标记-清除算法相同，但在清除阶段之前增加了整理阶段。整理的目标是将所有存活对象移动到内存的一端，使空闲内存形成连续的大块。
 
@@ -48,7 +48,7 @@ title: "垃圾回收基础算法：标记-清除、复制、标记-整理"
 
 三种算法在不同场景下的性能表现存在显著差异，这主要取决于对象存活率、堆大小和硬件特征等因素。
 
-![算法性能对比分析](/docs/public/assets/java/jvm/algorithm-performance-comparison.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/algorithm-performance-comparison.svg" alt="算法性能对比分析" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **标记-清除算法的性能特征**主要体现在其时间复杂度与存活对象数量和堆大小都相关。标记阶段的时间复杂度为 O(Live)，其中 Live 是存活对象的数量；清除阶段的时间复杂度为 O(Heap)，需要扫描整个堆空间。算法的空间开销最小，不需要额外的内存空间，但内存分配效率会随着碎片增加而降低。
 
@@ -66,7 +66,7 @@ HotSpot 虚拟机在新生代中对复制算法进行了优化，采用 Eden + 2
 
 三种基础算法的组合应用形成了现代 JVM 的分代收集理论。这一理论基于对对象生命周期的统计观察，将堆内存分为不同的代，并在每个代中应用最适合的回收算法。
 
-![分代收集理论应用](/docs/public/assets/java/jvm/generational-collection-theory.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/generational-collection-theory.svg" alt="分代收集理论应用" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **弱分代假说**指出，绝大多数对象都是朝生夕死的。IBM 的研究表明，在典型的 Java 应用中，超过 98% 的对象在分配后的第一次 GC 中就会被回收。基于这一观察，新生代采用复制算法，能够以极低的成本回收大量垃圾。
 
@@ -80,7 +80,7 @@ HotSpot 虚拟机在新生代中对复制算法进行了优化，采用 Eden + 2
 
 在实际的生产环境中，垃圾回收算法的选择和优化需要考虑应用特征、硬件环境和性能目标等多个维度。
 
-![生产环境调优策略](/docs/public/assets/java/jvm/production-tuning-strategies.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/production-tuning-strategies.svg" alt="生产环境调优策略" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 **内存分配模式分析**是优化的基础。不同的应用具有不同的对象分配模式：Web 应用通常有大量短生命周期的请求对象，适合使用高效的复制算法；科学计算应用可能有大量长生命周期的数据对象，更适合标记-整理算法；而嵌入式应用在内存受限的环境下，可能需要考虑标记-清除算法。
 

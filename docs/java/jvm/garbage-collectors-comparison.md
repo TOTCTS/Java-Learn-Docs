@@ -1,6 +1,6 @@
 # 垃圾收集器深度对比：Serial、Parallel、CMS、G1、ZGC
 
-![垃圾收集器架构对比图](/docs/public/assets/java/jvm/garbage-collectors-architecture.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/garbage-collectors-architecture.svg" alt="垃圾收集器架构对比图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

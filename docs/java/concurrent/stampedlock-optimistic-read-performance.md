@@ -1,6 +1,6 @@
 # `StampedLock` 深度解析：乐观读锁的性能革命
 
-![StampedLock 乐观读锁架构设计](/docs/public/assets/java/concurrent/stampedlock-optimistic-read-architecture.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/concurrent/stampedlock-optimistic-read-architecture.svg" alt="StampedLock 乐观读锁架构设计" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

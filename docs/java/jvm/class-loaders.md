@@ -1,6 +1,6 @@
 # 类加载器：启动类加载器、扩展类加载器、应用类加载器
 
-![Java类加载器层次结构](/docs/public/assets/java/jvm/class-loaders-hierarchy-diagram.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/class-loaders-hierarchy-diagram.svg" alt="Java类加载器层次结构" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 类加载器是 JVM 的核心组件之一，负责将 `.class` 文件加载到内存中并转换为 `java.lang.Class` 对象。Java 采用分层的类加载器体系，不同的类加载器负责加载不同来源的类，这种设计既保证了系统的安全性，又提供了良好的扩展性。
 

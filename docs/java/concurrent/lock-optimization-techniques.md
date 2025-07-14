@@ -1,6 +1,6 @@
 # JVM 锁优化技术深度解析：锁消除、锁粗化与自适应自旋
 
-![JVM 锁优化技术架构图](/docs/public/assets/java/concurrent/jvm-lock-optimization-architecture.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/concurrent/jvm-lock-optimization-architecture.svg" alt="JVM 锁优化技术架构图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

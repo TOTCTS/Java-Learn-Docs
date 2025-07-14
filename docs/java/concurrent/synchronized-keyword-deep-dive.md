@@ -1,6 +1,6 @@
 # `synchronized` 关键字深度解析：从偏向锁到重量级锁的优化演进
 
-![synchronized 锁升级机制](/docs/public/assets/java/concurrent/synchronized-lock-upgrade.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/concurrent/synchronized-lock-upgrade.svg" alt="synchronized 锁升级机制" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

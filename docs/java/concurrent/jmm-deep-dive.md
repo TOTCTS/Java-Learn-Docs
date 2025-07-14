@@ -1,6 +1,6 @@
 # Java 内存模型 (JMM) 深度解读
 
-![Java 内存模型架构图](/docs/public/assets/java/concurrent/jmm-architecture-overview.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/concurrent/jmm-architecture-overview.svg" alt="Java 内存模型架构图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

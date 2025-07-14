@@ -1,6 +1,6 @@
 # `ReentrantLock` 与 `ReadWriteLock` 深度解析：公平锁与非公平锁的设计权衡
 
-![ReentrantLock 与 ReadWriteLock 架构设计](/docs/public/assets/java/concurrent/reentrantlock-readwritelock-architecture.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/concurrent/reentrantlock-readwritelock-architecture.svg" alt="ReentrantLock 与 ReadWriteLock 架构设计" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

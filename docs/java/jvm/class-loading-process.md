@@ -1,6 +1,6 @@
 # 类加载过程：加载、链接（验证、准备、解析）、初始化
 
-![类加载过程核心流程图](/docs/public/assets/java/jvm/class-loading-process-diagram.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/class-loading-process-diagram.svg" alt="类加载过程核心流程图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 

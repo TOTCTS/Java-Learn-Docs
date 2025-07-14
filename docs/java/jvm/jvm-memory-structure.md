@@ -3,7 +3,7 @@
 
 ## 核心架构概览
 
-![JVM 运行时数据区架构图](https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg)
+<img src="https://cdn.jsdelivr.net/gh/TOTCTS/Java-Learn-Docs@main/docs/public/assets/java/jvm/jvm-memory-structure-diagram.svg" alt="JVM 运行时数据区架构图" style="max-width: 800px; margin: 0 auto; display: block;"/>
 
 ## 【核心讲解】
 
