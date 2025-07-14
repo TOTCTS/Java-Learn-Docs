@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="500" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变色 -->
+  <defs>
+    <!-- 标记-清除渐变 -->
+    <linearGradient id="markSweepGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 复制算法渐变 -->
+    <linearGradient id="copyingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 标记-整理渐变 -->
+    <linearGradient id="markCompactGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+  
+  <!-- 主标题 -->
+  <text x="600" y="40" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#2C3E50">
+    垃圾回收基础算法概览
+  </text>
+  
+  <!-- 副标题 -->
+  <text x="600" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#34495E">
+    三种核心算法的处理策略与适用场景
+  </text>
+  
+  <!-- 标记-清除算法 -->
+  <rect x="50" y="120" width="300" height="280" rx="12" fill="url(#markSweepGradient)" stroke="#4CAF50" stroke-width="3"/>
+  <text x="200" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#2E7D32">
+    标记-清除算法
+  </text>
+  <text x="200" y="180" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#2E7D32">
+    Mark-Sweep
+  </text>
+  
+  <!-- 策略描述 -->
+  <rect x="70" y="200" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="200" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">就地回收策略</text>
+  <text x="80" y="245" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 标记存活对象</text>
+  <text x="80" y="260" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 清除垃圾对象</text>
+  <text x="80" y="275" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 保持对象位置不变</text>
+  
+  <!-- 特征 -->
+  <rect x="70" y="290" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="200" y="315" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">核心特征</text>
+  <text x="80" y="335" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 空间利用率：100%</text>
+  <text x="80" y="350" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 内存碎片：存在</text>
+  <text x="80" y="365" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">• 适用：内存受限环境</text>
+  
+  <!-- 复制算法 -->
+  <rect x="400" y="120" width="300" height="280" rx="12" fill="url(#copyingGradient)" stroke="#2196F3" stroke-width="3"/>
+  <text x="550" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1565C0">
+    复制算法
+  </text>
+  <text x="550" y="180" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#1565C0">
+    Copying
+  </text>
+  
+  <!-- 策略描述 -->
+  <rect x="420" y="200" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="550" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1565C0">迁移回收策略</text>
+  <text x="430" y="245" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 复制存活对象</text>
+  <text x="430" y="260" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 清空原始区域</text>
+  <text x="430" y="275" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 角色互换</text>
+  
+  <!-- 特征 -->
+  <rect x="420" y="290" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="550" y="315" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1565C0">核心特征</text>
+  <text x="430" y="335" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 空间利用率：50% / 90%</text>
+  <text x="430" y="350" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 内存碎片：无</text>
+  <text x="430" y="365" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">• 适用：低存活率场景</text>
+  
+  <!-- 标记-整理算法 -->
+  <rect x="750" y="120" width="300" height="280" rx="12" fill="url(#markCompactGradient)" stroke="#FF9800" stroke-width="3"/>
+  <text x="900" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#E65100">
+    标记-整理算法
+  </text>
+  <text x="900" y="180" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#E65100">
+    Mark-Compact
+  </text>
+  
+  <!-- 策略描述 -->
+  <rect x="770" y="200" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="900" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#E65100">压缩回收策略</text>
+  <text x="780" y="245" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 标记存活对象</text>
+  <text x="780" y="260" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 移动对象到一端</text>
+  <text x="780" y="275" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 清理边界外空间</text>
+  
+  <!-- 特征 -->
+  <rect x="770" y="290" width="260" height="80" rx="6" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="900" y="315" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#E65100">核心特征</text>
+  <text x="780" y="335" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 空间利用率：接近100%</text>
+  <text x="780" y="350" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 内存碎片：无</text>
+  <text x="780" y="365" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">• 适用：高存活率场景</text>
+  
+  <!-- 底部连接线和说明 -->
+  <line x1="200" y1="420" x2="550" y2="420" stroke="#8BC34A" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="550" y1="420" x2="900" y2="420" stroke="#8BC34A" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <text x="600" y="440" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#33691E">
+    算法选择依据：对象存活率
+  </text>
+  
+  <text x="375" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#666">
+    存活率 &lt; 10%
+  </text>
+  
+  <text x="725" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#666">
+    存活率 60-90%
+  </text>
+  
+  <!-- 底部说明 -->
+  <text x="600" y="485" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    三种算法构成现代JVM分代收集理论的基础，在不同内存区域发挥各自优势
+  </text>
+</svg> 

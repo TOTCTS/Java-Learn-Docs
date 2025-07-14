@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变色 -->
+  <defs>
+    <!-- AQS 框架区域渐变 -->
+    <linearGradient id="aqsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E1BEE7;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- ReentrantLock 区域渐变 -->
+    <linearGradient id="reentrantLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- ReadWriteLock 区域渐变 -->
+    <linearGradient id="readWriteLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 公平锁区域渐变 -->
+    <linearGradient id="fairLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 非公平锁区域渐变 -->
+    <linearGradient id="unfairLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCDD2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+    
+    <!-- 背景面板渐变 -->
+    <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAFAFA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F0F0F0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 主标题 -->
+  <text x="600" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2C3E50">
+    ReentrantLock 与 ReadWriteLock 架构设计
+  </text>
+  
+  <!-- AQS 框架基础 -->
+  <rect x="50" y="60" width="1100" height="120" rx="8" fill="url(#aqsGradient)" stroke="#9C27B0" stroke-width="2"/>
+  <text x="600" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#4A148C">
+    AQS (AbstractQueuedSynchronizer) 框架基础
+  </text>
+  
+  <!-- AQS 核心组件 -->
+  <rect x="80" y="100" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="180" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A148C">同步状态 (state)</text>
+  <text x="90" y="135" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• volatile int 变量</text>
+  <text x="90" y="150" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• CAS 原子操作</text>
+  
+  <rect x="300" y="100" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="400" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A148C">等待队列 (FIFO)</text>
+  <text x="310" y="135" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 双向链表结构</text>
+  <text x="310" y="150" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 线程节点管理</text>
+  
+  <rect x="520" y="100" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="620" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A148C">条件队列</text>
+  <text x="530" y="135" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 多个 Condition</text>
+  <text x="530" y="150" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 精确唤醒机制</text>
+  
+  <rect x="740" y="100" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="840" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A148C">锁获取流程</text>
+  <text x="750" y="135" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 尝试获取 → 入队等待</text>
+  <text x="750" y="150" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• 自旋/阻塞 → 唤醒重试</text>
+  
+  <rect x="960" y="100" width="180" height="60" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1050" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A148C">可重入机制</text>
+  <text x="970" y="135" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• state 计数递增</text>
+  <text x="970" y="150" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4A148C">• owner 线程记录</text>
+  
+  <!-- ReentrantLock 详细架构 -->
+  <rect x="50" y="200" width="550" height="280" rx="8" fill="url(#reentrantLockGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="325" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    ReentrantLock 架构
+  </text>
+  
+  <!-- 公平锁与非公平锁对比 -->
+  <rect x="80" y="240" width="240" height="100" rx="4" fill="url(#fairLockGradient)" stroke="#FF9800" stroke-width="1"/>
+  <text x="200" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">公平锁 (Fair)</text>
+  <text x="90" y="275" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• FIFO 严格排队</text>
+  <text x="90" y="290" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 防止线程饥饿</text>
+  <text x="90" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 性能开销较高</text>
+  <text x="90" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 延迟分布均匀</text>
+  <text x="90" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 适合公平性要求严格场景</text>
+  
+  <rect x="340" y="240" width="240" height="100" rx="4" fill="url(#unfairLockGradient)" stroke="#F44336" stroke-width="1"/>
+  <text x="460" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">非公平锁 (Unfair)</text>
+  <text x="350" y="275" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 抢占式获取</text>
+  <text x="350" y="290" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 吞吐量更高</text>
+  <text x="350" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 可能出现饥饿</text>
+  <text x="350" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 平均延迟较低</text>
+  <text x="350" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 默认策略，性能优先</text>
+  
+  <!-- 条件变量机制 -->
+  <rect x="80" y="360" width="500" height="100" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="330" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">Condition 条件变量机制</text>
+  
+  <rect x="100" y="390" width="120" height="50" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="160" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">Condition 1</text>
+  <text x="160" y="425" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">等待队列</text>
+  
+  <rect x="240" y="390" width="120" height="50" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="300" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">Condition 2</text>
+  <text x="300" y="425" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">等待队列</text>
+  
+  <rect x="380" y="390" width="120" height="50" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="440" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">Condition N</text>
+  <text x="440" y="425" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">等待队列</text>
+  
+  <text x="520" y="410" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 多条件支持</text>
+  <text x="520" y="425" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 精确唤醒</text>
+  
+  <!-- ReadWriteLock 详细架构 -->
+  <rect x="620" y="200" width="530" height="280" rx="8" fill="url(#readWriteLockGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="885" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    ReadWriteLock 架构
+  </text>
+  
+  <!-- 状态管理 -->
+  <rect x="650" y="240" width="470" height="60" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="885" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">状态位分割管理 (32位 state)</text>
+  
+  <rect x="670" y="270" width="200" height="25" rx="2" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="770" y="285" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">高16位：读锁计数</text>
+  
+  <rect x="890" y="270" width="200" height="25" rx="2" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="990" y="285" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">低16位：写锁计数</text>
+  
+  <!-- 读写锁互斥关系 -->
+  <rect x="650" y="320" width="470" height="80" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="885" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">读写锁互斥关系</text>
+  
+  <rect x="670" y="350" width="100" height="40" rx="4" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="720" y="365" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">读-读</text>
+  <text x="720" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">兼容 ✓</text>
+  
+  <rect x="790" y="350" width="100" height="40" rx="4" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <text x="840" y="365" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">读-写</text>
+  <text x="840" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">互斥 ✗</text>
+  
+  <rect x="910" y="350" width="100" height="40" rx="4" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <text x="960" y="365" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">写-写</text>
+  <text x="960" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">互斥 ✗</text>
+  
+  <rect x="1030" y="350" width="100" height="40" rx="4" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <text x="1080" y="365" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">写-读</text>
+  <text x="1080" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">互斥 ✗</text>
+  
+  <!-- 锁降级机制 -->
+  <rect x="650" y="420" width="470" height="50" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="885" y="440" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">锁降级机制 (写锁 → 读锁)</text>
+  
+  <rect x="670" y="450" width="80" height="15" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="710" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#E65100">持有写锁</text>
+  
+  <line x1="750" y1="457" x2="780" y2="457" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <rect x="790" y="450" width="80" height="15" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="830" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#2E7D32">获取读锁</text>
+  
+  <line x1="870" y1="457" x2="900" y2="457" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <rect x="910" y="450" width="80" height="15" rx="2" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <text x="950" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#C62828">释放写锁</text>
+  
+  <line x1="990" y1="457" x2="1020" y2="457" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <rect x="1030" y="450" width="80" height="15" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="1070" y="460" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#2E7D32">只持读锁</text>
+  
+  <!-- 性能对比分析 -->
+  <rect x="50" y="500" width="1100" height="140" rx="8" fill="url(#panelGradient)" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="600" y="525" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50">
+    性能特征对比分析
+  </text>
+  
+  <!-- 性能对比表格 -->
+  <rect x="80" y="540" width="180" height="80" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="170" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">synchronized</text>
+  <text x="90" y="575" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• JVM 内置优化</text>
+  <text x="90" y="590" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 性能开销最低</text>
+  <text x="90" y="605" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 功能相对简单</text>
+  
+  <rect x="280" y="540" width="180" height="80" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="370" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">ReentrantLock</text>
+  <text x="290" y="575" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 功能丰富灵活</text>
+  <text x="290" y="590" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 中等性能开销</text>
+  <text x="290" y="605" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 支持高级特性</text>
+  
+  <rect x="480" y="540" width="180" height="80" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="570" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">ReadWriteLock</text>
+  <text x="490" y="575" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 读多写少优化</text>
+  <text x="490" y="590" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 读并发性能高</text>
+  <text x="490" y="605" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 管理开销较大</text>
+  
+  <!-- 适用场景 -->
+  <rect x="680" y="540" width="180" height="80" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="770" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">公平锁</text>
+  <text x="690" y="575" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 防止线程饥饿</text>
+  <text x="690" y="590" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 延迟分布均匀</text>
+  <text x="690" y="605" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 性能有所牺牲</text>
+  
+  <rect x="880" y="540" width="180" height="80" rx="4" fill="#FFEBEE" stroke="#F44336" stroke-width="1"/>
+  <text x="970" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">非公平锁</text>
+  <text x="890" y="575" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 吞吐量优先</text>
+  <text x="890" y="590" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 平均延迟更低</text>
+  <text x="890" y="605" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 默认推荐策略</text>
+  
+  <!-- 选择建议 -->
+  <rect x="50" y="660" width="1100" height="100" rx="8" fill="url(#panelGradient)" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="600" y="685" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50">
+    锁选择决策指南
+  </text>
+  
+  <text x="80" y="710" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2C3E50">选择 ReentrantLock 的场景:</text>
+  <text x="80" y="725" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 需要可中断的锁获取  • 需要尝试非阻塞获取锁  • 需要公平锁语义  • 需要多个条件变量  • 需要定时锁获取</text>
+  
+  <text x="80" y="745" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2C3E50">选择 ReadWriteLock 的场景:</text>
+  <text x="80" y="760" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 读操作频率远高于写操作  • 读操作相对耗时  • 数据结构较大  • 对读性能要求极高</text>
+  
+  <!-- 连接线 -->
+  <line x1="600" y1="180" x2="325" y2="200" stroke="#4CAF50" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="600" y1="180" x2="885" y2="200" stroke="#2196F3" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- 注意事项 -->
+  <text x="50" y="790" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6C757D">
+    注意: 基于 AQS 框架的锁机制提供了比 synchronized 更丰富的功能，但也带来了额外的性能开销。选择合适的锁类型需要根据具体的业务场景和性能要求进行权衡。
+  </text>
+</svg> 

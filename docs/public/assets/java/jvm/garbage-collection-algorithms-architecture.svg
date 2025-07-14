@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="1300" viewBox="0 0 1400 1300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变色和样式 -->
+  <defs>
+    <!-- 标记-清除算法渐变 -->
+    <linearGradient id="markSweepGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 复制算法渐变 -->
+    <linearGradient id="copyingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 标记-整理算法渐变 -->
+    <linearGradient id="markCompactGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 性能对比渐变 -->
+    <linearGradient id="performanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0F4C3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DCEDC8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 分代收集渐变 -->
+    <linearGradient id="generationalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCDD2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+    
+    <!-- 大箭头标记 -->
+    <marker id="bigArrowhead" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto">
+      <polygon points="0 0, 12 4.5, 0 9" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- 主标题 -->
+  <text x="700" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#2C3E50">
+    垃圾回收基础算法架构与原理分析
+  </text>
+  
+  <!-- 三种算法详细对比 -->
+  <text x="700" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#34495E">
+    标记-清除、复制、标记-整理算法的工作机制与性能特征
+  </text>
+  
+  <!-- 标记-清除算法 -->
+  <rect x="50" y="100" width="400" height="280" rx="8" fill="url(#markSweepGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="250" y="125" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    标记-清除算法 (Mark-Sweep)
+  </text>
+  
+  <!-- 标记-清除工作原理 -->
+  <rect x="70" y="140" width="360" height="120" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="250" y="160" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">工作原理</text>
+  
+  <!-- 标记阶段 -->
+  <rect x="80" y="170" width="160" height="40" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="160" y="185" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">第一阶段：标记</text>
+  <text x="90" y="200" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">• 从GC Roots遍历对象图</text>
+  
+  <!-- 清除阶段 -->
+  <rect x="250" y="170" width="160" height="40" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="330" y="185" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">第二阶段：清除</text>
+  <text x="260" y="200" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">• 回收未标记对象</text>
+  
+  <!-- 内存布局示意 -->
+  <text x="250" y="230" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2E7D32">内存布局变化</text>
+  
+  <!-- 回收前 -->
+  <text x="90" y="245" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">回收前：</text>
+  <rect x="130" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  <rect x="150" y="235" width="15" height="15" rx="1" fill="#F44336"/>
+  <rect x="170" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  <rect x="190" y="235" width="15" height="15" rx="1" fill="#F44336"/>
+  <rect x="210" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  
+  <!-- 回收后 -->
+  <text x="270" y="245" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">回收后：</text>
+  <rect x="310" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  <rect x="330" y="235" width="15" height="15" rx="1" fill="#E0E0E0" stroke="#999" stroke-dasharray="2,2"/>
+  <rect x="350" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  <rect x="370" y="235" width="15" height="15" rx="1" fill="#E0E0E0" stroke="#999" stroke-dasharray="2,2"/>
+  <rect x="390" y="235" width="15" height="15" rx="1" fill="#4CAF50"/>
+  
+  <!-- 性能特征 -->
+  <rect x="70" y="270" width="360" height="100" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="250" y="290" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">性能特征</text>
+  <text x="80" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 空间利用率：100%</text>
+  <text x="80" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 时间复杂度：O(Live + Heap)</text>
+  <text x="80" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 内存碎片：严重</text>
+  <text x="80" y="350" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 适用场景：内存受限环境</text>
+  
+  <!-- 复制算法 -->
+  <rect x="480" y="100" width="400" height="280" rx="8" fill="url(#copyingGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="680" y="125" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    复制算法 (Copying)
+  </text>
+  
+  <!-- 复制算法工作原理 -->
+  <rect x="500" y="140" width="360" height="120" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="680" y="160" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">工作原理</text>
+  
+  <!-- 半空间设计 -->
+  <text x="520" y="180" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#1565C0">半空间设计：</text>
+  
+  <!-- From区 -->
+  <rect x="520" y="190" width="80" height="30" rx="2" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <text x="560" y="210" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">From区(活跃)</text>
+  
+  <!-- 复制箭头 -->
+  <line x1="610" y1="205" x2="650" y2="205" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="630" y="200" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">复制</text>
+  
+  <!-- To区 -->
+  <rect x="660" y="190" width="80" height="30" rx="2" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="700" y="210" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">To区(目标)</text>
+  
+  <!-- 角色互换 -->
+  <text x="760" y="205" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">→ 角色互换</text>
+  
+  <!-- 内存布局示意 -->
+  <text x="680" y="240" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#1565C0">复制过程示意</text>
+  
+  <!-- 复制前From区 -->
+  <text x="520" y="250" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">From区：</text>
+  <rect x="560" y="245" width="12" height="12" rx="1" fill="#2196F3"/>
+  <rect x="575" y="245" width="12" height="12" rx="1" fill="#F44336"/>
+  <rect x="590" y="245" width="12" height="12" rx="1" fill="#2196F3"/>
+  <rect x="605" y="245" width="12" height="12" rx="1" fill="#F44336"/>
+  
+  <!-- 复制后To区 -->
+  <text x="650" y="250" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">To区：</text>
+  <rect x="680" y="245" width="12" height="12" rx="1" fill="#2196F3"/>
+  <rect x="695" y="245" width="12" height="12" rx="1" fill="#2196F3"/>
+  <rect x="710" y="245" width="12" height="12" rx="1" fill="#E0E0E0"/>
+  <rect x="725" y="245" width="12" height="12" rx="1" fill="#E0E0E0"/>
+  
+  <!-- 性能特征 -->
+  <rect x="500" y="270" width="360" height="100" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="680" y="290" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">性能特征</text>
+  <text x="510" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 空间利用率：50% (传统) / 90% (Eden+Survivor)</text>
+  <text x="510" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 时间复杂度：O(Live)</text>
+  <text x="510" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 内存碎片：无</text>
+  <text x="510" y="350" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 适用场景：新生代 (低存活率)</text>
+  
+  <!-- 标记-整理算法 -->
+  <rect x="910" y="100" width="400" height="280" rx="8" fill="url(#markCompactGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="1110" y="125" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    标记-整理算法 (Mark-Compact)
+  </text>
+  
+  <!-- 标记-整理工作原理 -->
+  <rect x="930" y="140" width="360" height="120" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="1110" y="160" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">工作原理</text>
+  
+  <!-- 标记阶段 -->
+  <rect x="940" y="170" width="100" height="25" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="990" y="187" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600" fill="#E65100">标记阶段</text>
+  
+  <!-- 整理阶段 -->
+  <rect x="1050" y="170" width="100" height="25" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="1100" y="187" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600" fill="#E65100">整理阶段</text>
+  
+  <!-- 清理阶段 -->
+  <rect x="1160" y="170" width="100" height="25" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="1210" y="187" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600" fill="#E65100">清理阶段</text>
+  
+  <!-- 内存布局示意 -->
+  <text x="1110" y="215" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#E65100">整理过程示意</text>
+  
+  <!-- 整理前 -->
+  <text x="950" y="230" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">整理前：</text>
+  <rect x="990" y="225" width="12" height="12" rx="1" fill="#FF9800"/>
+  <rect x="1005" y="225" width="12" height="12" rx="1" fill="#F44336"/>
+  <rect x="1020" y="225" width="12" height="12" rx="1" fill="#FF9800"/>
+  <rect x="1035" y="225" width="12" height="12" rx="1" fill="#F44336"/>
+  <rect x="1050" y="225" width="12" height="12" rx="1" fill="#FF9800"/>
+  
+  <!-- 整理后 -->
+  <text x="950" y="250" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">整理后：</text>
+  <rect x="990" y="245" width="12" height="12" rx="1" fill="#FF9800"/>
+  <rect x="1005" y="245" width="12" height="12" rx="1" fill="#FF9800"/>
+  <rect x="1020" y="245" width="12" height="12" rx="1" fill="#FF9800"/>
+  <rect x="1035" y="245" width="12" height="12" rx="1" fill="#E0E0E0"/>
+  <rect x="1050" y="245" width="12" height="12" rx="1" fill="#E0E0E0"/>
+  
+  <!-- 性能特征 -->
+  <rect x="930" y="270" width="360" height="100" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="1110" y="290" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">性能特征</text>
+  <text x="940" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 空间利用率：接近100%</text>
+  <text x="940" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 时间复杂度：O(Live + Heap)</text>
+  <text x="940" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 内存碎片：无</text>
+  <text x="940" y="350" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 适用场景：老年代 (高存活率)</text>
+  
+  <!-- 性能对比矩阵 -->
+  <rect x="50" y="400" width="1300" height="220" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="425" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#33691E">
+    三种算法性能特征对比矩阵
+  </text>
+  
+  <!-- 对比表格 -->
+  <rect x="70" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="145" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">算法类型</text>
+  
+  <rect x="220" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="295" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">空间利用率</text>
+  
+  <rect x="370" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="445" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">时间复杂度</text>
+  
+  <rect x="520" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="595" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">内存碎片</text>
+  
+  <rect x="670" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="745" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">分配效率</text>
+  
+  <rect x="820" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="895" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">实现复杂度</text>
+  
+  <rect x="970" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1045" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">适用场景</text>
+  
+  <rect x="1120" y="445" width="150" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1195" y="465" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">典型应用</text>
+  
+  <!-- 标记-清除行 -->
+  <rect x="70" y="475" width="150" height="25" rx="2" fill="url(#markSweepGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="145" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2E7D32">标记-清除</text>
+  
+  <rect x="220" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="295" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">100%</text>
+  
+  <rect x="370" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="445" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">O(Live + Heap)</text>
+  
+  <rect x="520" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="595" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">严重</text>
+  
+  <rect x="670" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="745" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">低 (搜索空闲块)</text>
+  
+  <rect x="820" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="895" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">简单</text>
+  
+  <rect x="970" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1045" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">内存受限环境</text>
+  
+  <rect x="1120" y="475" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1195" y="492" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">CMS收集器</text>
+  
+  <!-- 复制算法行 -->
+  <rect x="70" y="500" width="150" height="25" rx="2" fill="url(#copyingGradient)" stroke="#2196F3" stroke-width="1"/>
+  <text x="145" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#1565C0">复制算法</text>
+  
+  <rect x="220" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="295" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">50% / 90%</text>
+  
+  <rect x="370" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="445" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">O(Live)</text>
+  
+  <rect x="520" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="595" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">无</text>
+  
+  <rect x="670" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="745" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">极高 (指针碰撞)</text>
+  
+  <rect x="820" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="895" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">较简单</text>
+  
+  <rect x="970" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1045" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">低存活率场景</text>
+  
+  <rect x="1120" y="500" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1195" y="517" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">新生代收集</text>
+  
+  <!-- 标记-整理行 -->
+  <rect x="70" y="525" width="150" height="25" rx="2" fill="url(#markCompactGradient)" stroke="#FF9800" stroke-width="1"/>
+  <text x="145" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#E65100">标记-整理</text>
+  
+  <rect x="220" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="295" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">接近100%</text>
+  
+  <rect x="370" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="445" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">O(Live + Heap)</text>
+  
+  <rect x="520" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="595" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">无</text>
+  
+  <rect x="670" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="745" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高 (指针碰撞)</text>
+  
+  <rect x="820" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="895" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">复杂</text>
+  
+  <rect x="970" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1045" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高存活率场景</text>
+  
+  <rect x="1120" y="525" width="150" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1195" y="542" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">老年代收集</text>
+  
+  <!-- 算法选择决策流程 -->
+  <text x="700" y="580" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#33691E">
+    算法选择决策流程
+  </text>
+  
+  <!-- 决策流程 -->
+  <rect x="100" y="590" width="120" height="25" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="160" y="607" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#33691E">对象存活率分析</text>
+  
+  <line x1="220" y1="602" x2="260" y2="602" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <rect x="280" y="565" width="100" height="20" rx="2" fill="url(#copyingGradient)" stroke="#2196F3" stroke-width="1"/>
+  <text x="330" y="578" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">存活率 &lt; 10%</text>
+  
+  <rect x="280" y="590" width="100" height="20" rx="2" fill="url(#markCompactGradient)" stroke="#FF9800" stroke-width="1"/>
+  <text x="330" y="603" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">存活率 60-90%</text>
+  
+  <rect x="280" y="615" width="100" height="20" rx="2" fill="url(#markSweepGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="330" y="628" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">内存受限</text>
+  
+  <line x1="380" y1="602" x2="420" y2="602" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <rect x="440" y="590" width="120" height="25" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="500" y="607" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#33691E">内存分配模式</text>
+  
+  <line x1="560" y1="602" x2="600" y2="602" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <rect x="620" y="590" width="120" height="25" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="680" y="607" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#33691E">性能目标设定</text>
+  
+  <line x1="740" y1="602" x2="780" y2="602" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <rect x="800" y="590" width="120" height="25" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="860" y="607" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#33691E">算法组合应用</text>
+  
+  <!-- 分代收集理论应用 -->
+  <rect x="50" y="650" width="1300" height="200" rx="8" fill="url(#generationalGradient)" stroke="#F44336" stroke-width="2"/>
+  <text x="700" y="675" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#C62828">
+    分代收集理论：三种算法的协同应用
+  </text>
+  
+  <!-- 分代假说 -->
+  <rect x="80" y="690" width="300" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="230" y="710" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">分代假说理论基础</text>
+  <text x="90" y="725" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 弱分代假说：98%对象朝生夕死</text>
+  <text x="90" y="740" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 强分代假说：存活时间越长越不易死亡</text>
+  <text x="90" y="755" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 跨代引用假说：跨代引用占极少数</text>
+  
+  <!-- 新生代应用 -->
+  <rect x="400" y="690" width="300" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="550" y="710" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">新生代：复制算法</text>
+  <text x="410" y="725" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• Eden + 2个Survivor (8:1:1)</text>
+  <text x="410" y="740" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 存活率 &lt; 10%，复制成本极低</text>
+  <text x="410" y="755" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 指针碰撞，分配效率O(1)</text>
+  
+  <!-- 老年代应用 -->
+  <rect x="720" y="690" width="300" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="870" y="710" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">老年代：标记-整理</text>
+  <text x="730" y="725" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 存活率 60-90%，复制成本过高</text>
+  <text x="730" y="740" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 消除内存碎片，支持大对象</text>
+  <text x="730" y="755" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 空间利用率接近100%</text>
+  
+  <!-- 现代收集器发展 -->
+  <rect x="1040" y="690" width="280" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="1180" y="710" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">现代收集器发展</text>
+  <text x="1050" y="725" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• G1：区域化 + 增量收集</text>
+  <text x="1050" y="740" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• ZGC：着色指针 + 并发回收</text>
+  <text x="1050" y="755" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• Shenandoah：并发移动</text>
+  
+  <!-- 工程实践与监控 -->
+  <rect x="50" y="870" width="1300" height="160" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="895" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#33691E">
+    生产环境实践与监控策略
+  </text>
+  
+  <!-- 关键参数 -->
+  <rect x="80" y="910" width="250" height="100" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="205" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">关键调优参数</text>
+  <text x="90" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:SurvivorRatio (Eden/Survivor比例)</text>
+  <text x="90" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:MaxTenuringThreshold (晋升阈值)</text>
+  <text x="90" y="975" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:CMSInitiatingOccupancyFraction</text>
+  <text x="90" y="990" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:G1HeapRegionSize (G1区域大小)</text>
+  
+  <!-- 监控指标 -->
+  <rect x="350" y="910" width="250" height="100" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="475" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">核心监控指标</text>
+  <text x="360" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• GC频率 (每秒GC次数)</text>
+  <text x="360" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 停顿时间 (平均/最大暂停时间)</text>
+  <text x="360" y="975" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 内存利用率 (各代使用率)</text>
+  <text x="360" y="990" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 分配速率 (对象分配速度)</text>
+  
+  <!-- 分析工具 -->
+  <rect x="620" y="910" width="250" height="100" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="745" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">分析与诊断工具</text>
+  <text x="630" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• GCeasy / GCPlot (日志分析)</text>
+  <text x="630" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• jstat / jhsdb (实时监控)</text>
+  <text x="630" y="975" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• JFR (Java Flight Recorder)</text>
+  <text x="630" y="990" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• VisualVM / JProfiler</text>
+  
+  <!-- 故障排查 -->
+  <rect x="890" y="910" width="250" height="100" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1015" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">常见问题排查</text>
+  <text x="900" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 内存碎片 → 分配失败</text>
+  <text x="900" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• Survivor溢出 → 过早晋升</text>
+  <text x="900" y="975" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 长时间暂停 → 响应性影响</text>
+  <text x="900" y="990" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 频繁Full GC → 性能退化</text>
+  
+  <!-- 技术发展趋势 -->
+  <rect x="1160" y="910" width="170" height="100" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1245" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">技术发展趋势</text>
+  <text x="1170" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 并发化程度提升</text>
+  <text x="1170" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 停顿时间可预测</text>
+  <text x="1170" y="975" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 自适应调优</text>
+  <text x="1170" y="990" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 机器学习优化</text>
+  
+  <!-- 底部说明 -->
+  <text x="50" y="1050" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    注意：垃圾回收算法的选择需要综合考虑对象生命周期、内存分配模式、性能目标等因素。现代JVM通过组合运用这三种基础算法，
+  </text>
+  <text x="50" y="1070" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    在不同的内存区域采用最适合的回收策略，实现了垃圾回收性能的整体优化。理解这些基础算法的原理和特征，
+  </text>
+  <text x="50" y="1090" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    是进行JVM调优和故障排查的重要基础。随着硬件发展和应用需求变化，垃圾回收技术仍在不断演进。
+  </text>
+  
+  <!-- 图例 -->
+  <text x="50" y="1120" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#666">图例：</text>
+  <rect x="100" y="1110" width="15" height="15" rx="1" fill="#4CAF50"/>
+  <text x="120" y="1122" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">存活对象</text>
+  
+  <rect x="180" y="1110" width="15" height="15" rx="1" fill="#F44336"/>
+  <text x="200" y="1122" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">垃圾对象</text>
+  
+  <rect x="260" y="1110" width="15" height="15" rx="1" fill="#E0E0E0" stroke="#999" stroke-dasharray="1,1"/>
+  <text x="280" y="1122" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">空闲内存</text>
+  
+  <!-- 算法演进箭头 -->
+  <path d="M 250 390 Q 680 390 1110 390" 
+        stroke="#8BC34A" stroke-width="3" fill="none" stroke-dasharray="5,5" marker-end="url(#bigArrowhead)"/>
+  <text x="680" y="385" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-style="italic" fill="#33691E">
+    算法演进：简单实现 → 空间效率 → 综合优化
+  </text>
+</svg> 

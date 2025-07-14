@@ -43,10 +43,10 @@
 - [x] [Java 内存模型 (JMM) 深度解读](./concurrent/jmm-deep-dive.md)
 
 #### **同步与锁机制**
-- [ ] `synchronized` 关键字：偏向锁、轻量级锁、重量级锁
-- [ ] `ReentrantLock` 与 `ReadWriteLock`：公平锁与非公平锁
-- [ ] `StampedLock`：乐观读锁的性能优势
-- [ ] 锁优化：锁消除、锁粗化、自适应自旋
+- [x] [`synchronized` 关键字：偏向锁、轻量级锁、重量级锁](./concurrent/synchronized-keyword-deep-dive.md)
+- [x] [`ReentrantLock` 与 `ReadWriteLock`：公平锁与非公平锁](./concurrent/reentrantlock-and-readwritelock-deep-dive.md)
+- [x] [`StampedLock`：乐观读锁的性能优势](./concurrent/stampedlock-optimistic-read-performance.md)
+- [x] [锁优化：锁消除、锁粗化、自适应自旋](./concurrent/lock-optimization-techniques.md)
 
 #### **高级并发工具**
 - [ ] `CountDownLatch`、`CyclicBarrier`、`Semaphore`
@@ -66,8 +66,8 @@
 #### **内存管理与垃圾回收**
 - [x] [JVM 内存结构 (运行时数据区)](./jvm/jvm-memory-structure.md)
 - [x] [对象的创建过程、内存布局与访问定位](./jvm/object-creation-and-memory-layout.md)
-- [ ] 垃圾回收算法：标记-清除、复制、标记-整理
-- [ ] 垃圾收集器：Serial、Parallel、CMS、G1、ZGC
+- [x] [垃圾回收算法](./jvm/garbage-collection-algorithms.md)：标记-清除、复制、标记-整理
+- [x] [垃圾收集器：Serial、Parallel、CMS、G1、ZGC](./jvm/garbage-collectors-comparison.md)
 - [ ] 内存泄漏与内存溢出的诊断与解决
 
 #### **字节码与执行引擎**
@@ -78,8 +78,8 @@
 
 #### **类加载机制**
 - [x] [类加载过程：加载、链接 (验证, 准备, 解析)、初始化](./jvm/class-loading-process.md)
-- [ ] 类加载器：启动类加载器、扩展类加载器、应用类加载器
-- [ ] 双亲委派模型与自定义类加载器
+- [x] [类加载器：启动类加载器、扩展类加载器、应用类加载器](./jvm/class-loaders.md)
+- [x] [双亲委派模型与自定义类加载器](./jvm/parent-delegation-model.md)
 - [ ] 模块系统 (JPMS)：Jigsaw 项目的模块化设计
 
 #### **性能监控与调优**

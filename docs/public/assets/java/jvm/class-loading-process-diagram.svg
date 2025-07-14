@@ -1,0 +1,78 @@
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="loadingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE0B2"/>
+      <stop offset="100%" stop-color="#FFCC80"/>
+    </linearGradient>
+    <linearGradient id="linkingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B3E5FC"/>
+      <stop offset="100%" stop-color="#81D4FA"/>
+    </linearGradient>
+    <linearGradient id="initGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0E0E0"/>
+      <stop offset="100%" stop-color="#BDBDBD"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="700" fill="#FAFAFA"/>
+  <g>
+    <rect x="60" y="60" width="320" height="120" rx="16" fill="url(#loadingGrad)" stroke="#FFA726" stroke-width="2"/>
+    <text x="220" y="90" font-size="22" font-weight="bold" fill="#2C3E50" text-anchor="middle">加载（Loading）</text>
+    <g font-size="14" fill="#2C3E50">
+      <text x="80" y="120">• 读取 class 文件（本地/网络/加密/动态生成）</text>
+      <text x="80" y="140">• 生成 Class 对象，唯一性绑定（类名+加载器）</text>
+      <text x="80" y="160">• 支持多种来源，动态性强</text>
+    </g>
+  </g>
+  <g>
+    <rect x="440" y="60" width="320" height="120" rx="16" fill="url(#linkingGrad)" stroke="#29B6F6" stroke-width="2"/>
+    <text x="600" y="90" font-size="22" font-weight="bold" fill="#2C3E50" text-anchor="middle">链接（Linking）</text>
+    <g font-size="14" fill="#2C3E50">
+      <text x="460" y="120">• 验证：字节码安全检查，防止恶意代码</text>
+      <text x="460" y="140">• 准备：static变量分配零值，不执行初始化</text>
+      <text x="460" y="160">• 解析：符号引用转直接引用，支持延迟解析</text>
+    </g>
+    <rect x="470" y="180" width="80" height="32" rx="8" fill="#E1F5FE" stroke="#29B6F6" stroke-dasharray="4,2"/>
+    <text x="510" y="200" font-size="13" fill="#0277BD" text-anchor="middle">验证</text>
+    <rect x="570" y="180" width="80" height="32" rx="8" fill="#E1F5FE" stroke="#29B6F6" stroke-dasharray="4,2"/>
+    <text x="610" y="200" font-size="13" fill="#0277BD" text-anchor="middle">准备</text>
+    <rect x="670" y="180" width="80" height="32" rx="8" fill="#E1F5FE" stroke="#29B6F6" stroke-dasharray="4,2"/>
+    <text x="710" y="200" font-size="13" fill="#0277BD" text-anchor="middle">解析</text>
+  </g>
+  <g>
+    <rect x="820" y="60" width="320" height="120" rx="16" fill="url(#initGrad)" stroke="#757575" stroke-width="2"/>
+    <text x="980" y="90" font-size="22" font-weight="bold" fill="#2C3E50" text-anchor="middle">初始化（Initialization）</text>
+    <g font-size="14" fill="#2C3E50">
+      <text x="840" y="120">• 执行 <tspan font-family='monospace'>&lt;clinit&gt;</tspan> 方法（静态变量赋值/静态块）</text>
+      <text x="840" y="140">• 只在首次主动使用类时触发，线程安全</text>
+      <text x="840" y="160">• 父类先于子类初始化，顺序严格</text>
+    </g>
+  </g>
+  <line x1="380" y1="120" x2="440" y2="120" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="760" y1="120" x2="820" y2="120" stroke="#2C3E50" stroke-width="3" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="900" y="220" width="260" height="400" rx="16" fill="#FFFDE7" stroke="#FBC02D" stroke-width="2"/>
+    <text x="1030" y="250" font-size="18" font-weight="bold" fill="#F57C00" text-anchor="middle">典型场景 & 注意事项</text>
+    <g font-size="14" fill="#2C3E50">
+      <text x="920" y="280">• 被动引用不会触发初始化</text>
+      <text x="920" y="305">• 接口初始化不递归父接口</text>
+      <text x="920" y="330">• 类加载失败抛出异常</text>
+      <text x="920" y="355">• 支持延迟解析，提升性能</text>
+      <text x="920" y="380">• 反射/动态代理依赖类加载</text>
+      <text x="920" y="405">• 热部署/插件机制基础</text>
+      <text x="920" y="430">• 安全性依赖验证阶段</text>
+      <text x="920" y="455">• 合理设计加载器层次防泄漏</text>
+    </g>
+  </g>
+  <g>
+    <rect x="60" y="540" width="800" height="80" rx="12" fill="#F3E5F5" stroke="#8E24AA" stroke-width="2"/>
+    <text x="460" y="570" font-size="16" font-weight="bold" fill="#6A1B9A" text-anchor="middle">生产实践建议</text>
+    <g font-size="14" fill="#2C3E50">
+      <text x="80" y="595">• 优化类加载器结构，避免重复加载和内存泄漏</text>
+      <text x="80" y="615">• 自定义加载器需严格隔离与安全校验</text>
+      <text x="480" y="615">• 动态特性（热部署/插件/代理）需理解加载机制</text>
+    </g>
+  </g>
+</svg> 

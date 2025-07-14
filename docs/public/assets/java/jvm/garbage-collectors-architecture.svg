@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="1200" viewBox="0 0 1400 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变色和样式 -->
+  <defs>
+    <!-- Serial 收集器渐变 -->
+    <linearGradient id="serialGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Parallel 收集器渐变 -->
+    <linearGradient id="parallelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- CMS 收集器渐变 -->
+    <linearGradient id="cmsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- G1 收集器渐变 -->
+    <linearGradient id="g1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCDD2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- ZGC 收集器渐变 -->
+    <linearGradient id="zgcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E1BEE7;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 性能对比渐变 -->
+    <linearGradient id="performanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0F4C3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DCEDC8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+    
+    <!-- 大箭头标记 -->
+    <marker id="bigArrowhead" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto">
+      <polygon points="0 0, 12 4.5, 0 9" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- 主标题 -->
+  <text x="700" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#2C3E50">
+    JVM 垃圾收集器架构对比与演进
+  </text>
+  
+  <!-- 收集器演进时间线 -->
+  <rect x="50" y="60" width="1300" height="80" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#33691E">
+    垃圾收集器技术演进时间线
+  </text>
+  
+  <!-- 时间线节点 -->
+  <circle cx="150" cy="115" r="8" fill="#4CAF50"/>
+  <text x="150" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2E7D32">JDK 1.0</text>
+  <text x="150" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">Serial</text>
+  
+  <line x1="150" y1="115" x2="350" y2="115" stroke="#4CAF50" stroke-width="3"/>
+  
+  <circle cx="350" cy="115" r="8" fill="#2196F3"/>
+  <text x="350" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#1565C0">JDK 1.4</text>
+  <text x="350" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">Parallel</text>
+  
+  <line x1="350" y1="115" x2="550" y2="115" stroke="#FF9800" stroke-width="3"/>
+  
+  <circle cx="550" cy="115" r="8" fill="#FF9800"/>
+  <text x="550" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#E65100">JDK 6</text>
+  <text x="550" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">CMS</text>
+  
+  <line x1="550" y1="115" x2="850" y2="115" stroke="#F44336" stroke-width="3"/>
+  
+  <circle cx="850" cy="115" r="8" fill="#F44336"/>
+  <text x="850" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#C62828">JDK 7</text>
+  <text x="850" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">G1</text>
+  
+  <line x1="850" y1="115" x2="1150" y2="115" stroke="#9C27B0" stroke-width="3"/>
+  
+  <circle cx="1150" cy="115" r="8" fill="#9C27B0"/>
+  <text x="1150" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#6A1B9A">JDK 11</text>
+  <text x="1150" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#6A1B9A">ZGC</text>
+  
+  <!-- 五种收集器详细对比 -->
+  <text x="700" y="180" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#2C3E50">
+    五种核心垃圾收集器架构对比
+  </text>
+  
+  <!-- Serial 收集器 -->
+  <rect x="50" y="200" width="250" height="220" rx="8" fill="url(#serialGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="175" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    Serial 收集器
+  </text>
+  
+  <!-- Serial 架构图 -->
+  <rect x="70" y="240" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="175" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">单线程架构</text>
+  
+  <rect x="80" y="270" width="60" height="20" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="110" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">新生代</text>
+  
+  <rect x="150" y="270" width="60" height="20" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="180" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">老年代</text>
+  
+  <rect x="220" y="270" width="50" height="20" rx="2" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="245" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">单线程</text>
+  
+  <text x="80" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">算法：复制 + 标记整理</text>
+  
+  <!-- Serial 特征 -->
+  <rect x="70" y="330" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="175" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">性能特征</text>
+  <text x="80" y="365" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 停顿时间：几毫秒-几十毫秒</text>
+  <text x="80" y="380" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 吞吐量损失：5-10%</text>
+  <text x="80" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 内存开销：&lt;2%</text>
+  
+  <!-- Parallel 收集器 -->
+  <rect x="320" y="200" width="250" height="220" rx="8" fill="url(#parallelGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="445" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    Parallel 收集器
+  </text>
+  
+  <!-- Parallel 架构图 -->
+  <rect x="340" y="240" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="445" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">多线程并行架构</text>
+  
+  <rect x="350" y="270" width="40" height="20" rx="2" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <text x="370" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">线程1</text>
+  
+  <rect x="395" y="270" width="40" height="20" rx="2" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <text x="415" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">线程2</text>
+  
+  <rect x="440" y="270" width="40" height="20" rx="2" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <text x="460" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">线程3</text>
+  
+  <rect x="485" y="270" width="40" height="20" rx="2" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <text x="505" y="283" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#1565C0">线程N</text>
+  
+  <text x="350" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">算法：工作窃取 + 任务分割</text>
+  
+  <!-- Parallel 特征 -->
+  <rect x="340" y="330" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="445" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">性能特征</text>
+  <text x="350" y="365" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 停顿时间：数百毫秒-数秒</text>
+  <text x="350" y="380" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 吞吐量损失：1-5%</text>
+  <text x="350" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 内存开销：5-10%</text>
+  
+  <!-- CMS 收集器 -->
+  <rect x="590" y="200" width="250" height="220" rx="8" fill="url(#cmsGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="715" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    CMS 收集器
+  </text>
+  
+  <!-- CMS 架构图 -->
+  <rect x="610" y="240" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="715" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">并发标记清除架构</text>
+  
+  <rect x="620" y="270" width="45" height="15" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="642" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#E65100">初始标记</text>
+  
+  <rect x="670" y="270" width="45" height="15" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="692" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#E65100">并发标记</text>
+  
+  <rect x="620" y="290" width="45" height="15" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="642" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#E65100">重新标记</text>
+  
+  <rect x="670" y="290" width="45" height="15" rx="2" fill="#FFCC80" stroke="#FF9800" stroke-width="1"/>
+  <text x="692" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#E65100">并发清除</text>
+  
+  <text x="720" y="280" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">三色标记</text>
+  <text x="720" y="295" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">写屏障</text>
+  
+  <text x="620" y="315" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">算法：增量标记 + 并发清除</text>
+  
+  <!-- CMS 特征 -->
+  <rect x="610" y="330" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="715" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">性能特征</text>
+  <text x="620" y="365" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 停顿时间：50-200毫秒</text>
+  <text x="620" y="380" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 吞吐量损失：10-30%</text>
+  <text x="620" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 内存开销：20-30%</text>
+  
+  <!-- G1 收集器 -->
+  <rect x="860" y="200" width="250" height="220" rx="8" fill="url(#g1Gradient)" stroke="#F44336" stroke-width="2"/>
+  <text x="985" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#C62828">
+    G1 收集器
+  </text>
+  
+  <!-- G1 架构图 -->
+  <rect x="880" y="240" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="985" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">分区增量回收架构</text>
+  
+  <!-- G1 Region 网格 -->
+  <rect x="890" y="270" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="910" y="270" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="930" y="270" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="950" y="270" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  
+  <rect x="890" y="290" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="910" y="290" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="930" y="290" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  <rect x="950" y="290" width="15" height="15" rx="1" fill="#FFCDD2" stroke="#F44336" stroke-width="1"/>
+  
+  <text x="980" y="280" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">Region</text>
+  <text x="980" y="295" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">记忆集</text>
+  
+  <text x="1000" y="280" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">收集集合</text>
+  <text x="1000" y="295" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">停顿预测</text>
+  
+  <text x="890" y="315" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">算法：分区管理 + 增量回收</text>
+  
+  <!-- G1 特征 -->
+  <rect x="880" y="330" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="985" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">性能特征</text>
+  <text x="890" y="365" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 停顿时间：10-200毫秒</text>
+  <text x="890" y="380" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 吞吐量损失：5-15%</text>
+  <text x="890" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">• 内存开销：10-20%</text>
+  
+  <!-- ZGC 收集器 -->
+  <rect x="1130" y="200" width="250" height="220" rx="8" fill="url(#zgcGradient)" stroke="#9C27B0" stroke-width="2"/>
+  <text x="1255" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#6A1B9A">
+    ZGC 收集器
+  </text>
+  
+  <!-- ZGC 架构图 -->
+  <rect x="1150" y="240" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1255" y="260" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#6A1B9A">着色指针并发架构</text>
+  
+  <rect x="1160" y="270" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1190" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">着色指针</text>
+  
+  <rect x="1225" y="270" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1255" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">多重映射</text>
+  
+  <rect x="1290" y="270" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1320" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">加载屏障</text>
+  
+  <rect x="1160" y="290" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1190" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">并发标记</text>
+  
+  <rect x="1225" y="290" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1255" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">并发移动</text>
+  
+  <rect x="1290" y="290" width="60" height="15" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1320" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" fill="#6A1B9A">并发重定位</text>
+  
+  <text x="1160" y="315" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6A1B9A">算法：着色指针 + 并发回收</text>
+  
+  <!-- ZGC 特征 -->
+  <rect x="1150" y="330" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#9C27B0" stroke-width="1"/>
+  <text x="1255" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#6A1B9A">性能特征</text>
+  <text x="1160" y="365" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6A1B9A">• 停顿时间：&lt;10毫秒</text>
+  <text x="1160" y="380" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6A1B9A">• 吞吐量损失：5-20%</text>
+  <text x="1160" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6A1B9A">• 内存开销：15-25%</text>
+  
+  <!-- 性能对比矩阵 -->
+  <rect x="50" y="450" width="1300" height="200" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="475" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#33691E">
+    性能特征对比矩阵
+  </text>
+  
+  <!-- 对比表格标题 -->
+  <rect x="70" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="130" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">收集器</text>
+  
+  <rect x="190" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">停顿时间</text>
+  
+  <rect x="310" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">吞吐量</text>
+  
+  <rect x="430" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">内存开销</text>
+  
+  <rect x="550" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">适用场景</text>
+  
+  <rect x="670" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">堆大小</text>
+  
+  <rect x="790" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">CPU核数</text>
+  
+  <rect x="910" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">并发特性</text>
+  
+  <rect x="1030" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">技术特点</text>
+  
+  <rect x="1150" y="490" width="120" height="30" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">成熟度</text>
+  
+  <!-- Serial 行 -->
+  <rect x="70" y="520" width="120" height="25" rx="2" fill="url(#serialGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="130" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2E7D32">Serial</text>
+  
+  <rect x="190" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">几毫秒-几十毫秒</text>
+  
+  <rect x="310" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高 (90-95%)</text>
+  
+  <rect x="430" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">最低 (&lt;2%)</text>
+  
+  <rect x="550" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">客户端应用</text>
+  
+  <rect x="670" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">&lt;100MB</text>
+  
+  <rect x="790" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">单核</text>
+  
+  <rect x="910" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">串行</text>
+  
+  <rect x="1030" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">简单可靠</text>
+  
+  <rect x="1150" y="520" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="537" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">非常成熟</text>
+  
+  <!-- Parallel 行 -->
+  <rect x="70" y="545" width="120" height="25" rx="2" fill="url(#parallelGradient)" stroke="#2196F3" stroke-width="1"/>
+  <text x="130" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#1565C0">Parallel</text>
+  
+  <rect x="190" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">数百毫秒-数秒</text>
+  
+  <rect x="310" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">最高 (95-99%)</text>
+  
+  <rect x="430" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">较低 (5-10%)</text>
+  
+  <rect x="550" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">批处理应用</text>
+  
+  <rect x="670" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">100MB-4GB</text>
+  
+  <rect x="790" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">多核</text>
+  
+  <rect x="910" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">并行</text>
+  
+  <rect x="1030" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">工作窃取</text>
+  
+  <rect x="1150" y="545" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="562" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">非常成熟</text>
+  
+  <!-- CMS 行 -->
+  <rect x="70" y="570" width="120" height="25" rx="2" fill="url(#cmsGradient)" stroke="#FF9800" stroke-width="1"/>
+  <text x="130" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#E65100">CMS</text>
+  
+  <rect x="190" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">50-200毫秒</text>
+  
+  <rect x="310" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">中等 (70-90%)</text>
+  
+  <rect x="430" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">较高 (20-30%)</text>
+  
+  <rect x="550" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">Web应用</text>
+  
+  <rect x="670" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">1-8GB</text>
+  
+  <rect x="790" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">多核</text>
+  
+  <rect x="910" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">并发</text>
+  
+  <rect x="1030" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">三色标记</text>
+  
+  <rect x="1150" y="570" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="587" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">已弃用</text>
+  
+  <!-- G1 行 -->
+  <rect x="70" y="595" width="120" height="25" rx="2" fill="url(#g1Gradient)" stroke="#F44336" stroke-width="1"/>
+  <text x="130" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">G1</text>
+  
+  <rect x="190" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">10-200毫秒</text>
+  
+  <rect x="310" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高 (85-95%)</text>
+  
+  <rect x="430" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">中等 (10-20%)</text>
+  
+  <rect x="550" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">大型应用</text>
+  
+  <rect x="670" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">4GB-64GB</text>
+  
+  <rect x="790" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高核数</text>
+  
+  <rect x="910" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">增量并发</text>
+  
+  <rect x="1030" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">分区管理</text>
+  
+  <rect x="1150" y="595" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="612" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">成熟</text>
+  
+  <!-- ZGC 行 -->
+  <rect x="70" y="620" width="120" height="25" rx="2" fill="url(#zgcGradient)" stroke="#9C27B0" stroke-width="1"/>
+  <text x="130" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#6A1B9A">ZGC</text>
+  
+  <rect x="190" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="250" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">&lt;10毫秒</text>
+  
+  <rect x="310" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="370" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高 (80-95%)</text>
+  
+  <rect x="430" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="490" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">较高 (15-25%)</text>
+  
+  <rect x="550" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="610" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">实时应用</text>
+  
+  <rect x="670" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="730" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">8MB-16TB</text>
+  
+  <rect x="790" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="850" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">高核数</text>
+  
+  <rect x="910" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="970" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">完全并发</text>
+  
+  <rect x="1030" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1090" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">着色指针</text>
+  
+  <rect x="1150" y="620" width="120" height="25" rx="2" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1210" y="637" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">快速发展</text>
+  
+  <!-- 选择决策流程 -->
+  <rect x="50" y="680" width="1300" height="160" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="705" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#33691E">
+    垃圾收集器选择决策流程
+  </text>
+  
+  <!-- 决策树 -->
+  <rect x="100" y="720" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="175" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">应用类型分析</text>
+  
+  <line x1="250" y1="740" x2="300" y2="740" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <!-- 分支1：客户端应用 -->
+  <rect x="320" y="720" width="120" height="25" rx="2" fill="url(#serialGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="380" y="737" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">客户端应用 → Serial</text>
+  
+  <!-- 分支2：批处理应用 -->
+  <rect x="320" y="750" width="120" height="25" rx="2" fill="url(#parallelGradient)" stroke="#2196F3" stroke-width="1"/>
+  <text x="380" y="767" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">批处理应用 → Parallel</text>
+  
+  <!-- 分支3：Web应用 -->
+  <rect x="320" y="780" width="120" height="25" rx="2" fill="url(#g1Gradient)" stroke="#F44336" stroke-width="1"/>
+  <text x="380" y="797" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">Web应用 → G1</text>
+  
+  <!-- 分支4：实时应用 -->
+  <rect x="320" y="810" width="120" height="25" rx="2" fill="url(#zgcGradient)" stroke="#9C27B0" stroke-width="1"/>
+  <text x="380" y="827" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6A1B9A">实时应用 → ZGC</text>
+  
+  <line x1="440" y1="770" x2="490" y2="770" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <!-- 硬件环境考量 -->
+  <rect x="510" y="720" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="585" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">硬件环境考量</text>
+  
+  <line x1="660" y1="740" x2="710" y2="740" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <!-- 性能目标设定 -->
+  <rect x="730" y="720" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="805" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">性能目标设定</text>
+  
+  <line x1="880" y1="740" x2="930" y2="740" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <!-- 参数调优 -->
+  <rect x="950" y="720" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1025" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">参数调优验证</text>
+  
+  <line x1="1100" y1="740" x2="1150" y2="740" stroke="#8BC34A" stroke-width="2" marker-end="url(#bigArrowhead)"/>
+  
+  <!-- 生产部署 -->
+  <rect x="1170" y="720" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1245" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">生产部署监控</text>
+  
+  <!-- 关键监控指标 -->
+  <rect x="50" y="870" width="1300" height="120" rx="8" fill="url(#performanceGradient)" stroke="#8BC34A" stroke-width="2"/>
+  <text x="700" y="895" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#33691E">
+    关键监控指标与调优工具
+  </text>
+  
+  <!-- 监控指标 -->
+  <rect x="80" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="180" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">核心监控指标</text>
+  <text x="90" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• GC频率 • 停顿时间分布</text>
+  <text x="90" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 吞吐量变化 • 内存使用模式</text>
+  
+  <!-- 分析工具 -->
+  <rect x="300" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="400" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">分析工具</text>
+  <text x="310" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• GCeasy • GCPlot • JFR</text>
+  <text x="310" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• jstat • jhsdb • VisualVM</text>
+  
+  <!-- 调优参数 -->
+  <rect x="520" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="620" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">关键调优参数</text>
+  <text x="530" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:MaxGCPauseMillis</text>
+  <text x="530" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• -XX:G1HeapRegionSize</text>
+  
+  <!-- 最佳实践 -->
+  <rect x="740" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="840" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">最佳实践</text>
+  <text x="750" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 基于实际测试选择</text>
+  <text x="750" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 持续监控和调优</text>
+  
+  <!-- 故障排查 -->
+  <rect x="960" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1060" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">故障排查</text>
+  <text x="970" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 内存泄漏检测</text>
+  <text x="970" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 性能瓶颈分析</text>
+  
+  <!-- 未来趋势 -->
+  <rect x="1180" y="910" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#8BC34A" stroke-width="1"/>
+  <text x="1280" y="930" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#33691E">未来趋势</text>
+  <text x="1190" y="945" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 分代ZGC • 机器学习优化</text>
+  <text x="1190" y="960" font-family="Inter, Arial, sans-serif" font-size="10" fill="#33691E">• 云原生特性 • 自适应调优</text>
+  
+  <!-- 底部说明 -->
+  <text x="50" y="1020" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    注意：垃圾收集器的选择需要综合考虑应用特征、硬件环境、性能目标等多个因素。不同收集器在不同场景下的表现差异显著，
+  </text>
+  <text x="50" y="1040" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    建议通过实际测试和监控数据来验证选择的正确性。随着技术发展，新一代收集器（如ZGC）正在不断优化，
+  </text>
+  <text x="50" y="1060" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6C757D">
+    为Java应用在大规模、低延迟场景下的部署提供了更多可能性。
+  </text>
+  
+  <!-- 技术演进箭头 -->
+  <path d="M 150 150 Q 350 170 550 150 Q 750 130 950 150 Q 1050 170 1150 150" 
+        stroke="#8BC34A" stroke-width="3" fill="none" stroke-dasharray="5,5" marker-end="url(#bigArrowhead)"/>
+  <text x="650" y="175" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-style="italic" fill="#33691E">
+    技术演进路径：简单性 → 并行性 → 并发性 → 分区性 → 极致性能
+  </text>
+</svg> 

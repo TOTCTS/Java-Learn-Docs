@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变色 -->
+  <defs>
+    <!-- 偏向锁区域渐变 -->
+    <linearGradient id="biasedLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 轻量级锁区域渐变 -->
+    <linearGradient id="lightweightLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 重量级锁区域渐变 -->
+    <linearGradient id="heavyweightLockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+    
+    <!-- 背景面板渐变 -->
+    <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAFAFA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F0F0F0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 主标题 -->
+  <text x="500" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2C3E50">
+    synchronized 锁升级机制
+  </text>
+  
+  <!-- 偏向锁区域 -->
+  <rect x="50" y="80" width="280" height="180" rx="8" fill="url(#biasedLockGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="190" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    偏向锁 (Biased Lock)
+  </text>
+  
+  <!-- 偏向锁特征 -->
+  <text x="70" y="130" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">
+    • 锁标志位: 01, 偏向标志: 1
+  </text>
+  <text x="70" y="148" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">
+    • Mark Word 存储线程 ID
+  </text>
+  <text x="70" y="166" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">
+    • 无 CAS 操作，性能最优
+  </text>
+  <text x="70" y="184" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">
+    • 适用：单线程重复访问
+  </text>
+  
+  <!-- 偏向锁 Mark Word 示意 -->
+  <rect x="70" y="200" width="200" height="40" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="80" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">线程ID</text>
+  <text x="130" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">Epoch</text>
+  <text x="180" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">1</text>
+  <text x="210" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">01</text>
+  <text x="170" y="235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">Mark Word 结构</text>
+  
+  <!-- 轻量级锁区域 -->
+  <rect x="360" y="80" width="280" height="180" rx="8" fill="url(#lightweightLockGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="500" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    轻量级锁 (Lightweight Lock)
+  </text>
+  
+  <!-- 轻量级锁特征 -->
+  <text x="380" y="130" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">
+    • 锁标志位: 00
+  </text>
+  <text x="380" y="148" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">
+    • 栈帧中创建锁记录
+  </text>
+  <text x="380" y="166" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">
+    • CAS 操作获取锁
+  </text>
+  <text x="380" y="184" font-family="Inter, Arial, sans-serif" font-size="12" fill="#1565C0">
+    • 适用：线程交替访问
+  </text>
+  
+  <!-- 轻量级锁 Mark Word 示意 -->
+  <rect x="380" y="200" width="200" height="40" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="450" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">指向锁记录的指针</text>
+  <text x="520" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">00</text>
+  <text x="480" y="235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">Mark Word 结构</text>
+  
+  <!-- 重量级锁区域 -->
+  <rect x="670" y="80" width="280" height="180" rx="8" fill="url(#heavyweightLockGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="810" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    重量级锁 (Heavyweight Lock)
+  </text>
+  
+  <!-- 重量级锁特征 -->
+  <text x="690" y="130" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">
+    • 锁标志位: 10
+  </text>
+  <text x="690" y="148" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">
+    • 使用 Monitor 对象
+  </text>
+  <text x="690" y="166" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">
+    • 操作系统互斥量
+  </text>
+  <text x="690" y="184" font-family="Inter, Arial, sans-serif" font-size="12" fill="#E65100">
+    • 适用：高竞争场景
+  </text>
+  
+  <!-- 重量级锁 Mark Word 示意 -->
+  <rect x="690" y="200" width="200" height="40" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="750" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">指向Monitor的指针</text>
+  <text x="830" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">10</text>
+  <text x="790" y="235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">Mark Word 结构</text>
+  
+  <!-- 升级箭头 1: 偏向锁 -> 轻量级锁 -->
+  <line x1="330" y1="170" x2="360" y2="170" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="345" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">其他线程</text>
+  <text x="345" y="168" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">尝试获取</text>
+  <text x="345" y="190" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">撤销偏向</text>
+  
+  <!-- 升级箭头 2: 轻量级锁 -> 重量级锁 -->
+  <line x1="640" y1="170" x2="670" y2="170" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="655" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">CAS 失败</text>
+  <text x="655" y="168" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">次数过多</text>
+  <text x="655" y="190" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">自旋超时</text>
+  
+  <!-- 性能对比区域 -->
+  <rect x="50" y="300" width="900" height="120" rx="8" fill="url(#panelGradient)" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="500" y="325" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50">
+    性能对比与适用场景
+  </text>
+  
+  <!-- 性能对比表格 -->
+  <rect x="80" y="340" width="200" height="60" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="180" y="358" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">偏向锁</text>
+  <text x="90" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">性能: 100% (基准)</text>
+  <text x="90" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">场景: 单线程重复访问</text>
+  
+  <rect x="300" y="340" width="200" height="60" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="400" y="358" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">轻量级锁</text>
+  <text x="310" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">性能: 85% (CAS 开销)</text>
+  <text x="310" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">场景: 线程交替访问</text>
+  
+  <rect x="520" y="340" width="200" height="60" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="620" y="358" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">重量级锁</text>
+  <text x="530" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">性能: 30% (系统调用)</text>
+  <text x="530" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">场景: 高竞争长时间</text>
+  
+  <!-- 锁升级流程图 -->
+  <rect x="50" y="450" width="900" height="200" rx="8" fill="url(#panelGradient)" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="500" y="475" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50">
+    锁升级决策流程
+  </text>
+  
+  <!-- 决策流程节点 -->
+  <rect x="100" y="500" width="120" height="40" rx="20" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2"/>
+  <text x="160" y="525" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">无锁状态</text>
+  
+  <rect x="280" y="500" width="120" height="40" rx="20" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2"/>
+  <text x="340" y="525" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">偏向锁</text>
+  
+  <rect x="460" y="500" width="120" height="40" rx="20" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <text x="520" y="525" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">轻量级锁</text>
+  
+  <rect x="640" y="500" width="120" height="40" rx="20" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="700" y="525" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">重量级锁</text>
+  
+  <!-- 流程箭头 -->
+  <line x1="220" y1="520" x2="280" y2="520" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">首次访问</text>
+  
+  <line x1="400" y1="520" x2="460" y2="520" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="430" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">竞争出现</text>
+  
+  <line x1="580" y1="520" x2="640" y2="520" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="610" y="510" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">高竞争</text>
+  
+  <!-- 优化技术说明 -->
+  <rect x="100" y="570" width="660" height="60" rx="4" fill="#F8F9FA" stroke="#DEE2E6" stroke-width="1"/>
+  <text x="110" y="590" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2C3E50">JVM 锁优化技术:</text>
+  <text x="110" y="608" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 自适应自旋: 根据历史成功率动态调整自旋时间</text>
+  <text x="110" y="622" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 锁消除: 通过逃逸分析消除不必要的同步</text>
+  <text x="400" y="608" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 锁粗化: 将连续的加锁操作合并为单次加锁</text>
+  <text x="400" y="622" font-family="Inter, Arial, sans-serif" font-size="11" fill="#495057">• 锁升级: 单向升级，不可降级</text>
+  
+  <!-- 注意事项 -->
+  <text x="50" y="680" font-family="Inter, Arial, sans-serif" font-size="10" fill="#6C757D">
+    注意: 锁升级是单向的，只能从低级别升级到高级别，不能降级。JVM 会根据实际竞争情况自动选择最优的锁实现。
+  </text>
+</svg> 

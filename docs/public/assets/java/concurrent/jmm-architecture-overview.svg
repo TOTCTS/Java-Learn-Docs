@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 渐变色定义 -->
+    <linearGradient id="mainMemoryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="workingMemoryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="threadGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="syncGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCDD2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333" />
+    </marker>
+    
+    <marker id="happensBefore" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#FF5722" />
+    </marker>
+    
+    <marker id="memoryBarrier" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <circle cx="4" cy="4" r="3" fill="#9C27B0" />
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2C3E50">
+    Java 内存模型 (JMM) 架构与同步机制
+  </text>
+  
+  <!-- 主内存区域 -->
+  <rect x="50" y="60" width="900" height="120" rx="12" fill="url(#mainMemoryGradient)" stroke="#2196F3" stroke-width="3"/>
+  <text x="500" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1565C0">
+    主内存 (Main Memory)
+  </text>
+  
+  <!-- 主内存中的变量 -->
+  <rect x="100" y="110" width="120" height="50" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="160" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">共享变量</text>
+  <text x="160" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">实例字段</text>
+  <text x="160" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">静态字段</text>
+  
+  <rect x="250" y="110" width="120" height="50" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="310" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">对象实例</text>
+  <text x="310" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">堆对象</text>
+  <text x="310" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">数组元素</text>
+  
+  <rect x="400" y="110" width="120" height="50" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="460" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">volatile变量</text>
+  <text x="460" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">强制可见性</text>
+  <text x="460" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">禁止重排序</text>
+  
+  <rect x="550" y="110" width="120" height="50" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="610" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">锁状态</text>
+  <text x="610" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">Monitor</text>
+  <text x="610" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">同步状态</text>
+  
+  <rect x="700" y="110" width="120" height="50" rx="6" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="760" y="130" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">final字段</text>
+  <text x="760" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">构造后可见</text>
+  <text x="760" y="155" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">无需同步</text>
+  
+  <!-- 线程工作内存区域 -->
+  <!-- 线程1 -->
+  <rect x="80" y="220" width="200" height="180" rx="10" fill="url(#threadGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="180" y="245" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    线程1
+  </text>
+  
+  <!-- 线程1工作内存 -->
+  <rect x="100" y="260" width="160" height="130" rx="6" fill="url(#workingMemoryGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="180" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">工作内存</text>
+  
+  <!-- 线程1本地变量副本 -->
+  <rect x="110" y="290" width="60" height="35" rx="3" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="140" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">变量副本</text>
+  <text x="140" y="318" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">value = 10</text>
+  
+  <rect x="180" y="290" width="60" height="35" rx="3" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="210" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">对象引用</text>
+  <text x="210" y="318" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">obj@1234</text>
+  
+  <!-- CPU缓存和寄存器 -->
+  <rect x="110" y="335" width="140" height="45" rx="3" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="180" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#E65100">执行引擎</text>
+  <text x="120" y="365" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• CPU缓存 (L1/L2/L3)</text>
+  <text x="120" y="375" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• 寄存器 • 写缓冲区</text>
+  
+  <!-- 线程2 -->
+  <rect x="720" y="220" width="200" height="180" rx="10" fill="url(#threadGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="820" y="245" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    线程2
+  </text>
+  
+  <!-- 线程2工作内存 -->
+  <rect x="740" y="260" width="160" height="130" rx="6" fill="url(#workingMemoryGradient)" stroke="#4CAF50" stroke-width="1"/>
+  <text x="820" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">工作内存</text>
+  
+  <!-- 线程2本地变量副本 -->
+  <rect x="750" y="290" width="60" height="35" rx="3" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="780" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">变量副本</text>
+  <text x="780" y="318" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">value = 10</text>
+  
+  <rect x="820" y="290" width="60" height="35" rx="3" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="850" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">对象引用</text>
+  <text x="850" y="318" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">obj@1234</text>
+  
+  <!-- CPU缓存和寄存器 -->
+  <rect x="750" y="335" width="140" height="45" rx="3" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="820" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#E65100">执行引擎</text>
+  <text x="760" y="365" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• CPU缓存 (L1/L2/L3)</text>
+  <text x="760" y="375" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• 寄存器 • 写缓冲区</text>
+  
+  <!-- JMM原子操作流程 -->
+  <rect x="320" y="220" width="360" height="180" rx="10" fill="#F5F5F5" stroke="#666" stroke-width="1"/>
+  <text x="500" y="245" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#333">
+    JMM 八种原子内存操作
+  </text>
+  
+  <!-- 操作类型 -->
+  <rect x="340" y="260" width="80" height="130" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="380" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">主内存操作</text>
+  <text x="350" y="300" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">read - 读取</text>
+  <text x="350" y="315" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">write - 写入</text>
+  <text x="350" y="330" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">lock - 加锁</text>
+  <text x="350" y="345" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">unlock - 解锁</text>
+  
+  <rect x="440" y="260" width="80" height="130" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="480" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">工作内存操作</text>
+  <text x="450" y="300" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">load - 载入</text>
+  <text x="450" y="315" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">store - 存储</text>
+  <text x="450" y="330" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">use - 使用</text>
+  <text x="450" y="345" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">assign - 赋值</text>
+  
+  <rect x="540" y="260" width="120" height="130" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="600" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">操作规则</text>
+  <text x="550" y="300" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• read → load 成对出现</text>
+  <text x="550" y="315" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• store → write 成对出现</text>
+  <text x="550" y="330" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• use前必须load</text>
+  <text x="550" y="345" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• assign后必须store</text>
+  <text x="550" y="360" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• lock前必须清空工作内存</text>
+  <text x="550" y="375" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• unlock前必须同步主内存</text>
+  
+  <!-- 内存交互箭头 -->
+  <!-- 线程1到主内存 -->
+  <line x1="180" y1="190" x2="180" y2="220" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="190" y="210" font-family="Inter, Arial, sans-serif" font-size="9" fill="#4CAF50">read/write</text>
+  
+  <!-- 线程2到主内存 -->
+  <line x1="820" y1="190" x2="820" y2="220" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="830" y="210" font-family="Inter, Arial, sans-serif" font-size="9" fill="#4CAF50">read/write</text>
+  
+  <!-- Happens-Before关系 -->
+  <rect x="50" y="430" width="900" height="140" rx="10" fill="url(#syncGradient)" stroke="#F44336" stroke-width="2"/>
+  <text x="500" y="455" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#C62828">
+    Happens-Before 原则体系
+  </text>
+  
+  <!-- HB规则1 -->
+  <rect x="70" y="470" width="130" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="135" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">程序顺序规则</text>
+  <text x="80" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">单线程内按代码</text>
+  <text x="80" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">顺序执行</text>
+  <text x="80" y="530" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">A在B前面→</text>
+  <text x="80" y="540" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">A happens-before B</text>
+  
+  <!-- HB规则2 -->
+  <rect x="220" y="470" width="130" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="285" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">监视器锁规则</text>
+  <text x="230" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">unlock操作</text>
+  <text x="230" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">happens-before</text>
+  <text x="230" y="530" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">后续同一锁的</text>
+  <text x="230" y="540" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">lock操作</text>
+  
+  <!-- HB规则3 -->
+  <rect x="370" y="470" width="130" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="435" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">volatile变量规则</text>
+  <text x="380" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">volatile写操作</text>
+  <text x="380" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">happens-before</text>
+  <text x="380" y="530" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">后续对该变量的</text>
+  <text x="380" y="540" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">读操作</text>
+  
+  <!-- HB规则4 -->
+  <rect x="520" y="470" width="130" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="585" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">线程启动规则</text>
+  <text x="530" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">Thread.start()</text>
+  <text x="530" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">happens-before</text>
+  <text x="530" y="530" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">线程内的所有</text>
+  <text x="530" y="540" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">操作</text>
+  
+  <!-- HB规则5 -->
+  <rect x="670" y="470" width="130" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="735" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">线程终止规则</text>
+  <text x="680" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">线程的所有操作</text>
+  <text x="680" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">happens-before</text>
+  <text x="680" y="530" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">Thread.join()</text>
+  <text x="680" y="540" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">的返回</text>
+  
+  <!-- HB规则6 -->
+  <rect x="820" y="470" width="110" height="80" rx="4" fill="#FFFFFF" stroke="#F44336" stroke-width="1"/>
+  <text x="875" y="490" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#C62828">传递性规则</text>
+  <text x="830" y="505" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">A hb B</text>
+  <text x="830" y="515" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">B hb C</text>
+  <text x="830" y="525" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">⇓</text>
+  <text x="830" y="535" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">A hb C</text>
+  
+  <!-- 内存屏障机制 -->
+  <rect x="50" y="590" width="900" height="120" rx="10" fill="#F8F9FA" stroke="#666" stroke-width="1"/>
+  <text x="500" y="615" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#333">
+    内存屏障与底层实现机制
+  </text>
+  
+  <!-- 四种内存屏障 -->
+  <rect x="80" y="630" width="180" height="70" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="170" y="650" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">LoadLoad 屏障</text>
+  <text x="90" y="665" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">Load1; LoadLoad; Load2</text>
+  <text x="90" y="680" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">确保Load1在Load2前完成</text>
+  <text x="90" y="690" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">防止读操作重排序</text>
+  
+  <rect x="280" y="630" width="180" height="70" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="370" y="650" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">StoreStore 屏障</text>
+  <text x="290" y="665" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">Store1; StoreStore; Store2</text>
+  <text x="290" y="680" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">确保Store1在Store2前完成</text>
+  <text x="290" y="690" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">维护写操作顺序</text>
+  
+  <rect x="480" y="630" width="180" height="70" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="570" y="650" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">LoadStore 屏障</text>
+  <text x="490" y="665" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">Load1; LoadStore; Store2</text>
+  <text x="490" y="680" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">确保Load1在Store2前完成</text>
+  <text x="490" y="690" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">防止读-写重排序</text>
+  
+  <rect x="680" y="630" width="180" height="70" rx="4" fill="#FFEBEE" stroke="#F44336" stroke-width="1"/>
+  <text x="770" y="650" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">StoreLoad 屏障</text>
+  <text x="690" y="665" font-family="Inter, Arial, sans-serif" font-size="10" fill="#C62828">Store1; StoreLoad; Load2</text>
+  <text x="690" y="680" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">确保Store1在Load2前完成</text>
+  <text x="690" y="690" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">最强屏障，性能开销最大</text>
+  
+  <!-- happens-before关系箭头 -->
+  <line x1="200" y1="510" x2="220" y2="510" stroke="#FF5722" stroke-width="3" marker-end="url(#happensBefore)"/>
+  <line x1="350" y1="510" x2="370" y2="510" stroke="#FF5722" stroke-width="3" marker-end="url(#happensBefore)"/>
+  <line x1="500" y1="510" x2="520" y2="510" stroke="#FF5722" stroke-width="3" marker-end="url(#happensBefore)"/>
+  <line x1="650" y1="510" x2="670" y2="510" stroke="#FF5722" stroke-width="3" marker-end="url(#happensBefore)"/>
+  
+  <!-- 底部说明 -->
+  <text x="500" y="780" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#666">
+    JMM通过抽象内存模型、happens-before原则和内存屏障机制，为Java并发程序提供了统一的内存一致性语义
+  </text>
+</svg> 

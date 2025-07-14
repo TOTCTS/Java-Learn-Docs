@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 渐变色定义 -->
+    <linearGradient id="youngGenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="oldGenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="theoryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2C3E50">
+    分代收集理论与实践应用
+  </text>
+  
+  <!-- 三个分代假说 -->
+  <rect x="50" y="60" width="900" height="140" rx="8" fill="url(#theoryGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="500" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    分代收集理论三大假说
+  </text>
+  
+  <!-- 弱分代假说 -->
+  <rect x="70" y="100" width="280" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="210" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">弱分代假说</text>
+  <text x="210" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">绝大多数对象都是朝生夕死的</text>
+  <text x="80" y="160" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 98% 的对象在第一次 GC 中被回收</text>
+  <text x="80" y="175" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 新生代采用复制算法最优</text>
+  
+  <!-- 强分代假说 -->
+  <rect x="370" y="100" width="280" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="510" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">强分代假说</text>
+  <text x="510" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">熬过越多次GC的对象越难死亡</text>
+  <text x="380" y="160" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 老年代对象存活率 60-90%</text>
+  <text x="380" y="175" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 标记-整理算法最适合</text>
+  
+  <!-- 跨代引用假说 -->
+  <rect x="670" y="100" width="260" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="800" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">跨代引用假说</text>
+  <text x="800" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2E7D32">跨代引用相对同代引用占极少数</text>
+  <text x="680" y="160" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 使用记忆集跟踪跨代引用</text>
+  <text x="680" y="175" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 避免全堆扫描</text>
+  
+  <!-- 堆内存分代结构 -->
+  <rect x="50" y="230" width="900" height="300" rx="8" fill="#F5F5F5" stroke="#666" stroke-width="1"/>
+  <text x="500" y="255" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#333">
+    HotSpot 分代堆内存结构与算法应用
+  </text>
+  
+  <!-- 新生代 -->
+  <rect x="80" y="280" width="400" height="200" rx="6" fill="url(#youngGenGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="280" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    新生代 (Young Generation)
+  </text>
+  
+  <!-- Eden 空间 -->
+  <rect x="100" y="320" width="200" height="60" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="200" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">Eden 空间</text>
+  <text x="200" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">新对象分配</text>
+  <text x="110" y="375" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">比例：80% (默认 8:1:1)</text>
+  
+  <!-- Survivor 0 -->
+  <rect x="320" y="320" width="70" height="60" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="355" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#1565C0">S0</text>
+  <text x="355" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">10%</text>
+  <text x="355" y="370" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">From</text>
+  
+  <!-- Survivor 1 -->
+  <rect x="400" y="320" width="70" height="60" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="435" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#1565C0">S1</text>
+  <text x="435" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">10%</text>
+  <text x="435" y="370" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">To</text>
+  
+  <!-- 复制算法说明 -->
+  <rect x="100" y="390" width="360" height="80" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="280" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">复制算法应用</text>
+  <text x="110" y="430" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 对象存活率通常 &lt; 2%，复制算法效率极高</text>
+  <text x="110" y="445" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• Eden + Survivor 设计将空间利用率提升至 90%</text>
+  <text x="110" y="460" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">• 分配担保：Survivor 不足时直接进入老年代</text>
+  
+  <!-- 老年代 -->
+  <rect x="520" y="280" width="400" height="200" rx="6" fill="url(#oldGenGradient)" stroke="#FF9800" stroke-width="2"/>
+  <text x="720" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E65100">
+    老年代 (Old Generation)
+  </text>
+  
+  <!-- 老年代空间 -->
+  <rect x="540" y="320" width="360" height="60" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="720" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">老年代空间</text>
+  <text x="720" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">长生命周期对象存储</text>
+  <text x="550" y="375" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">比例：通常占堆的 2/3</text>
+  
+  <!-- 标记-整理算法说明 -->
+  <rect x="540" y="390" width="360" height="80" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="720" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">标记-整理算法应用</text>
+  <text x="550" y="430" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 对象存活率通常 60-90%，整理算法避免碎片</text>
+  <text x="550" y="445" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 空间利用率接近 100%，适合内存紧张场景</text>
+  <text x="550" y="460" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E65100">• 移动开销相对较小（存活对象多时分摊成本低）</text>
+  
+  <!-- 对象提升过程 -->
+  <line x1="480" y1="350" x2="520" y2="350" stroke="#333" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="500" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#333">提升</text>
+  <text x="500" y="365" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#666">Age &gt;= Threshold</text>
+  
+  <!-- 现代垃圾收集器发展 -->
+  <rect x="50" y="560" width="900" height="110" rx="8" fill="#F8F9FA" stroke="#666" stroke-width="1"/>
+  <text x="500" y="585" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#333">
+    现代垃圾收集器的理论演进
+  </text>
+  
+  <!-- G1 -->
+  <rect x="80" y="600" width="200" height="60" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="180" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">G1 收集器</text>
+  <text x="90" y="635" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">• 区域化分代</text>
+  <text x="90" y="650" font-family="Inter, Arial, sans-serif" font-size="9" fill="#1565C0">• 可预测停顿</text>
+  
+  <!-- ZGC -->
+  <rect x="300" y="600" width="200" height="60" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="400" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">ZGC 收集器</text>
+  <text x="310" y="635" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">• 弱化分代概念</text>
+  <text x="310" y="650" font-family="Inter, Arial, sans-serif" font-size="9" fill="#2E7D32">• 超低停顿时间</text>
+  
+  <!-- Shenandoah -->
+  <rect x="520" y="600" width="200" height="60" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="620" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#E65100">Shenandoah</text>
+  <text x="530" y="635" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• 并发整理</text>
+  <text x="530" y="650" font-family="Inter, Arial, sans-serif" font-size="9" fill="#E65100">• 低停顿优先</text>
+  
+  <!-- 新兴技术 -->
+  <rect x="740" y="600" width="180" height="60" rx="4" fill="#FFEBEE" stroke="#F44336" stroke-width="1"/>
+  <text x="830" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#C62828">机器学习GC</text>
+  <text x="750" y="635" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">• 自适应调优</text>
+  <text x="750" y="650" font-family="Inter, Arial, sans-serif" font-size="9" fill="#C62828">• 预测性回收</text>
+  
+  <!-- 底部说明 -->
+  <text x="500" y="690" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#666">
+    分代收集理论奠定了现代JVM垃圾回收的基础，虽然新兴收集器在弱化分代概念，但其核心思想仍在指导GC设计
+  </text>
+</svg> 

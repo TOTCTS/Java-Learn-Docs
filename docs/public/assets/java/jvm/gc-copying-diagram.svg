@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Inter, Arial, sans-serif">
+    <defs>
+        <linearGradient id="grad-from" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-to" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#E8F5E9;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+        </linearGradient>
+        <marker id="arrowhead-copy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E7D32"/>
+        </marker>
+        <style>
+            .bg { fill: #FFFFFF; }
+            .title { font-size: 28px; font-weight: 700; text-anchor: middle; fill: #212529; }
+            .stage-title { font-size: 20px; font-weight: bold; text-anchor: middle; fill: #343A40; }
+            .panel { fill: #F8F9FA; stroke: #DEE2E6; stroke-width: 1.5; rx: 12; ry: 12; }
+            
+            .space-area { stroke-width: 2; rx: 8; ry: 8; }
+            .from-space { fill: url(#grad-from); stroke: #1976D2; }
+            .to-space { fill: url(#grad-to); stroke: #388E3C; }
+            .space-label { font-size: 18px; font-weight: bold; text-anchor: middle; }
+            
+            .object { stroke: #37474F; stroke-width: 1; rx: 4; ry: 4; }
+            .alive { fill: #FFF9C4; } /* Yellow */
+            .garbage { fill: #CFD8DC; } /* Grey */
+            .label { font-size: 16px; text-anchor: middle; fill: #263238; font-weight: 500;}
+
+            .copy-arrow { fill: none; stroke: #2E7D32; stroke-width: 2.5; marker-end: url(#arrowhead-copy); stroke-dasharray: 6,6; }
+            .desc-text { font-size: 16px; text-anchor: middle; fill: #495057; }
+        </style>
+    </defs>
+
+    <rect x="0" y="0" width="1200" height="800" class="bg"/>
+
+    <text x="600" y="60" class="title">复制 (Copying) 算法执行流程</text>
+
+    <!-- 阶段1: GC前 -->
+    <g transform="translate(50, 120)">
+        <rect x="0" y="0" width="1100" height="250" class="panel"/>
+        <text x="550" y="50" class="stage-title">1. GC 前状态</text>
+        <text x="550" y="80" class="desc-text">内存分为From、To两个半区，只有From区分配对象。</text>
+
+        <g transform="translate(50, 120)">
+            <rect x="0" y="0" width="500" height="100" class="space-area from-space" />
+            <text x="250" y="55" class="space-label" fill="#1565C0">From Space</text>
+            
+            <rect x="550" y="0" width="500" height="100" class="space-area to-space" opacity="0.6"/>
+            <text x="800" y="55" class="space-label" fill="#2E7D32" opacity="0.6">To Space (空闲)</text>
+            
+            <!-- Objects in From Space -->
+            <g transform="translate(10, 20)">
+                <rect x="0" y="0" width="60" height="60" class="object alive" /><text x="30" y="35" class="label">A</text>
+                <rect x="80" y="0" width="60" height="60" class="object garbage" /><text x="110" y="35" class="label">B</text>
+                <rect x="160" y="0" width="60" height="60" class="object alive" /><text x="190" y="35" class="label">C</text>
+                <rect x="240" y="0" width="60" height="60" class="object garbage" /><text x="270" y="35" class="label">D</text>
+                <rect x="320" y="0" width="60" height="60" class="object garbage" /><text x="350" y="35" class="label">E</text>
+                <rect x="400" y="0" width="60" height="60" class="object alive" /><text x="430" y="35" class="label">F</text>
+            </g>
+        </g>
+    </g>
+
+    <!-- 阶段2: 复制 -->
+    <g transform="translate(50, 420)">
+        <rect x="0" y="0" width="1100" height="320" class="panel"/>
+        <text x="550" y="50" class="stage-title">2. 复制阶段 (Copying)</text>
+        <text x="550" y="80" class="desc-text">将From区的存活对象，紧凑地复制到To区。</text>
+
+        <g transform="translate(50, 120)">
+            <rect x="0" y="0" width="500" height="100" class="space-area from-space" opacity="0.5" />
+            <text x="250" y="55" class="space-label" fill="#1565C0" opacity="0.5">From Space</text>
+
+            <rect x="550" y="0" width="500" height="100" class="space-area to-space" />
+            <text x="800" y="55" class="space-label" fill="#2E7D32">To Space</text>
+            
+            <!-- Copied Objects -->
+            <g transform="translate(560, 20)">
+                <rect x="0" y="0" width="60" height="60" class="object alive" /><text x="30" y="35" class="label">A</text>
+                <rect x="70" y="0" width="60" height="60" class="object alive" /><text x="100" y="35" class="label">C</text>
+                <rect x="140" y="0" width="60" height="60" class="object alive" /><text x="170" y="35" class="label">F</text>
+            </g>
+
+            <!-- Copy Arrows -->
+            <path d="M 40 120 C 150 250, 500 250, 590 120" class="copy-arrow"/>
+            <path d="M 200 120 C 300 220, 580 220, 660 120" class="copy-arrow"/>
+            <path d="M 430 120 C 450 200, 650 200, 730 120" class="copy-arrow"/>
+        </g>
+        <text x="550" y="270" class="desc-text" font-weight="bold">GC后，清空From区，然后两个空间角色互换。</text>
+    </g>
+</svg> 

@@ -1,151 +1,170 @@
-<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" font-family="Arial, sans-serif" font-size="14">
   <defs>
-    <!-- 定义渐变色 -->
-    <linearGradient id="coreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ff5252;stop-opacity:1" />
+    <!-- 协调的渐变色系统 -->
+    <linearGradient id="grad-core-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFDDC1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC3A0;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="frameworkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4ecdc4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#26a69a;stop-opacity:1" />
+    <linearGradient id="grad-framework-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D4F1F4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A9D3E0;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#45b7d1;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2196f3;stop-opacity:1" />
+    <linearGradient id="grad-data-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8F0FE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2E3FC;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="distributedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#96ceb4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#66bb6a;stop-opacity:1" />
+    <linearGradient id="grad-micro-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFF4E6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="devopsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffeaa7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ffcc02;stop-opacity:1" />
+    <linearGradient id="grad-devops-v2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F3E8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E9D5FF;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="engineeringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#dda0dd;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ba68c8;stop-opacity:1" />
-    </linearGradient>
-    
-    <!-- 箭头标记定义 -->
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    <style>
+      .bg-v2 { fill: #FEFEFE; }
+      .main-title-v2 { font-size: 24px; font-weight: bold; text-anchor: middle; fill: #111827; }
+      
+      .layer-box-v2 { stroke-width: 1.5; rx: 12; ry: 12; }
+      .layer-title-v2 { font-size: 18px; font-weight: bold; text-anchor: middle; fill: #1F2937; }
+
+      .section-box-v2 { stroke: #374151; stroke-width: 1.5; rx: 8; ry: 8; }
+      .section-title-v2 { font-size: 16px; font-weight: 600; text-anchor: middle; fill: #374151; }
+
+      .sub-section-box-v2 { fill: rgba(255,255,255,0.6); stroke: #6B7280; stroke-width: 1; rx: 4; ry: 4; stroke-dasharray: 4 4;}
+      .sub-section-title-v2 { font-size: 14px; font-weight: 500; text-anchor: middle; fill: #1F2937;}
+
+      .item-box-v2 { fill: rgba(255,255,255,0.7); stroke: #9CA3AF; stroke-width: 0.8; rx: 3; ry: 3; }
+      .item-text-v2 { font-size: 13px; text-anchor: middle; fill: #374151; }
+      .desc-text-v2 { font-size: 12px; text-anchor: middle; fill: #4B5563; }
+      
+      .arrow-v2 { stroke: #6B7280; stroke-width: 2; marker-end: url(#arrowhead-v2); }
+    </style>
+    <marker id="arrowhead-v2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280" />
     </marker>
   </defs>
   
-  <!-- 背景 -->
-  <rect width="800" height="600" fill="#fafbfc" stroke="#e1e5e9" stroke-width="1"/>
+  <rect width="1000" height="1000" class="bg-v2"/>
+  <text x="500" y="40" class="main-title-v2">Java 全栈技术生态图谱</text>
   
-  <!-- 标题 -->
-  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">Java 全栈开发学习路径</text>
+  <!-- 基础层 -->
+  <g id="layer-base">
+    <rect x="30" y="70" width="940" height="180" class="layer-box-v2" fill="rgba(255, 248, 225, 0.4)" stroke="#F0B27A"/>
+    <text x="500" y="100" class="layer-title-v2">基础层</text>
+    
+    <!-- Java 核心与基础 -->
+    <rect x="60" y="125" width="280" height="105" class="section-box-v2" fill="url(#grad-core-v2)"/>
+    <text x="200" y="150" class="section-title-v2">Java 核心与基础</text>
+    <rect x="80" y="165" width="240" height="28" class="item-box-v2" />
+    <text x="200" y="182" class="item-text-v2">Java SE (OOP, 集合, 并发, JVM)</text>
+    <rect x="80" y="198" width="240" height="28" class="item-box-v2" />
+    <text x="200" y="215" class="item-text-v2">构建工具 (Maven, Gradle)</text>
   
-  <!-- 中心节点：Java 全栈开发者 -->
-  <ellipse cx="400" cy="100" rx="80" ry="25" fill="url(#coreGradient)" stroke="#333" stroke-width="3"/>
-  <text x="400" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Java 全栈开发者</text>
+    <!-- 数据存储基础 -->
+    <rect x="360" y="125" width="600" height="105" class="section-box-v2" fill="url(#grad-data-v2)"/>
+    <text x="660" y="150" class="section-title-v2">数据存储基础</text>
+    <rect x="380" y="165" width="130" height="28" class="item-box-v2" /><text x="445" y="182" class="item-text-v2">MySQL, PostgreSQL</text>
+    <rect x="520" y="165" width="100" height="28" class="item-box-v2" /><text x="570" y="182" class="item-text-v2">Redis</text>
+    <rect x="630" y="165" width="100" height="28" class="item-box-v2" /><text x="680" y="182" class="item-text-v2">MongoDB</text>
+    <rect x="740" y="165" width="200" height="28" class="item-box-v2" /><text x="840" y="182" class="item-text-v2">Elasticsearch, OpenSearch</text>
+    <rect x="380" y="198" width="560" height="28" class="item-box-v2" fill="rgba(255,255,255,0.3)" stroke-dasharray="2 2"/>
+    <text x="660" y="215" class="desc-text-v2">关系型、缓存、文档型、搜索引擎</text>
+  </g>
+  <path d="M 500 250 V 270" class="arrow-v2"/>
+    
+  <!-- 应用层 -->
+  <g id="layer-app">
+    <rect x="30" y="270" width="940" height="200" class="layer-box-v2" fill="rgba(225, 245, 254, 0.4)" stroke="#76D7C4"/>
+    <text x="500" y="300" class="layer-title-v2">应用层</text>
+    
+    <!-- 后端框架 -->
+    <rect x="60" y="325" width="880" height="125" class="section-box-v2" fill="url(#grad-framework-v2)"/>
+    <text x="500" y="350" class="section-title-v2">后端框架生态</text>
+
+    <g transform="translate(0, 370)">
+      <rect x="80" y="0" width="180" height="70" class="sub-section-box-v2"/>
+      <text x="170" y="20" class="sub-section-title-v2">Spring 核心</text>
+      <text x="170" y="40" class="item-text-v2">Spring Framework</text>
+      <text x="170" y="58" class="item-text-v2">Spring Boot</text>
+
+      <rect x="280" y="0" width="180" height="70" class="sub-section-box-v2"/>
+      <text x="370" y="20" class="sub-section-title-v2">Spring 扩展</text>
+      <text x="370" y="40" class="item-text-v2">Spring MVC / WebFlux</text>
+      <text x="370" y="58" class="item-text-v2">Spring Security</text>
+
+      <rect x="480" y="0" width="180" height="70" class="sub-section-box-v2"/>
+      <text x="570" y="20" class="sub-section-title-v2">数据访问</text>
+      <text x="570" y="40" class="item-text-v2">Spring Data JPA</text>
+      <text x="570" y="58" class="item-text-v2">MyBatis</text>
+      
+      <rect x="680" y="0" width="240" height="70" class="sub-section-box-v2"/>
+      <text x="800" y="20" class="sub-section-title-v2">网络通信/RPC</text>
+      <text x="800" y="40" class="item-text-v2">Netty / gRPC</text>
+      <text x="800" y="58" class="item-text-v2">Apache Dubbo / Thrift</text>
+    </g>
+  </g>
+  <path d="M 500 470 V 490" class="arrow-v2"/>
+
+  <!-- 微服务层 -->
+  <g id="layer-microservice">
+    <rect x="30" y="490" width="940" height="200" class="layer-box-v2" fill="rgba(255, 243, 230, 0.4)" stroke="#FFB347"/>
+    <text x="500" y="520" class="layer-title-v2">微服务层</text>
+    
+    <rect x="60" y="545" width="880" height="125" class="section-box-v2" fill="url(#grad-micro-v2)"/>
+    <text x="500" y="570" class="section-title-v2">微服务生态</text>
+    
+    <g transform="translate(0, 590)">
+        <rect x="80" y="0" width="200" height="70" class="sub-section-box-v2" />
+        <text x="180" y="20" class="sub-section-title-v2">注册/配置/网关</text>
+        <text x="180" y="40" class="item-text-v2">Nacos, Consul</text>
+        <text x="180" y="58" class="item-text-v2">Spring Cloud Gateway</text>
+    
+        <rect x="300" y="0" width="160" height="70" class="sub-section-box-v2" />
+        <text x="380" y="20" class="sub-section-title-v2">消息队列 (MQ)</text>
+        <text x="380" y="40" class="item-text-v2">RabbitMQ</text>
+        <text x="380" y="58" class="item-text-v2">Apache Kafka</text>
+
+        <rect x="480" y="0" width="220" height="70" class="sub-section-box-v2" />
+        <text x="590" y="20" class="sub-section-title-v2">服务治理 (调用/熔断/降级)</text>
+        <text x="590" y="40" class="item-text-v2">OpenFeign / Resilience4j</text>
+        <text x="590" y="58" class="item-text-v2">Sentinel</text>
+    
+        <rect x="720" y="0" width="200" height="70" class="sub-section-box-v2" />
+        <text x="820" y="20" class="sub-section-title-v2">链路追踪</text>
+        <text x="820" y="40" class="item-text-v2">SkyWalking / Zipkin</text>
+        <text x="820" y="58" class="item-text-v2">Prometheus Tracing</text>
+  </g>
+  </g>
+  <path d="M 500 690 V 710" class="arrow-v2"/>
   
-  <!-- 第一阶段：Java 核心 -->
-  <rect x="50" y="180" width="120" height="40" rx="5" fill="url(#frameworkGradient)" stroke="#333" stroke-width="2"/>
-  <text x="110" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">第一阶段: Java 核心</text>
+  <!-- 工程化层 -->
+  <g id="layer-devops">
+    <rect x="30" y="710" width="940" height="200" class="layer-box-v2" fill="rgba(248, 245, 255, 0.4)" stroke="#B19CD9"/>
+    <text x="500" y="740" class="layer-title-v2">工程化与 DevOps</text>
+    
+    <rect x="60" y="765" width="880" height="125" class="section-box-v2" fill="url(#grad-devops-v2)"/>
+    
+    <g transform="translate(0, 785)">
+        <rect x="80" y="0" width="200" height="85" class="sub-section-box-v2"/>
+        <text x="180" y="25" class="sub-section-title-v2">版本控制</text>
+        <text x="180" y="50" class="item-text-v2">Git</text>
+        <text x="180" y="70" class="item-text-v2">GitHub, GitLab</text>
+
+        <rect x="300" y="0" width="200" height="85" class="sub-section-box-v2"/>
+        <text x="400" y="25" class="sub-section-title-v2">CI/CD</text>
+        <text x="400" y="50" class="item-text-v2">Jenkins, Tekton</text>
+        <text x="400" y="70" class="item-text-v2">GitHub Actions</text>
+
+        <rect x="520" y="0" width="200" height="85" class="sub-section-box-v2"/>
+        <text x="620" y="25" class="sub-section-title-v2">容器化</text>
+        <text x="620" y="50" class="item-text-v2">Docker</text>
+        <text x="620" y="70" class="item-text-v2">Kubernetes</text>
   
-  <!-- Java 核心子项 -->
-  <rect x="20" y="250" width="80" height="25" rx="3" fill="#e8f5e8" stroke="#4ecdc4" stroke-width="1"/>
-  <text x="60" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">语言基础 & OOP</text>
-  
-  <rect x="110" y="250" width="60" height="25" rx="3" fill="#e8f5e8" stroke="#4ecdc4" stroke-width="1"/>
-  <text x="140" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">并发编程</text>
-  
-  <rect x="180" y="250" width="60" height="25" rx="3" fill="#e8f5e8" stroke="#4ecdc4" stroke-width="1"/>
-  <text x="210" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">JVM 虚拟机</text>
-  
-  <!-- 第二阶段：主流框架 -->
-  <rect x="200" y="180" width="120" height="40" rx="5" fill="url(#dataGradient)" stroke="#333" stroke-width="2"/>
-  <text x="260" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">第二阶段: 主流框架</text>
-  
-  <!-- 主流框架子项 -->
-  <rect x="180" y="300" width="70" height="25" rx="3" fill="#e3f2fd" stroke="#45b7d1" stroke-width="1"/>
-  <text x="215" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Spring 全家桶</text>
-  
-  <rect x="260" y="300" width="50" height="25" rx="3" fill="#e3f2fd" stroke="#45b7d1" stroke-width="1"/>
-  <text x="285" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">MyBatis</text>
-  
-  <rect x="320" y="300" width="40" height="25" rx="3" fill="#e3f2fd" stroke="#45b7d1" stroke-width="1"/>
-  <text x="340" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Netty</text>
-  
-  <!-- 第三阶段：数据存储 -->
-  <rect x="350" y="180" width="120" height="40" rx="5" fill="url(#distributedGradient)" stroke="#333" stroke-width="2"/>
-  <text x="410" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">第三阶段: 数据存储</text>
-  
-  <!-- 数据存储子项 -->
-  <rect x="330" y="350" width="80" height="25" rx="3" fill="#e8f5e8" stroke="#96ceb4" stroke-width="1"/>
-  <text x="370" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">MySQL / PostgreSQL</text>
-  
-  <rect x="420" y="350" width="40" height="25" rx="3" fill="#e8f5e8" stroke="#96ceb4" stroke-width="1"/>
-  <text x="440" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Redis</text>
-  
-  <rect x="470" y="350" width="50" height="25" rx="3" fill="#e8f5e8" stroke="#96ceb4" stroke-width="1"/>
-  <text x="495" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">MongoDB</text>
-  
-  <!-- 第四阶段：分布式组件 -->
-  <rect x="500" y="180" width="120" height="40" rx="5" fill="url(#devopsGradient)" stroke="#333" stroke-width="2"/>
-  <text x="560" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">第四阶段: 分布式组件</text>
-  
-  <!-- 分布式组件子项 -->
-  <rect x="480" y="400" width="60" height="25" rx="3" fill="#fff8e1" stroke="#ffeaa7" stroke-width="1"/>
-  <text x="510" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">消息队列 MQ</text>
-  
-  <rect x="550" y="400" width="60" height="25" rx="3" fill="#fff8e1" stroke="#ffeaa7" stroke-width="1"/>
-  <text x="580" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">搜索引擎</text>
-  
-  <rect x="620" y="400" width="60" height="25" rx="3" fill="#fff8e1" stroke="#ffeaa7" stroke-width="1"/>
-  <text x="650" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">微服务架构</text>
-  
-  <!-- 第五阶段：工程化 -->
-  <rect x="650" y="180" width="120" height="40" rx="5" fill="url(#engineeringGradient)" stroke="#333" stroke-width="2"/>
-  <text x="710" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">第五阶段: 工程化</text>
-  
-  <!-- 工程化子项 -->
-  <rect x="630" y="450" width="30" height="25" rx="3" fill="#f3e5f5" stroke="#dda0dd" stroke-width="1"/>
-  <text x="645" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Git</text>
-  
-  <rect x="670" y="450" width="60" height="25" rx="3" fill="#f3e5f5" stroke="#dda0dd" stroke-width="1"/>
-  <text x="700" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Maven / Gradle</text>
-  
-  <rect x="740" y="450" width="50" height="25" rx="3" fill="#f3e5f5" stroke="#dda0dd" stroke-width="1"/>
-  <text x="765" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Docker / K8s</text>
-  
-  <rect x="690" y="485" width="40" height="25" rx="3" fill="#f3e5f5" stroke="#dda0dd" stroke-width="1"/>
-  <text x="710" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">CI/CD</text>
-  
-  <!-- 连接线 -->
-  <!-- 从中心到各阶段 -->
-  <line x1="350" y1="115" x2="150" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="380" y1="120" x2="240" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="400" y1="125" x2="400" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="420" y1="120" x2="540" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="450" y1="115" x2="680" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- 从各阶段到子项的连接线 -->
-  <line x1="110" y1="220" x2="60" y2="245" stroke="#4ecdc4" stroke-width="1"/>
-  <line x1="110" y1="220" x2="140" y2="245" stroke="#4ecdc4" stroke-width="1"/>
-  <line x1="110" y1="220" x2="210" y2="245" stroke="#4ecdc4" stroke-width="1"/>
-  
-  <line x1="260" y1="220" x2="215" y2="295" stroke="#45b7d1" stroke-width="1"/>
-  <line x1="260" y1="220" x2="285" y2="295" stroke="#45b7d1" stroke-width="1"/>
-  <line x1="260" y1="220" x2="340" y2="295" stroke="#45b7d1" stroke-width="1"/>
-  
-  <line x1="410" y1="220" x2="370" y2="345" stroke="#96ceb4" stroke-width="1"/>
-  <line x1="410" y1="220" x2="440" y2="345" stroke="#96ceb4" stroke-width="1"/>
-  <line x1="410" y1="220" x2="495" y2="345" stroke="#96ceb4" stroke-width="1"/>
-  
-  <line x1="560" y1="220" x2="510" y2="395" stroke="#ffeaa7" stroke-width="1"/>
-  <line x1="560" y1="220" x2="580" y2="395" stroke="#ffeaa7" stroke-width="1"/>
-  <line x1="560" y1="220" x2="650" y2="395" stroke="#ffeaa7" stroke-width="1"/>
-  
-  <line x1="710" y1="220" x2="645" y2="445" stroke="#dda0dd" stroke-width="1"/>
-  <line x1="710" y1="220" x2="700" y2="445" stroke="#dda0dd" stroke-width="1"/>
-  <line x1="710" y1="220" x2="765" y2="445" stroke="#dda0dd" stroke-width="1"/>
-  <line x1="710" y1="220" x2="710" y2="480" stroke="#dda0dd" stroke-width="1"/>
-  
-  <!-- 图例 -->
-  <text x="50" y="550" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">学习路径说明：</text>
-  <text x="50" y="570" font-family="Arial, sans-serif" font-size="10" fill="#666">按阶段循序渐进，每个阶段都有具体的技术栈和学习目标</text>
+        <rect x="740" y="0" width="200" height="85" class="sub-section-box-v2"/>
+        <text x="840" y="25" class="sub-section-title-v2">监控/告警/日志</text>
+        <text x="840" y="50" class="item-text-v2">Prometheus, Grafana</text>
+        <text x="840" y="70" class="item-text-v2">ELK, Loki</text>
+    </g>
+  </g>
 </svg> 

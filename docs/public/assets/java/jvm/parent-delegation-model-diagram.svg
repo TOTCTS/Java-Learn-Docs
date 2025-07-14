@@ -1,0 +1,396 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义渐变和样式 -->
+    <defs>
+    <!-- 启动类加载器渐变 (核心区域，暖色调) -->
+    <linearGradient id="bootstrapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFDDC1"/>
+      <stop offset="100%" style="stop-color:#FFC3A0"/>
+    </linearGradient>
+    
+    <!-- 扩展类加载器渐变 (冷色调) -->
+    <linearGradient id="extensionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4F1F4"/>
+      <stop offset="100%" style="stop-color:#A9D3E0"/>
+    </linearGradient>
+    
+    <!-- 应用类加载器渐变 (中性冷色调) -->
+    <linearGradient id="applicationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8"/>
+      <stop offset="100%" style="stop-color:#C8E6C9"/>
+        </linearGradient>
+    
+    <!-- 自定义类加载器渐变 (淡紫色调) -->
+    <linearGradient id="customGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E5F5"/>
+      <stop offset="100%" style="stop-color:#E1BEE7"/>
+        </linearGradient>
+    
+    <!-- 委派流程渐变 (半透明背景) -->
+    <linearGradient id="delegationBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255, 248, 225, 0.8)"/>
+      <stop offset="100%" style="stop-color:rgba(255, 248, 225, 0.4)"/>
+        </linearGradient>
+    
+    <!-- 加载流程渐变 -->
+    <linearGradient id="loadingBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(225, 245, 254, 0.8)"/>
+      <stop offset="100%" style="stop-color:rgba(225, 245, 254, 0.4)"/>
+        </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+        </marker>
+    
+    <!-- 委派箭头标记 (向上，橙色) -->
+    <marker id="delegationArrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E67E22"/>
+        </marker>
+    
+    <!-- 加载箭头标记 (向下，蓝色) -->
+    <marker id="loadingArrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498DB"/>
+        </marker>
+    
+    <!-- 阴影滤镜 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <dropShadow dx="3" dy="3" stdDeviation="2" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+    </defs>
+
+  <!-- 整体背景 -->
+  <rect width="1200" height="900" fill="#FAFAFA"/>
+
+  <!-- 左侧：类加载器层次结构 -->
+  <g id="classloader-hierarchy">
+    <!-- 层次结构标题 -->
+    <text x="150" y="40" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#2C3E50" text-anchor="middle">类加载器层次结构</text>
+
+    <!-- 启动类加载器 -->
+    <g id="bootstrap-classloader">
+      <rect x="40" y="60" width="220" height="120" rx="8" fill="url(#bootstrapGradient)" stroke="#E67E22" stroke-width="2" filter="url(#shadow)"/>
+      <text x="150" y="85" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">启动类加载器</text>
+      <text x="150" y="105" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle">(Bootstrap ClassLoader)</text>
+      
+      <!-- 启动类加载器职责 -->
+      <g id="bootstrap-responsibilities">
+        <text x="50" y="125" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 加载核心 Java API</text>
+        <text x="50" y="140" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• &lt;JAVA_HOME&gt;/lib 目录</text>
+        <text x="50" y="155" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• C++ 实现，表示为 null</text>
+        <text x="50" y="170" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• java.lang.*, java.util.*</text>
+      </g>
+    </g>
+
+    <!-- 扩展类加载器 -->
+    <g id="extension-classloader">
+      <rect x="40" y="200" width="220" height="120" rx="8" fill="url(#extensionGradient)" stroke="#3498DB" stroke-width="2" filter="url(#shadow)"/>
+      <text x="150" y="225" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">扩展类加载器</text>
+      <text x="150" y="245" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle">(Extension ClassLoader)</text>
+      
+      <!-- 扩展类加载器职责 -->
+      <g id="extension-responsibilities">
+        <text x="50" y="265" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 加载扩展类库</text>
+        <text x="50" y="280" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• &lt;JAVA_HOME&gt;/lib/ext</text>
+        <text x="50" y="295" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• java.ext.dirs 指定目录</text>
+        <text x="50" y="310" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 加密、本地化扩展</text>
+      </g>
+    </g>
+
+    <!-- 应用类加载器 -->
+    <g id="application-classloader">
+      <rect x="40" y="340" width="220" height="120" rx="8" fill="url(#applicationGradient)" stroke="#27AE60" stroke-width="2" filter="url(#shadow)"/>
+      <text x="150" y="365" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">应用类加载器</text>
+      <text x="150" y="385" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle">(Application ClassLoader)</text>
+      
+      <!-- 应用类加载器职责 -->
+      <g id="application-responsibilities">
+        <text x="50" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 加载应用程序类</text>
+        <text x="50" y="420" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• ClassPath 路径上的类</text>
+        <text x="50" y="435" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 系统类加载器</text>
+        <text x="50" y="450" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 用户代码默认加载器</text>
+      </g>
+    </g>
+
+    <!-- 自定义类加载器 -->
+    <g id="custom-classloader">
+      <rect x="40" y="480" width="220" height="120" rx="8" fill="url(#customGradient)" stroke="#8E44AD" stroke-width="2" filter="url(#shadow)"/>
+      <text x="150" y="505" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">自定义类加载器</text>
+      <text x="150" y="525" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle">(Custom ClassLoader)</text>
+      
+      <!-- 自定义类加载器职责 -->
+      <g id="custom-responsibilities">
+        <text x="50" y="545" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 特殊需求类加载</text>
+        <text x="50" y="560" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 网络、加密、热部署</text>
+        <text x="50" y="575" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 继承 ClassLoader</text>
+        <text x="50" y="590" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 重写 findClass() 方法</text>
+      </g>
+    </g>
+
+    <!-- 父子关系箭头 -->
+    <g id="hierarchy-arrows">
+      <!-- Bootstrap -> Extension -->
+      <line x1="150" y1="180" x2="150" y2="200" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="160" y="195" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">parent</text>
+      
+      <!-- Extension -> Application -->
+      <line x1="150" y1="320" x2="150" y2="340" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="160" y="335" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">parent</text>
+      
+      <!-- Application -> Custom -->
+      <line x1="150" y1="460" x2="150" y2="480" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="160" y="475" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">parent</text>
+    </g>
+  </g>
+
+  <!-- 右侧上半部分：委派阶段 -->
+    <g id="delegation-phase">
+    <!-- 委派阶段背景 -->
+    <rect x="320" y="60" width="380" height="280" rx="12" fill="url(#delegationBackground)" stroke="#E67E22" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- 委派阶段标题 -->
+    <text x="510" y="85" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#E67E22" text-anchor="middle">阶段 1：向上委派 (Delegation)</text>
+    
+    <!-- 委派流程步骤 -->
+    <g id="delegation-steps">
+      <!-- 步骤容器 -->
+      <rect x="340" y="100" width="340" height="220" rx="8" fill="rgba(255,255,255,0.8)" stroke="#E67E22" stroke-width="1"/>
+      
+      <!-- 委派流程 -->
+      <g id="delegation-flow">
+        <!-- 用户请求 -->
+        <circle cx="360" cy="130" r="25" fill="#E74C3C" stroke="#C0392B" stroke-width="2"/>
+        <text x="360" y="135" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">用户请求</text>
+        
+        <!-- 自定义类加载器节点 -->
+        <rect x="430" y="110" width="80" height="40" rx="6" fill="#F3E5F5" stroke="#8E44AD" stroke-width="1.5"/>
+        <text x="470" y="125" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Custom</text>
+        <text x="470" y="140" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">ClassLoader</text>
+        
+        <!-- 应用类加载器节点 -->
+        <rect x="430" y="170" width="80" height="40" rx="6" fill="#E8F5E8" stroke="#27AE60" stroke-width="1.5"/>
+        <text x="470" y="185" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Application</text>
+        <text x="470" y="200" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">ClassLoader</text>
+        
+        <!-- 扩展类加载器节点 -->
+        <rect x="430" y="230" width="80" height="40" rx="6" fill="#D4F1F4" stroke="#3498DB" stroke-width="1.5"/>
+        <text x="470" y="245" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Extension</text>
+        <text x="470" y="260" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">ClassLoader</text>
+        
+        <!-- 启动类加载器节点 -->
+        <rect x="430" y="290" width="80" height="40" rx="6" fill="#FFDDC1" stroke="#E67E22" stroke-width="1.5"/>
+        <text x="470" y="305" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Bootstrap</text>
+        <text x="470" y="320" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">ClassLoader</text>
+        
+        <!-- 委派箭头 -->
+        <line x1="385" y1="130" x2="430" y2="130" stroke="#E67E22" stroke-width="2" marker-end="url(#delegationArrow)"/>
+        <line x1="470" y1="150" x2="470" y2="170" stroke="#E67E22" stroke-width="2" marker-end="url(#delegationArrow)"/>
+        <line x1="470" y1="210" x2="470" y2="230" stroke="#E67E22" stroke-width="2" marker-end="url(#delegationArrow)"/>
+        <line x1="470" y1="270" x2="470" y2="290" stroke="#E67E22" stroke-width="2" marker-end="url(#delegationArrow)"/>
+        
+        <!-- 委派步骤说明 -->
+        <g id="delegation-labels">
+          <text x="540" y="125" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E67E22">1. 接收请求</text>
+          <text x="540" y="185" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E67E22">2. 检查缓存</text>
+          <text x="540" y="185" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E67E22">   委派父加载器</text>
+          <text x="540" y="245" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E67E22">3. 继续向上委派</text>
+          <text x="540" y="305" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E67E22">4. 到达最顶层</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 右侧下半部分：加载阶段 -->
+    <g id="loading-phase">
+    <!-- 加载阶段背景 -->
+    <rect x="320" y="360" width="380" height="280" rx="12" fill="url(#loadingBackground)" stroke="#3498DB" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- 加载阶段标题 -->
+    <text x="510" y="385" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#3498DB" text-anchor="middle">阶段 2：向下尝试 (Loading)</text>
+    
+    <!-- 加载流程步骤 -->
+    <g id="loading-steps">
+      <!-- 步骤容器 -->
+      <rect x="340" y="400" width="340" height="220" rx="8" fill="rgba(255,255,255,0.8)" stroke="#3498DB" stroke-width="1"/>
+      
+      <!-- 加载流程 -->
+      <g id="loading-flow">
+        <!-- 启动类加载器节点 -->
+        <rect x="430" y="420" width="80" height="40" rx="6" fill="#FFDDC1" stroke="#E67E22" stroke-width="1.5"/>
+        <text x="470" y="435" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Bootstrap</text>
+        <text x="470" y="450" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">尝试加载</text>
+        
+        <!-- 扩展类加载器节点 -->
+        <rect x="430" y="480" width="80" height="40" rx="6" fill="#D4F1F4" stroke="#3498DB" stroke-width="1.5"/>
+        <text x="470" y="495" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Extension</text>
+        <text x="470" y="510" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">尝试加载</text>
+        
+        <!-- 应用类加载器节点 -->
+        <rect x="430" y="540" width="80" height="40" rx="6" fill="#E8F5E8" stroke="#27AE60" stroke-width="1.5"/>
+        <text x="470" y="555" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#2C3E50" text-anchor="middle">Application</text>
+        <text x="470" y="570" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">尝试加载</text>
+        
+        <!-- 加载成功 -->
+        <circle cx="600" cy="580" r="25" fill="#27AE60" stroke="#1E8449" stroke-width="2"/>
+        <text x="600" y="585" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">加载成功</text>
+        
+        <!-- 加载箭头 -->
+        <line x1="470" y1="460" x2="470" y2="480" stroke="#3498DB" stroke-width="2" marker-end="url(#loadingArrow)"/>
+        <line x1="470" y1="520" x2="470" y2="540" stroke="#3498DB" stroke-width="2" marker-end="url(#loadingArrow)"/>
+        <line x1="510" y1="560" x2="575" y2="580" stroke="#27AE60" stroke-width="3" marker-end="url(#arrowhead)"/>
+        
+        <!-- 失败标记 -->
+        <text x="540" y="435" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E74C3C">✗ 无法加载</text>
+        <text x="540" y="495" font-family="Inter, Arial, sans-serif" font-size="10" fill="#E74C3C">✗ 无法加载</text>
+        <text x="540" y="555" font-family="Inter, Arial, sans-serif" font-size="10" fill="#27AE60">✓ 成功加载</text>
+        </g>
+    </g>
+  </g>
+
+  <!-- 右侧：核心方法实现机制 -->
+  <g id="core-methods">
+    <!-- 背景 -->
+    <rect x="740" y="60" width="420" height="580" rx="12" fill="rgba(244, 244, 244, 0.9)" stroke="#95A5A6" stroke-width="2"/>
+    
+    <!-- 标题 -->
+    <text x="950" y="85" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50" text-anchor="middle">核心实现机制</text>
+    
+    <!-- ClassLoader.loadClass() 方法流程 -->
+    <g id="loadclass-method">
+      <rect x="760" y="100" width="380" height="220" rx="8" fill="rgba(255,255,255,0.9)" stroke="#34495E" stroke-width="1.5"/>
+      <text x="950" y="120" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">ClassLoader.loadClass() 执行流程</text>
+      
+      <!-- 流程步骤 -->
+      <g id="loadclass-steps">
+        <!-- 步骤 1 -->
+        <rect x="780" y="135" width="160" height="35" rx="4" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+        <text x="860" y="150" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2C3E50" text-anchor="middle">1. findLoadedClass(name)</text>
+        <text x="860" y="165" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">检查类是否已加载</text>
+        
+        <!-- 步骤 2 -->
+        <rect x="960" y="135" width="160" height="35" rx="4" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+        <text x="1040" y="150" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2C3E50" text-anchor="middle">2. parent.loadClass()</text>
+        <text x="1040" y="165" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">委派给父加载器</text>
+        
+        <!-- 步骤 3 -->
+        <rect x="780" y="185" width="160" height="35" rx="4" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+        <text x="860" y="200" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2C3E50" text-anchor="middle">3. findClass(name)</text>
+        <text x="860" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">自己尝试加载</text>
+        
+        <!-- 步骤 4 -->
+        <rect x="960" y="185" width="160" height="35" rx="4" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+        <text x="1040" y="200" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#2C3E50" text-anchor="middle">4. defineClass()</text>
+        <text x="1040" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50" text-anchor="middle">字节码转Class对象</text>
+        
+        <!-- 流程箭头 -->
+        <line x1="940" y1="152" x2="960" y2="152" stroke="#2C3E50" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="1040" y1="170" x2="860" y2="185" stroke="#2C3E50" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="940" y1="202" x2="960" y2="202" stroke="#2C3E50" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        
+        <!-- 条件说明 -->
+        <text x="950" y="180" font-family="Inter, Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">如果未找到</text>
+        <text x="900" y="232" font-family="Inter, Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">父加载器无法加载时</text>
+        
+        <!-- 关键方法说明 -->
+        <g id="key-methods">
+          <text x="770" y="250" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2C3E50">关键方法职责：</text>
+          <text x="780" y="270" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">• loadClass(): 实现双亲委派逻辑</text>
+          <text x="780" y="285" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">• findClass(): 子类重写，定义加载策略</text>
+          <text x="780" y="300" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2C3E50">• defineClass(): JVM原生，字节码转换</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- 类的唯一性机制 -->
+    <g id="class-uniqueness">
+      <rect x="760" y="340" width="380" height="140" rx="8" fill="rgba(255,255,255,0.9)" stroke="#34495E" stroke-width="1.5"/>
+      <text x="950" y="360" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">类的唯一性保障机制</text>
+      
+      <!-- 唯一性规则 -->
+      <g id="uniqueness-rules">
+        <rect x="780" y="375" width="340" height="90" rx="6" fill="#FEF9E7" stroke="#F39C12" stroke-width="1"/>
+        <text x="950" y="395" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2C3E50" text-anchor="middle">类身份 = 全限定名 + 类加载器</text>
+        
+        <text x="790" y="415" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 同一个类只能由特定类加载器加载一次</text>
+        <text x="790" y="430" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 不同类加载器加载的同名类被视为不同类</text>
+        <text x="790" y="445" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 保证核心系统类（如 Object、String）的唯一性</text>
+        <text x="790" y="460" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 防止恶意代码替换系统类</text>
+      </g>
+    </g>
+    
+    <!-- 安全性保障 -->
+    <g id="security-guarantee">
+      <rect x="760" y="500" width="380" height="120" rx="8" fill="rgba(255,255,255,0.9)" stroke="#34495E" stroke-width="1.5"/>
+      <text x="950" y="520" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2C3E50" text-anchor="middle">安全性保障策略</text>
+      
+      <!-- 安全措施 -->
+      <g id="security-measures">
+        <rect x="780" y="535" width="340" height="70" rx="6" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1"/>
+        <text x="790" y="555" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 核心类库优先级保证：java.* 包只能由启动类加载器加载</text>
+        <text x="790" y="570" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 防篡改机制：恶意同名类无法替换系统类</text>
+        <text x="790" y="585" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 层次化权限：低层加载器无法影响高层类库</text>
+        <text x="790" y="600" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 类型安全：确保类型转换和继承关系的正确性</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 底部：关键特性总结 -->
+  <g id="key-features-summary">
+    <rect x="40" y="660" width="1120" height="200" rx="12" fill="rgba(248, 249, 250, 0.95)" stroke="#7F8C8D" stroke-width="2"/>
+    <text x="600" y="685" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2C3E50" text-anchor="middle">双亲委派模型核心特性与价值</text>
+    
+    <!-- 特性分栏 -->
+    <g id="feature-columns">
+      <!-- 第一列：设计原则 -->
+      <g id="design-principles">
+        <rect x="60" y="700" width="250" height="140" rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#3498DB" stroke-width="1.5"/>
+        <text x="185" y="720" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">设计原则</text>
+        <text x="70" y="740" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 向上委派：先交给父加载器处理</text>
+        <text x="70" y="755" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 向下尝试：父无法处理时子加载器尝试</text>
+        <text x="70" y="770" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 层次分工：不同层次负责不同类型类库</text>
+        <text x="70" y="785" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 组合关系：通过组合而非继承建立层次</text>
+        <text x="70" y="800" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 职责明确：每个加载器有明确的加载范围</text>
+        <text x="70" y="815" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 安全优先：核心类库由受信任加载器负责</text>
+        <text x="70" y="830" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 缓存机制：避免同一类的重复加载</text>
+      </g>
+      
+      <!-- 第二列：解决问题 -->
+      <g id="solved-problems">
+        <rect x="330" y="700" width="250" height="140" rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#27AE60" stroke-width="1.5"/>
+        <text x="455" y="720" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">解决的核心问题</text>
+        <text x="340" y="740" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 类的唯一性：防止同一类被重复加载</text>
+        <text x="340" y="755" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 安全性防护：防止系统类被恶意替换</text>
+        <text x="340" y="770" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 内存管理：避免类的重复加载浪费内存</text>
+        <text x="340" y="785" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 类型安全：确保类型系统的一致性</text>
+        <text x="340" y="800" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 依赖管理：建立清晰的类库依赖关系</text>
+        <text x="340" y="815" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 版本控制：避免不同版本类库的冲突</text>
+        <text x="340" y="830" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 性能优化：通过缓存提高类加载效率</text>
+      </g>
+      
+      <!-- 第三列：应用场景 -->
+      <g id="application-scenarios">
+        <rect x="600" y="700" width="250" height="140" rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#E67E22" stroke-width="1.5"/>
+        <text x="725" y="720" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">典型应用场景</text>
+        <text x="610" y="740" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 标准应用：遵循双亲委派的常规应用</text>
+        <text x="610" y="755" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• Web容器：Tomcat的应用隔离机制</text>
+        <text x="610" y="770" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• OSGi框架：模块化的类加载体系</text>
+        <text x="610" y="785" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 热部署：支持运行时类的动态更新</text>
+        <text x="610" y="800" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 插件系统：动态加载和卸载功能模块</text>
+        <text x="610" y="815" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 加密加载：从网络或加密文件加载类</text>
+        <text x="610" y="830" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• SPI机制：服务提供者接口的实现</text>
+      </g>
+      
+      <!-- 第四列：扩展策略 -->
+      <g id="extension-strategies">
+        <rect x="870" y="700" width="250" height="140" rx="8" fill="rgba(255, 255, 255, 0.9)" stroke="#8E44AD" stroke-width="1.5"/>
+        <text x="995" y="720" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">扩展策略</text>
+        <text x="880" y="740" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 重写findClass：推荐的自定义加载方式</text>
+        <text x="880" y="755" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 重写loadClass：打破双亲委派的方式</text>
+        <text x="880" y="770" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 上下文加载器：解决SPI加载问题</text>
+        <text x="880" y="785" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 网状结构：OSGi的复杂类加载网络</text>
+        <text x="880" y="800" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 优先加载：应用类优先于系统类</text>
+        <text x="880" y="815" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 模块隔离：不同模块使用独立加载器</text>
+        <text x="880" y="830" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2C3E50">• 动态卸载：支持类的运行时替换</text>
+      </g>
+    </g>
+    </g>
+</svg> 

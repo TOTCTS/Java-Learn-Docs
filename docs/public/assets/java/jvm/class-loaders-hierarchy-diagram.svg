@@ -1,0 +1,95 @@
+<svg width="700" height="600" viewBox="0 0 700 600" font-family="Arial, sans-serif" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad-bootstrap" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#EAEAEA;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#DCDCDC;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-extension" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#D4F1F4;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#A9D3E0;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-application" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FFDDC1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FFC3A0;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad-custom" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+        </linearGradient>
+        <marker id="arrow-head" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#666" />
+        </marker>
+    </defs>
+
+    <!-- Title -->
+    <text x="350" y="30" font-size="20" font-weight="bold" text-anchor="middle">Java 类加载器层次结构</text>
+
+    <!-- Bootstrap Class Loader -->
+    <g id="bootstrap-loader">
+        <rect x="150" y="70" width="400" height="120" rx="10" ry="10" fill="url(#grad-bootstrap)" stroke="#999" stroke-width="2"/>
+        <text x="350" y="100" font-size="18" font-weight="bold" text-anchor="middle">启动类加载器 (Bootstrap)</text>
+        <text x="350" y="125" font-size="14" fill="#555" text-anchor="middle">实现：C++ 原生代码</text>
+        <text x="350" y="145" font-size="14" fill="#555" text-anchor="middle">加载路径：&lt;JAVA_HOME&gt;/lib</text>
+        <text x="350" y="165" font-size="14" fill="#555" text-anchor="middle">典型类：java.lang.*, java.util.*</text>
+    </g>
+
+    <!-- Extension Class Loader -->
+    <g id="extension-loader">
+        <rect x="150" y="220" width="400" height="120" rx="10" ry="10" fill="url(#grad-extension)" stroke="#66a" stroke-width="2"/>
+        <text x="350" y="250" font-size="18" font-weight="bold" text-anchor="middle">扩展类加载器 (Extension)</text>
+        <text x="350" y="275" font-size="14" fill="#555" text-anchor="middle">实现：sun.misc.Launcher$ExtClassLoader</text>
+        <text x="350" y="295" font-size="14" fill="#555" text-anchor="middle">加载路径：&lt;JAVA_HOME&gt;/lib/ext</text>
+        <text x="350" y="315" font-size="14" fill="#555" text-anchor="middle">典型类：javax.crypto.*, javax.net.ssl.*</text>
+    </g>
+
+    <!-- Application Class Loader -->
+    <g id="application-loader">
+        <rect x="150" y="370" width="400" height="120" rx="10" ry="10" fill="url(#grad-application)" stroke="#b85" stroke-width="2"/>
+        <text x="350" y="400" font-size="18" font-weight="bold" text-anchor="middle">应用类加载器 (Application)</text>
+        <text x="350" y="425" font-size="14" fill="#555" text-anchor="middle">实现：sun.misc.Launcher$AppClassLoader</text>
+        <text x="350" y="445" font-size="14" fill="#555" text-anchor="middle">加载路径：Classpath</text>
+        <text x="350" y="465" font-size="14" fill="#555" text-anchor="middle">典型类：用户应用代码, 第三方库</text>
+    </g>
+
+    <!-- Custom Class Loader -->
+    <g id="custom-loader">
+        <rect x="150" y="520" width="400" height="60" rx="10" ry="10" fill="url(#grad-custom)" stroke="#4a7c59" stroke-width="2"/>
+        <text x="350" y="545" font-size="18" font-weight="bold" text-anchor="middle">自定义类加载器 (Custom)</text>
+        <text x="350" y="565" font-size="14" fill="#555" text-anchor="middle">实现：继承 ClassLoader, 自定义加载逻辑</text>
+    </g>
+
+    <!-- Parent-Child Relationships -->
+    <path d="M 350 190 L 350 220" stroke="#666" stroke-width="2" marker-end="url(#arrow-head)"/>
+    <text x="365" y="208" font-size="12" fill="#666">父加载器</text>
+    
+    <path d="M 350 340 L 350 370" stroke="#666" stroke-width="2" marker-end="url(#arrow-head)"/>
+    <text x="365" y="358" font-size="12" fill="#666">父加载器</text>
+    
+    <path d="M 350 490 L 350 520" stroke="#666" stroke-width="2" marker-end="url(#arrow-head)"/>
+    <text x="365" y="508" font-size="12" fill="#666">父加载器</text>
+
+    <!-- Key Features -->
+    <g id="key-features">
+        <rect x="20" y="70" width="120" height="200" rx="8" ry="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+        <text x="80" y="90" font-size="14" font-weight="bold" text-anchor="middle">关键特性</text>
+        
+        <text x="25" y="115" font-size="12" fill="#333">• 组合关系</text>
+        <text x="25" y="135" font-size="12" fill="#333">• 命名空间隔离</text>
+        <text x="25" y="155" font-size="12" fill="#333">• 可见性原则</text>
+        <text x="25" y="175" font-size="12" fill="#333">• 安全性保障</text>
+        <text x="25" y="195" font-size="12" fill="#333">• 按需加载</text>
+        <text x="25" y="215" font-size="12" fill="#333">• 扩展性支持</text>
+    </g>
+
+    <!-- Loading Process -->
+    <g id="loading-process">
+        <rect x="570" y="70" width="120" height="200" rx="8" ry="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+        <text x="630" y="90" font-size="14" font-weight="bold" text-anchor="middle">加载过程</text>
+        
+        <text x="575" y="115" font-size="12" fill="#333">1. 检查缓存</text>
+        <text x="575" y="135" font-size="12" fill="#333">2. 委派父加载器</text>
+        <text x="575" y="155" font-size="12" fill="#333">3. 尝试自己加载</text>
+        <text x="575" y="175" font-size="12" fill="#333">4. 定义 Class 对象</text>
+        <text x="575" y="195" font-size="12" fill="#333">5. 链接和初始化</text>
+    </g>
+</svg> 

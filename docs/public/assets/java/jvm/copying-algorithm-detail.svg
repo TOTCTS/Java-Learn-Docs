@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="500" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 渐变色定义 -->
+    <linearGradient id="fromSpaceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="toSpaceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8E6C9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333" />
+    </marker>
+    
+    <marker id="copyArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#2196F3" />
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2C3E50">
+    复制算法详细工作原理 - 半空间设计与Cheney算法
+  </text>
+  
+  <!-- From空间 -->
+  <rect x="50" y="60" width="400" height="200" rx="8" fill="url(#fromSpaceGradient)" stroke="#2196F3" stroke-width="2"/>
+  <text x="250" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1565C0">
+    From空间 (活跃区域)
+  </text>
+  
+  <!-- From空间中的对象 -->
+  <text x="70" y="110" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">回收前对象分布：</text>
+  
+  <!-- 对象A -->
+  <rect x="70" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="90" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">A</text>
+  
+  <!-- 对象B (垃圾) -->
+  <rect x="120" y="120" width="40" height="30" rx="3" fill="#F44336" stroke="#C62828" stroke-width="1"/>
+  <text x="140" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">B</text>
+  
+  <!-- 对象C -->
+  <rect x="170" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="190" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">C</text>
+  
+  <!-- 对象D (垃圾) -->
+  <rect x="220" y="120" width="40" height="30" rx="3" fill="#F44336" stroke="#C62828" stroke-width="1"/>
+  <text x="240" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">D</text>
+  
+  <!-- 对象E -->
+  <rect x="270" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="290" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">E</text>
+  
+  <!-- 引用关系 -->
+  <line x1="90" y1="120" x2="190" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="190" y1="120" x2="290" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Cheney算法说明 -->
+  <rect x="70" y="170" width="360" height="80" rx="4" fill="#FFFFFF" stroke="#2196F3" stroke-width="1"/>
+  <text x="250" y="190" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#1565C0">Cheney算法执行过程</text>
+  <text x="80" y="210" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">1. 从GC Roots开始，将根可达对象复制到To空间</text>
+  <text x="80" y="225" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">2. 使用scan和free指针维护复制队列</text>
+  <text x="80" y="240" font-family="Inter, Arial, sans-serif" font-size="10" fill="#1565C0">3. 广度优先遍历，更新所有引用关系</text>
+  
+  <!-- 复制箭头 -->
+  <line x1="450" y1="150" x2="550" y2="150" stroke="#2196F3" stroke-width="4" marker-end="url(#copyArrow)"/>
+  <text x="500" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2196F3">COPY</text>
+  <text x="500" y="170" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#666">只复制存活对象</text>
+  
+  <!-- To空间 -->
+  <rect x="550" y="60" width="400" height="200" rx="8" fill="url(#toSpaceGradient)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="750" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#2E7D32">
+    To空间 (目标区域)
+  </text>
+  
+  <!-- To空间中的对象 -->
+  <text x="570" y="110" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">复制后对象布局：</text>
+  
+  <!-- 复制后的对象 -->
+  <rect x="570" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="590" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">A</text>
+  
+  <rect x="620" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="640" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">C</text>
+  
+  <rect x="670" y="120" width="40" height="30" rx="3" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="690" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="white">E</text>
+  
+  <!-- 空闲空间 -->
+  <rect x="720" y="120" width="200" height="30" rx="3" fill="#E0E0E0" stroke="#999" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="820" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#666">空闲空间</text>
+  
+  <!-- 更新后的引用关系 -->
+  <line x1="590" y1="120" x2="640" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="640" y1="120" x2="690" y2="120" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 指针说明 -->
+  <rect x="570" y="170" width="360" height="80" rx="4" fill="#FFFFFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="750" y="190" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#2E7D32">指针管理机制</text>
+  <text x="580" y="210" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• scan指针：指向下一个待处理对象</text>
+  <text x="580" y="225" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• free指针：指向下一个可用位置</text>
+  <text x="580" y="240" font-family="Inter, Arial, sans-serif" font-size="10" fill="#2E7D32">• 使用To空间本身作为BFS队列</text>
+  
+  <!-- 算法特征分析 -->
+  <rect x="50" y="280" width="900" height="180" rx="8" fill="#F5F5F5" stroke="#666" stroke-width="1"/>
+  <text x="500" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#333">
+    复制算法特征与优化策略
+  </text>
+  
+  <!-- 核心优势 -->
+  <rect x="80" y="320" width="200" height="120" rx="4" fill="#E8F5E8" stroke="#4CAF50" stroke-width="1"/>
+  <text x="180" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#2E7D32">核心优势</text>
+  <text x="90" y="360" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">• 消除内存碎片</text>
+  <text x="90" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">• 分配效率O(1)</text>
+  <text x="90" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">• 时间复杂度O(Live)</text>
+  <text x="90" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">• 支持并行复制</text>
+  <text x="90" y="420" font-family="Inter, Arial, sans-serif" font-size="11" fill="#2E7D32">• 局部性良好</text>
+  
+  <!-- 主要缺点 -->
+  <rect x="300" y="320" width="200" height="120" rx="4" fill="#FFEBEE" stroke="#F44336" stroke-width="1"/>
+  <text x="400" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#C62828">主要缺点</text>
+  <text x="310" y="360" font-family="Inter, Arial, sans-serif" font-size="11" fill="#C62828">• 空间利用率50%</text>
+  <text x="310" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#C62828">• 不适合高存活率</text>
+  <text x="310" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#C62828">• 复制开销较大</text>
+  <text x="310" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="#C62828">• 引用更新复杂</text>
+  <text x="310" y="420" font-family="Inter, Arial, sans-serif" font-size="11" fill="#C62828">• 缓存失效</text>
+  
+  <!-- HotSpot优化 -->
+  <rect x="520" y="320" width="200" height="120" rx="4" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="620" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1565C0">HotSpot优化</text>
+  <text x="530" y="360" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">• Eden + 2个Survivor</text>
+  <text x="530" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">• 8:1:1空间配比</text>
+  <text x="530" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">• 空间利用率90%</text>
+  <text x="530" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">• 分配担保机制</text>
+  <text x="530" y="420" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1565C0">• 自适应调整</text>
+  
+  <!-- 应用场景 -->
+  <rect x="740" y="320" width="180" height="120" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="830" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#E65100">最佳应用场景</text>
+  <text x="750" y="360" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">• 新生代回收</text>
+  <text x="750" y="375" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">• 存活率 &lt; 10%</text>
+  <text x="750" y="390" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">• 频繁分配场景</text>
+  <text x="750" y="405" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">• 需要消除碎片</text>
+  <text x="750" y="420" font-family="Inter, Arial, sans-serif" font-size="11" fill="#E65100">• 并行收集器</text>
+  
+  <!-- 底部说明 -->
+  <text x="500" y="480" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#666">
+    复制算法通过空间换时间的策略，在低存活率场景下实现了极高的回收效率和内存分配性能
+  </text>
+</svg> 
