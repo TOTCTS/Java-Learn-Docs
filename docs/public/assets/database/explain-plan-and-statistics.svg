@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+    </style>
+  </defs>
+  <text x="24" y="36" class="h1">执行计划与统计信息关键项</text>
+
+  <rect x="24" y="64" width="510" height="200" class="panel"/>
+  <text x="48" y="92" class="txt">执行计划字段</text>
+  <text x="48" y="116" class="sub">type/key/key_len/ref/rows/filtered/Extra</text>
+  <text x="48" y="140" class="sub">避免：ALL/index、Using filesort/temporary</text>
+
+  <rect x="566" y="64" width="510" height="200" class="panel"/>
+  <text x="590" y="92" class="txt">统计信息</text>
+  <text x="590" y="116" class="sub">Cardinality/Histogram/采样</text>
+  <text x="590" y="140" class="sub">ANALYZE / CREATE HISTOGRAM / ANALYZE</text>
+
+  <rect x="24" y="288" width="1052" height="200" class="panel"/>
+  <text x="48" y="316" class="txt">优化目标</text>
+  <text x="48" y="340" class="sub">索引顺序扫描、覆盖索引、流式联接</text>
+</svg> 

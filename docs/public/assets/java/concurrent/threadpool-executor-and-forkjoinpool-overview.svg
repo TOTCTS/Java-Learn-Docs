@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <linearGradient id="pal-cold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D9EEF3"/>
+      <stop offset="100%" stop-color="#BFDDE8"/>
+    </linearGradient>
+    <linearGradient id="pal-warm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE8D6"/>
+      <stop offset="100%" stop-color="#FFD3B0"/>
+    </linearGradient>
+    <filter id="shadow-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 20px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .h2 { font: 700 16px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .txt { font: 500 13px 'Inter', Arial, sans-serif; fill: #2f3e59; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #48607f; }
+      .panelL { stroke: #7aa5b7; stroke-width: 1; fill: rgba(225,245,254,0.6); rx: 16; filter: url(#shadow-soft); }
+      .panelR { stroke: #cfa483; stroke-width: 1; fill: rgba(255,248,225,0.6); rx: 16; filter: url(#shadow-soft); }
+      .box { stroke: #8aa0b3; stroke-width: 1; fill: #fff; rx: 12; filter: url(#shadow-soft); }
+      .pill { stroke: #6aa0b2; fill: url(#pal-cold); rx: 12; }
+      .pill2 { stroke: #c98f69; fill: url(#pal-warm); rx: 12; }
+      .muted { stroke: #c5ced8; fill: #f7f9fc; rx: 12; }
+      .warn { stroke: #ff9b73; fill: #fff5f0; rx: 10; }
+      .ok { stroke: #79c897; fill: #eefcf2; rx: 10; }
+      .arr { stroke: #5f6f86; stroke-width: 1.6; fill: none; marker-end: url(#arrHead); }
+      .arr2 { stroke: #c98f69; stroke-width: 1.6; fill: none; marker-end: url(#arrHead2); }
+      .dash { stroke-dasharray: 6 6; }
+      .chip { stroke: #aab7c5; fill: #fff; rx: 10; }
+    </style>
+    <marker id="arrHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6f86" />
+    </marker>
+    <marker id="arrHead2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c98f69" />
+    </marker>
+  </defs>
+
+  <text x="24" y="34" class="sub">v1.2 • 更新: 2025-08-08</text>
+  <text x="24" y="60" class="h1">线程池概览（核心结构与数据流）</text>
+
+  <!-- 左：ThreadPoolExecutor -->
+  <rect x="24" y="88" width="564" height="588" class="panelL"/>
+  <text x="48" y="118" class="h2">ThreadPoolExecutor</text>
+
+  <rect x="48" y="140" width="248" height="88" class="pill"/>
+  <text x="60" y="168" class="txt">并发度：core / max</text>
+  <text x="60" y="192" class="sub">核心常驻，非核心按 keepAlive 回收</text>
+
+  <rect x="324" y="140" width="248" height="88" class="box"/>
+  <text x="336" y="168" class="txt">队列：Array / Linked / Synchronous</text>
+  <text x="336" y="192" class="sub">容量影响延迟与扩容触发</text>
+
+  <rect x="48" y="244" width="248" height="76" class="box"/>
+  <text x="60" y="272" class="txt">拒绝策略</text>
+  <text x="60" y="296" class="sub">Abort / CallerRuns / DiscardOldest / Discard</text>
+
+  <rect x="324" y="244" width="248" height="76" class="box"/>
+  <text x="336" y="272" class="txt">线程存活</text>
+  <text x="336" y="296" class="sub">keepAliveTime / allowCoreTimeout</text>
+
+  <rect x="48" y="340" width="524" height="164" class="muted"/>
+  <text x="60" y="366" class="txt">任务数据流</text>
+  <text x="60" y="392" class="sub">1 提交 → 2 入队/扩容 → 3 Worker 执行 → 4 完成/取消</text>
+
+  <circle cx="120" cy="420" r="6" fill="#5f6f86"/>
+  <text x="136" y="424" class="sub">提交</text>
+  <path d="M 180 420 L 300 420" class="arr"/>
+  <rect x="300" y="394" width="140" height="52" class="box"/>
+  <text x="312" y="424" class="sub">入队/扩容</text>
+  <path d="M 440 420 L 546 420" class="arr"/>
+  <rect x="546" y="394" width="26" height="52" class="ok"/>
+  <text x="560" y="424" class="sub">执行</text>
+
+  <path d="M 360 394 C 360 372, 470 372, 470 394" class="arr dash"/>
+  <rect x="470" y="358" width="102" height="32" class="warn"/>
+  <text x="478" y="378" class="sub">队列满→拒绝</text>
+  <path d="M 521 358 L 200 408" class="arr2 dash"/>
+  <text x="320" y="372" class="sub">背压/异常</text>
+
+  <rect x="48" y="520" width="524" height="140" class="box"/>
+  <text x="60" y="548" class="txt">关键指标</text>
+  <text x="60" y="572" class="sub">activeCount / poolSize / largestPoolSize / completedTaskCount</text>
+  <text x="60" y="596" class="sub">queue.size / rejection.count / 延迟 p95-p99 / GC 压力</text>
+
+  <!-- 右：ForkJoinPool -->
+  <rect x="612" y="88" width="564" height="588" class="panelR"/>
+  <text x="636" y="118" class="h2">ForkJoinPool</text>
+
+  <rect x="636" y="140" width="524" height="96" class="pill2"/>
+  <text x="648" y="168" class="txt">每线程本地 Deque（LIFO）</text>
+  <text x="648" y="194" class="sub">空闲线程从头部窃取，负载均衡</text>
+
+  <rect x="636" y="252" width="256" height="84" class="box"/>
+  <text x="648" y="280" class="txt">任务类型</text>
+  <text x="648" y="298" class="sub">
+    <tspan x="648" dy="0">ForkJoinTask / RecursiveTask /</tspan>
+    <tspan x="648" dy="18">RecursiveAction</tspan>
+  </text>
+
+  <rect x="904" y="252" width="256" height="84" class="box"/>
+  <text x="916" y="280" class="txt">阻塞管理</text>
+  <text x="916" y="304" class="sub">ManagedBlocker（阻塞补偿）</text>
+
+  <rect x="636" y="352" width="524" height="84" class="muted"/>
+  <text x="648" y="380" class="txt">commonPool 并行度</text>
+  <text x="648" y="404" class="sub">parallelism ≈ CPU 核数（可配置）</text>
+
+  <rect x="636" y="452" width="524" height="156" class="box"/>
+  <text x="648" y="480" class="txt">适用与禁忌</text>
+  <text x="648" y="506" class="sub">适合：可并行分治 / 短小计算 / 较少阻塞</text>
+  <text x="648" y="524" class="sub">
+    <tspan x="648" dy="0">避免：长阻塞 IO / 深度 join 链 /</tspan>
+    <tspan x="648" dy="18">过粗或过细切分</tspan>
+  </text>
+
+  <!-- 图例 -->
+  <rect x="1016" y="96" width="160" height="64" class="chip"/>
+  <circle cx="1034" cy="116" r="5" fill="#5f6f86"/>
+  <text x="1048" y="120" class="sub">任务流</text>
+  <rect x="1026" y="130" width="12" height="10" class="warn"/>
+  <text x="1048" y="138" class="sub">背压/拒绝</text>
+</svg>

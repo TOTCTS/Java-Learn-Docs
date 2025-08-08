@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <defs>
+    <linearGradient id="lockbg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#F1F8E9"/>
+      <stop offset="100%" stop-color="#DCEDC8"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="30" width="1100" height="460" rx="16" fill="url(#lockbg)" stroke="#C5E1A5"/>
+  <text x="50" y="65" font-size="22" font-family="Arial" fill="#2E7D32">锁与意向锁</text>
+  <rect x="50" y="90" width="500" height="150" rx="12" fill="#FFFFFF" stroke="#81C784"/>
+  <text x="70" y="120" font-size="16" font-family="Arial" fill="#1B5E20">锁类型</text>
+  <text x="70" y="150" font-size="14" font-family="Arial">S/X；IS/IX/SIX；Record/Gap/Next-Key</text>
+
+  <rect x="580" y="90" width="520" height="150" rx="12" fill="#FFFFFF" stroke="#81C784"/>
+  <text x="600" y="120" font-size="16" font-family="Arial" fill="#1B5E20">加锁读</text>
+  <text x="600" y="150" font-size="14" font-family="Arial">FOR UPDATE / FOR SHARE</text>
+
+  <rect x="50" y="260" width="1050" height="200" rx="12" fill="#FFFDE7" stroke="#FFE082"/>
+  <text x="70" y="290" font-size="16" font-family="Arial" fill="#E65100">注意事项</text>
+  <text x="70" y="320" font-size="14" font-family="Arial">非索引范围操作会扩大锁范围；列序与索引影响锁粒度；RR 下范围写触发 Next-Key 锁</text>
+</svg> 

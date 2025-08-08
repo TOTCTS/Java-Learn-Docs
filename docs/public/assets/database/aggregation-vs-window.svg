@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#01579B">聚合 vs 窗口</text>
+  <rect x="40" y="70" width="520" height="400" rx="12" fill="#E1F5FE" stroke="#81D4FA"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">聚合：折叠行，返回分组级别结果</text>
+
+  <rect x="600" y="70" width="520" height="400" rx="12" fill="#E1F5FE" stroke="#81D4FA"/>
+  <text x="620" y="110" font-size="16" font-family="Arial">窗口：不折叠行，返回行级别结果</text>
+</svg> 

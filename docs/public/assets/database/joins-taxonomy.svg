@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#1A237E">连接类型速览</text>
+  <rect x="40" y="70" width="1080" height="400" rx="12" fill="#EDE7F6" stroke="#B39DDB"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">INNER / LEFT / RIGHT / FULL / CROSS</text>
+  <text x="60" y="150" font-size="16" font-family="Arial">半连接 / 反连接：EXISTS / NOT EXISTS</text>
+</svg> 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+      .ok{stroke:#79c897;fill:#eefcf2;rx:12}
+      .arr{stroke:#5f6f86;stroke-width:1.6;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#5f6f86"/>
+    </marker>
+  </defs>
+  <text x="24" y="36" class="h1">覆盖索引 vs 回表</text>
+
+  <rect x="24" y="64" width="540" height="480" class="panel"/>
+  <text x="48" y="92" class="txt">覆盖索引</text>
+  <rect x="48" y="112" width="500" height="80" class="box"/>
+  <text x="60" y="140" class="sub">索引包含过滤列与返回列 → 直接返回</text>
+  <rect x="48" y="210" width="500" height="60" class="ok"/>
+  <text x="60" y="246" class="sub">Using index（无需回表）</text>
+
+  <rect x="636" y="64" width="540" height="480" class="panel"/>
+  <text x="660" y="92" class="txt">回表</text>
+  <rect x="660" y="112" width="500" height="80" class="box"/>
+  <text x="672" y="140" class="sub">命中二级索引（含主键）</text>
+  <path d="M 910 152 L 910 260" class="arr"/>
+  <rect x="660" y="260" width="500" height="80" class="box"/>
+  <text x="672" y="288" class="sub">通过主键到聚簇索引取整行</text>
+</svg> 

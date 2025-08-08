@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#1A237E">隔离级别与并发现象</text>
+  <rect x="40" y="70" width="1080" height="400" rx="12" fill="#EDE7F6" stroke="#B39DDB"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">RU: 脏读 / 不可重复读 / 幻读</text>
+  <text x="60" y="150" font-size="16" font-family="Arial">RC: 禁止脏读；可能不可重复读 / 幻读</text>
+  <text x="60" y="190" font-size="16" font-family="Arial">RR: 禁止脏读与不可重复读；幻读需额外控制</text>
+  <text x="60" y="230" font-size="16" font-family="Arial">Serializable: 等价串行，代价最高</text>
+  <text x="60" y="290" font-size="14" font-family="Arial">InnoDB: RR + Next-Key 锁避免范围插入幻影</text>
+  <text x="60" y="320" font-size="14" font-family="Arial">PostgreSQL: Serializable 使用谓词锁</text>
+</svg> 

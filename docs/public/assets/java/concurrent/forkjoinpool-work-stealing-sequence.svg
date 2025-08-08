@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <filter id="shadow-soft-fjp" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 20px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .lbl { font: 600 13px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #3a4a66; }
+      .lane { stroke: #cbd5e0; stroke-width: 1; }
+      .evt { stroke: #7b8a9c; fill: #fff; rx: 10; filter: url(#shadow-soft-fjp); }
+      .evt2 { stroke: #c98f69; fill: #fffaf5; rx: 10; filter: url(#shadow-soft-fjp); }
+      .arr { stroke: #5f6f86; stroke-width: 1.8; fill: none; marker-end: url(#fjpHead); }
+      .dash { stroke-dasharray: 6 6; }
+      .badge { fill: #2a6f97; stroke: none; }
+      .badgeTxt { font: 700 12px 'Inter', Arial, sans-serif; fill: #fff; }
+    </style>
+    <marker id="fjpHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6f86" />
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="sub">v1.2 • 更新: 2025-08-08</text>
+  <text x="24" y="58" class="h1">ForkJoinPool 工作窃时时序</text>
+
+  <!-- 泳道 -->
+  <text x="84" y="96" class="lbl">Worker A</text>
+  <line x1="40" y1="108" x2="1160" y2="108" class="lane"/>
+
+  <text x="84" y="156" class="lbl">Worker B</text>
+  <line x1="40" y1="168" x2="1160" y2="168" class="lane"/>
+
+  <text x="84" y="216" class="lbl">Worker C</text>
+  <line x1="40" y1="228" x2="1160" y2="228" class="lane"/>
+
+  <!-- A: fork / split 判定 / join 协作 -->
+  <rect x="120" y="120" width="200" height="48" class="evt"/>
+  <rect x="120" y="120" width="26" height="26" class="badge" rx="13"/>
+  <text x="128" y="138" class="badgeTxt">1</text>
+  <text x="154" y="150" class="sub">A: fork 子任务</text>
+
+  <path d="M 320 144 L 360 144" class="arr"/>
+  <rect x="360" y="120" width="260" height="48" class="evt"/>
+  <rect x="360" y="120" width="26" height="26" class="badge" rx="13"/>
+  <text x="368" y="138" class="badgeTxt">2</text>
+  <text x="394" y="144" class="sub">
+    <tspan x="394" dy="0">大小 > 阈值? 是 → 继续拆分，</tspan>
+    <tspan x="394" dy="18">否则执行</tspan>
+  </text>
+
+  <path d="M 620 144 L 660 144" class="arr"/>
+  <rect x="660" y="120" width="180" height="48" class="evt"/>
+  <rect x="660" y="120" width="26" height="26" class="badge" rx="13"/>
+  <text x="668" y="138" class="badgeTxt">3</text>
+  <text x="694" y="150" class="sub">A: join 等待</text>
+
+  <path d="M 840 144 L 960 144" class="arr"/>
+  <rect x="960" y="120" width="160" height="48" class="evt"/>
+  <text x="972" y="150" class="sub">完成/返回</text>
+
+  <!-- B: 从 A 窃取并执行 -->
+  <rect x="400" y="180" width="220" height="48" class="evt2"/>
+  <rect x="400" y="180" width="26" height="26" class="badge" rx="13"/>
+  <text x="408" y="198" class="badgeTxt">S</text>
+  <text x="436" y="210" class="sub">B: 从 A 头部窃取</text>
+  <path d="M 460 168 L 460 180" class="arr dash"/>
+
+  <!-- C: 再次窃取（链式均衡） -->
+  <rect x="660" y="240" width="220" height="48" class="evt2"/>
+  <text x="672" y="270" class="sub">C: 从 B 头部窃取</text>
+  <path d="M 720 228 L 720 240" class="arr dash"/>
+
+  <!-- 阻塞补偿：ManagedBlocker -->
+  <rect x="540" y="300" width="300" height="48" class="evt2"/>
+  <text x="552" y="324" class="sub">
+    <tspan x="552" dy="0">阻塞 → ManagedBlocker</tspan>
+    <tspan x="552" dy="18">申请补充工作线程</tspan>
+  </text>
+  <path d="M 720 168 L 720 300" class="arr"/>
+
+  <!-- quiescence / 空闲就绪检测 -->
+  <rect x="920" y="360" width="220" height="48" class="evt"/>
+  <text x="932" y="390" class="sub">quiescence：无任务可执行</text>
+
+  <!-- 说明区 -->
+  <rect x="40" y="430" width="1120" height="230" class="evt"/>
+  <text x="52" y="456" class="lbl">要点</text>
+  <text x="52" y="482" class="sub">• 本地 LIFO 提升缓存局部性；窃取从头部降低竞争</text>
+  <text x="52" y="506" class="sub">• 适合短小计算与可并行分治；避免长阻塞 IO</text>
+  <text x="52" y="530" class="sub">• 合理设置拆分阈值以平衡开销与并行度</text>
+  <text x="52" y="554" class="sub">• join 等待期间尽可能帮助执行其他任务</text>
+  <text x="52" y="578" class="sub">• 对阻塞敏感，使用 ManagedBlocker 以免 commonPool 饥饿</text>
+</svg> 

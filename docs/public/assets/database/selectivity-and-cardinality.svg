@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+    </style>
+  </defs>
+  <text x="24" y="36" class="h1">选择性与基数（Cardinality）</text>
+
+  <rect x="24" y="64" width="460" height="160" class="panel"/>
+  <text x="48" y="92" class="txt">定义</text>
+  <text x="48" y="116" class="sub">选择性 = distinct(col) / total_rows → 越接近 1 越好</text>
+  <text x="48" y="140" class="sub">高选择性 → 更强过滤；低选择性 → 索引收益有限</text>
+
+  <rect x="516" y="64" width="460" height="160" class="panel"/>
+  <text x="540" y="92" class="txt">示例</text>
+  <text x="540" y="116" class="sub">1000 万行；distinct(user_id)=980 万 → 选择性 0.98</text>
+  <text x="540" y="140" class="sub">distinct(status)=3 → 选择性 0.0000003（不宜单列索引）</text>
+
+  <rect x="24" y="248" width="952" height="192" class="panel"/>
+  <text x="48" y="276" class="txt">优化建议</text>
+  <text x="48" y="300" class="sub">• 高选择性列优先建索引；低选择性列放在联合索引后位</text>
+  <text x="48" y="324" class="sub">• 维护统计信息，避免代价估算失真</text>
+  <text x="48" y="348" class="sub">• 避免函数/隐式转换导致非 SARGable（不可利用索引）</text>
+</svg> 

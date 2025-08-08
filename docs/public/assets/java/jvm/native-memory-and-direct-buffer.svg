@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 20px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .h2 { font: 700 16px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .txt { font: 600 13px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #3a4a66; }
+      .panel { stroke: #7aa5b7; fill: rgba(225,245,254,0.6); rx: 16; filter: url(#shadow); }
+      .box { stroke: #8aa0b3; fill: #fff; rx: 12; filter: url(#shadow); }
+      .warn { stroke: #ff9b73; fill: #fff5f0; rx: 10; }
+      .arr { stroke: #5f6f86; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6f86" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="h1">Native / Direct 内存：分配、回收与观测</text>
+
+  <!-- 左：JVM 视角 -->
+  <rect x="24" y="64" width="560" height="600" class="panel"/>
+  <text x="48" y="92" class="h2">JVM 视角</text>
+
+  <rect x="48" y="112" width="520" height="96" class="box"/>
+  <text x="60" y="138" class="txt">DirectBuffer 分配</text>
+  <text x="60" y="162" class="sub">ByteBuffer.allocateDirect / MaxDirectMemorySize</text>
+
+  <rect x="48" y="224" width="520" height="96" class="box"/>
+  <text x="60" y="250" class="txt">回收机制（Cleaner）</text>
+  <text x="60" y="274" class="sub">可达性消失 → Cleaner 触发本地内存释放</text>
+
+  <rect x="48" y="336" width="520" height="96" class="warn"/>
+  <text x="60" y="362" class="txt">风险点</text>
+  <text x="60" y="386" class="sub">长持有引用/池无上限/频繁分配碎片化/阈值过小</text>
+
+  <rect x="48" y="448" width="520" height="96" class="box"/>
+  <text x="60" y="474" class="txt">实践建议</text>
+  <text x="60" y="498" class="sub">限额池化/批量复用/监控与告警/降级与回退策略</text>
+
+  <!-- 右：系统视角 -->
+  <rect x="616" y="64" width="560" height="600" class="panel"/>
+  <text x="640" y="92" class="h2">系统视角</text>
+
+  <rect x="640" y="112" width="520" height="96" class="box"/>
+  <text x="652" y="138" class="txt">NMT 观察</text>
+  <text x="652" y="162" class="sub">-XX:NativeMemoryTracking=detail / jcmd VM.native_memory</text>
+
+  <rect x="640" y="224" width="520" height="96" class="box"/>
+  <text x="652" y="250" class="txt">OS 指标</text>
+  <text x="652" y="274" class="sub">进程 RSS / 句柄与线程数 / 容器限制</text>
+
+  <rect x="640" y="336" width="520" height="96" class="box"/>
+  <text x="652" y="362" class="txt">常见 OOM 形态</text>
+  <text x="652" y="386" class="sub">Direct buffer memory / unable to create new native thread</text>
+
+  <path d="M 548 160 L 616 160" class="arr"/>
+  <path d="M 548 272 L 616 272" class="arr"/>
+
+</svg> 

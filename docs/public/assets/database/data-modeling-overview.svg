@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720">
+  <rect width="1160" height="720" fill="#fff"/>
+  <defs>
+    <linearGradient id="dm-bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#E8EAF6"/>
+      <stop offset="100%" stop-color="#C5CAE9"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="1080" height="640" rx="16" fill="url(#dm-bg)" stroke="#9FA8DA"/>
+  <text x="60" y="80" font-size="24" font-family="Arial" fill="#1A237E">数据建模概览（ER / 范式 / 约束）</text>
+  <rect x="60" y="110" width="500" height="240" rx="12" fill="#FFFFFF" stroke="#9FA8DA"/>
+  <text x="80" y="140" font-size="18" font-family="Arial" fill="#283593">ER 元素</text>
+  <text x="80" y="170" font-size="14" font-family="Arial">实体/属性/关系；1:1、1:N、N:M</text>
+
+  <rect x="600" y="110" width="520" height="240" rx="12" fill="#FFFFFF" stroke="#9FA8DA"/>
+  <text x="620" y="140" font-size="18" font-family="Arial" fill="#283593">范式与反范式</text>
+  <text x="620" y="170" font-size="14" font-family="Arial">1NF / 2NF / 3NF / BCNF；冗余与预聚合</text>
+
+  <rect x="60" y="370" width="1060" height="290" rx="12" fill="#FFFFFF" stroke="#9FA8DA"/>
+  <text x="80" y="400" font-size="18" font-family="Arial" fill="#283593">键与约束</text>
+  <text x="80" y="430" font-size="14" font-family="Arial">PK/UK/FK/CHECK/NOT NULL/DEFAULT；参照动作与索引</text>
+</svg> 

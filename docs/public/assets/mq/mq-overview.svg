@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 22px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .h2 { font: 700 16px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .txt { font: 600 13px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #3a4a66; }
+      .panel { stroke: #7aa5b7; fill: rgba(225,245,254,0.6); rx: 16; filter: url(#shadow); }
+      .box { stroke: #8aa0b3; fill: #fff; rx: 12; filter: url(#shadow); }
+    </style>
+  </defs>
+
+  <text x="24" y="36" class="h1">消息队列 (MQ) 技术体系概览</text>
+
+  <rect x="24" y="64" width="560" height="300" class="panel"/>
+  <text x="48" y="92" class="h2">Kafka</text>
+  <rect x="48" y="112" width="520" height="96" class="box"/>
+  <text x="60" y="138" class="txt">主题/分区/副本</text>
+  <text x="60" y="162" class="sub">生产/消费、幂等与事务、再均衡</text>
+  <rect x="48" y="224" width="520" height="96" class="box"/>
+  <text x="60" y="250" class="txt">存储与保留</text>
+  <text x="60" y="274" class="sub">日志段、索引、压缩（log compaction）</text>
+
+  <rect x="616" y="64" width="560" height="300" class="panel"/>
+  <text x="640" y="92" class="h2">RabbitMQ</text>
+  <rect x="640" y="112" width="520" height="96" class="box"/>
+  <text x="652" y="138" class="txt">交换机/队列/绑定</text>
+  <text x="652" y="162" class="sub">Direct/Fanout/Topic/Headers</text>
+  <rect x="640" y="224" width="520" height="96" class="box"/>
+  <text x="652" y="250" class="txt">可靠性与路由</text>
+  <text x="652" y="274" class="sub">Publisher Confirm、DLX/TTL/延迟消息</text>
+
+  <rect x="24" y="384" width="560" height="280" class="panel"/>
+  <text x="48" y="412" class="h2">可靠性与一致性</text>
+  <rect x="48" y="432" width="520" height="96" class="box"/>
+  <text x="60" y="458" class="txt">投递语义与幂等性</text>
+  <text x="60" y="482" class="sub">At-most/At-least/Exactly-once、去重/幂等键</text>
+  <rect x="48" y="544" width="520" height="96" class="box"/>
+  <text x="60" y="570" class="txt">一致性策略</text>
+  <text x="60" y="594" class="sub">Outbox、CDC、本地事务 + 事件</text>
+
+  <rect x="616" y="384" width="560" height="280" class="panel"/>
+  <text x="640" y="412" class="h2">观测与治理</text>
+  <rect x="640" y="432" width="520" height="96" class="box"/>
+  <text x="652" y="458" class="txt">指标与监控</text>
+  <text x="652" y="482" class="sub">吞吐、滞后、积压、失败率、压缩比</text>
+  <rect x="640" y="544" width="520" height="96" class="box"/>
+  <text x="652" y="570" class="txt">Schema 治理</text>
+  <text x="652" y="594" class="sub">Avro/Schema Registry、Proto、演进策略</text>
+
+</svg> 

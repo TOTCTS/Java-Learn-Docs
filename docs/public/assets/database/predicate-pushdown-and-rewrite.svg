@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+    </style>
+  </defs>
+  <text x="24" y="36" class="h1">谓词下推与 SARGable 重写</text>
+
+  <rect x="24" y="64" width="510" height="200" class="panel"/>
+  <text x="48" y="92" class="txt">示例 1</text>
+  <text x="48" y="116" class="sub">WHERE DATE(col)=? → WHERE col >= ? AND col < ?</text>
+
+  <rect x="566" y="64" width="510" height="200" class="panel"/>
+  <text x="590" y="92" class="txt">示例 2</text>
+  <text x="590" y="116" class="sub">WHERE col+1=? → WHERE col=?-1</text>
+
+  <rect x="24" y="288" width="510" height="200" class="panel"/>
+  <text x="48" y="316" class="txt">LIKE 与倒排</text>
+  <Text x="48" y="340" class="sub">LIKE 'xxx%' 可走索引；'%xxx' 建议倒排/全文索引</Text>
+
+  <rect x="566" y="288" width="510" height="200" class="panel"/>
+  <text x="590" y="316" class="txt">隐式类型转换</text>
+  <text x="590" y="340" class="sub">确保两边类型一致，避免全表扫描</text>
+</svg> 

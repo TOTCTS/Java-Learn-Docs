@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 22px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .h2 { font: 700 16px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .txt { font: 500 13px 'Inter', Arial, sans-serif; fill: #2f3e59; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #48607f; }
+      .panelA { stroke: #7aa5b7; fill: rgba(225,245,254,0.6); rx: 16; filter: url(#shadow); }
+      .panelB { stroke: #cfa483; fill: rgba(255,248,225,0.6); rx: 16; filter: url(#shadow); }
+      .box { stroke: #8aa0b3; fill: #fff; rx: 12; filter: url(#shadow); }
+      .warn { stroke: #ff9b73; fill: #fff5f0; rx: 10; }
+      .ok { stroke: #79c897; fill: #eefcf2; rx: 10; }
+      .muted { stroke: #c5ced8; fill: #f7f9fc; rx: 12; }
+      .arr { stroke: #5f6f86; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6f86" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="sub">v1.0 • 内存问题概览</text>
+  <text x="24" y="64" class="h1">内存泄漏 vs 内存溢出：分类与证据链</text>
+
+  <!-- 左：泄漏（Leak）分区 -->
+  <rect x="24" y="88" width="560" height="588" class="panelA"/>
+  <text x="48" y="116" class="h2">内存泄漏（Leak）</text>
+
+  <rect x="48" y="136" width="520" height="112" class="box"/>
+  <text x="60" y="162" class="txt">高发场景</text>
+  <text x="60" y="186" class="sub">静态集合/缓存无界、ThreadLocal 残留、监听器未注销、类加载器泄漏、连接/句柄未释放</text>
+
+  <rect x="48" y="264" width="520" height="96" class="muted"/>
+  <text x="60" y="292" class="txt">症状</text>
+  <text x="60" y="316" class="sub">堆曲线上移、Full GC 频繁、对象直方图热点类型累增</text>
+
+  <rect x="48" y="376" width="520" height="140" class="box"/>
+  <text x="60" y="402" class="txt">证据链</text>
+  <text x="60" y="426" class="sub">HeapDump（Dominator/Retained Size/Path to GC Roots）</text>
+  <text x="60" y="448" class="sub">GC 日志（老年代占用/频繁 Full GC）</text>
+  <text x="60" y="470" class="sub">Class Histogram/线程与资源持有关系</text>
+
+  <!-- 右：溢出（OOM）分区 -->
+  <rect x="616" y="88" width="560" height="588" class="panelB"/>
+  <text x="640" y="116" class="h2">内存溢出（OOM）</text>
+
+  <rect x="640" y="136" width="520" height="120" class="box"/>
+  <text x="652" y="162" class="txt">类型</text>
+  <text x="652" y="186" class="sub">Java heap space, GC overhead, Metaspace, Direct buffer, Native, new native thread</text>
+
+  <rect x="640" y="272" width="520" height="96" class="muted"/>
+  <text x="652" y="300" class="txt">触发因子</text>
+  <text x="652" y="324" class="sub">数据规模超配、并发峰值、热路径临时对象、动态类加载、直接内存阈值过小</text>
+
+  <rect x="640" y="384" width="520" height="132" class="box"/>
+  <text x="652" y="410" class="txt">证据链</text>
+  <text x="652" y="434" class="sub">GC 日志（分配/晋升失败、停顿）、NMT（Native 分类）、进程 RSS/线程数</text>
+  <text x="652" y="456" class="sub">OOM 堆转储、DirectMemory/Metaspace 指标</text>
+
+  <!-- 中部：从现象到定位 -->
+  <path d="M 584 168 L 616 168" class="arr"/>
+  <path d="M 584 312 L 616 312" class="arr"/>
+  <path d="M 584 448 L 616 448" class="arr dash"/>
+  <text x="590" y="144" class="sub">现象</text>
+  <text x="590" y="288" class="sub">原因</text>
+  <text x="590" y="424" class="sub">证据</text>
+
+</svg> 

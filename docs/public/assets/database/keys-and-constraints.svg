@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#1B5E20">键与约束</text>
+  <rect x="40" y="70" width="520" height="400" rx="12" fill="#E8F5E9" stroke="#A5D6A7"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">PK/UK 与候选键/代理键</text>
+  <rect x="600" y="70" width="520" height="400" rx="12" fill="#E8F5E9" stroke="#A5D6A7"/>
+  <text x="620" y="110" font-size="16" font-family="Arial">FK + 参照动作；CHECK/NOT NULL/DEFAULT</text>
+</svg> 

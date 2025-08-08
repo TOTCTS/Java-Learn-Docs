@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720">
+  <rect width="1160" height="720" fill="#fff"/>
+  <defs>
+    <linearGradient id="sql-bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#BBDEFB"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="1080" height="640" rx="16" fill="url(#sql-bg)" stroke="#90CAF9"/>
+  <text x="60" y="80" font-size="24" font-family="Arial" fill="#0D47A1">SQL 基础（执行顺序 / 连接 / 聚合 / 窗口）</text>
+  <rect x="60" y="110" width="500" height="230" rx="12" fill="#FFFFFF" stroke="#90CAF9"/>
+  <text x="80" y="140" font-size="18" font-family="Arial" fill="#0D47A1">执行顺序</text>
+  <text x="80" y="170" font-size="14" font-family="Arial">FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER → LIMIT</text>
+  <rect x="600" y="110" width="520" height="230" rx="12" fill="#FFFFFF" stroke="#90CAF9"/>
+  <text x="620" y="140" font-size="18" font-family="Arial" fill="#0D47A1">连接类型</text>
+  <text x="620" y="170" font-size="14" font-family="Arial">INNER / LEFT / RIGHT / FULL / CROSS / EXISTS</text>
+  <rect x="60" y="360" width="500" height="300" rx="12" fill="#FFFFFF" stroke="#90CAF9"/>
+  <text x="80" y="390" font-size="18" font-family="Arial" fill="#0D47A1">聚合</text>
+  <text x="80" y="420" font-size="14" font-family="Arial">GROUP BY / HAVING / ROLLUP</text>
+  <rect x="600" y="360" width="520" height="300" rx="12" fill="#FFFFFF" stroke="#90CAF9"/>
+  <text x="620" y="390" font-size="18" font-family="Arial" fill="#0D47A1">窗口</text>
+  <text x="620" y="420" font-size="14" font-family="Arial">OVER(PARTITION, ORDER, FRAME)</text>
+</svg> 

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720">
+  <rect x="0" y="0" width="1160" height="720" fill="#fff"/>
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#BBDEFB"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="1080" height="640" rx="16" fill="url(#panel)" stroke="#90CAF9"/>
+  <text x="60" y="80" font-size="24" font-family="Arial" fill="#0D47A1">事务与隔离级别（概览）</text>
+  <rect x="60" y="110" width="500" height="230" rx="12" fill="#FFF8E1" stroke="#FFCC80"/>
+  <text x="80" y="140" font-size="18" font-family="Arial" fill="#E65100">ACID</text>
+  <text x="80" y="170" font-size="14" font-family="Arial">Atomicity: Undo</text>
+  <text x="80" y="195" font-size="14" font-family="Arial">Consistency: Constraints</text>
+  <text x="80" y="220" font-size="14" font-family="Arial">Isolation: Locks + MVCC</text>
+  <text x="80" y="245" font-size="14" font-family="Arial">Durability: Redo/WAL + fsync</text>
+
+  <rect x="600" y="110" width="520" height="230" rx="12" fill="#E8F5E9" stroke="#A5D6A7"/>
+  <text x="620" y="140" font-size="18" font-family="Arial" fill="#1B5E20">隔离级别</text>
+  <text x="620" y="170" font-size="14" font-family="Arial">RU / RC / RR / SERIALIZABLE</text>
+  <text x="620" y="195" font-size="14" font-family="Arial">现象: 脏读/不可重复读/幻读</text>
+
+  <rect x="60" y="360" width="520" height="300" rx="12" fill="#F3E5F5" stroke="#CE93D8"/>
+  <text x="80" y="390" font-size="18" font-family="Arial" fill="#4A148C">MVCC</text>
+  <text x="80" y="420" font-size="14" font-family="Arial">Read View + 行版本（Undo 或 xmin/xmax）</text>
+  <text x="80" y="445" font-size="14" font-family="Arial">RC: 语句级快照；RR: 事务级快照</text>
+
+  <rect x="620" y="360" width="500" height="300" rx="12" fill="#FFEBEE" stroke="#EF9A9A"/>
+  <text x="640" y="390" font-size="18" font-family="Arial" fill="#B71C1C">锁模型</text>
+  <text x="640" y="420" font-size="14" font-family="Arial">S/X, IS/IX/SIX, Record/Gap/Next-Key</text>
+  <text x="640" y="445" font-size="14" font-family="Arial">加锁读: FOR UPDATE / FOR SHARE</text>
+</svg> 

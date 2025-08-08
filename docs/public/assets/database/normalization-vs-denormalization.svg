@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="520" viewBox="0 0 1160 520">
+  <rect width="1160" height="520" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#004D40">范式 vs 反范式</text>
+  <rect x="40" y="70" width="520" height="400" rx="12" fill="#E0F2F1" stroke="#80CBC4"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">规范化：消除冗余、避免更新异常</text>
+  <text x="60" y="140" font-size="14" font-family="Arial">1NF/2NF/3NF/BCNF</text>
+
+  <rect x="600" y="70" width="520" height="400" rx="12" fill="#FFF3E0" stroke="#FFCC80"/>
+  <text x="620" y="110" font-size="16" font-family="Arial">反范式：预计算/冗余以提升读性能</text>
+  <text x="620" y="140" font-size="14" font-family="Arial">风险：一致性维护与回填</text>
+</svg> 

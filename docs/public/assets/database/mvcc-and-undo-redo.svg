@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="540" viewBox="0 0 1160 540">
+  <rect width="1160" height="540" fill="#fff"/>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#E0F7FA"/>
+      <stop offset="100%" stop-color="#B2EBF2"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="30" width="1100" height="480" rx="16" fill="url(#bg)" stroke="#80DEEA"/>
+  <text x="50" y="65" font-size="22" font-family="Arial" fill="#004D40">MVCC 与日志（Undo/Redo 或 WAL）</text>
+  
+  <rect x="50" y="90" width="520" height="180" rx="12" fill="#FFFFFF" stroke="#26A69A"/>
+  <text x="70" y="120" font-size="16" font-family="Arial" fill="#00695C">行版本链</text>
+  <text x="70" y="150" font-size="14" font-family="Arial">v3 -> v2 -> v1 （指向 Undo 或旧元组）</text>
+  <text x="70" y="175" font-size="14" font-family="Arial">可见性由 Read View 判定</text>
+
+  <rect x="600" y="90" width="510" height="180" rx="12" fill="#FFFFFF" stroke="#26A69A"/>
+  <text x="620" y="120" font-size="16" font-family="Arial" fill="#00695C">读视图（Read View）</text>
+  <text x="620" y="150" font-size="14" font-family="Arial">活跃事务集合 + 最小/最大事务号</text>
+  <text x="620" y="175" font-size="14" font-family="Arial">RC: 语句级; RR: 事务级</text>
+
+  <rect x="50" y="290" width="520" height="180" rx="12" fill="#FFF8E1" stroke="#FFA726"/>
+  <text x="70" y="320" font-size="16" font-family="Arial" fill="#E65100">Undo</text>
+  <text x="70" y="350" font-size="14" font-family="Arial">记录旧值，支撑回滚与一致性读</text>
+
+  <rect x="600" y="290" width="510" height="180" rx="12" fill="#FFEBEE" stroke="#EF9A9A"/>
+  <text x="620" y="320" font-size="16" font-family="Arial" fill="#B71C1C">Redo/WAL</text>
+  <text x="620" y="350" font-size="14" font-family="Arial">顺序写入，崩溃后重做确保持久性</text>
+</svg> 

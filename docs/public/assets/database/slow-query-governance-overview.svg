@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+    </style>
+  </defs>
+  <text x="24" y="36" class="h1">慢查询治理总览</text>
+
+  <rect x="24" y="64" width="510" height="180" class="panel"/>
+  <text x="48" y="92" class="txt">采集</text>
+  <text x="48" y="116" class="sub">慢日志、性能视图、采样探针</text>
+
+  <rect x="566" y="64" width="510" height="180" class="panel"/>
+  <text x="590" y="92" class="txt">分析</text>
+  <text x="590" y="116" class="sub">标准化 SQL、TopN、分位数、扫描行数</text>
+
+  <rect x="24" y="264" width="510" height="180" class="panel"/>
+  <text x="48" y="292" class="txt">优化</text>
+  <text x="48" y="316" class="sub">索引/SQL/缓存/读写分离/归档</text>
+
+  <rect x="566" y="264" width="510" height="180" class="panel"/>
+  <text x="590" y="292" class="txt">验证与回归</text>
+  <text x="590" y="316" class="sub">压测/灰度/A-B，对比基线与告警阈值</text>
+</svg> 

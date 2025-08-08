@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h1 { font: 700 22px 'Inter', Arial, sans-serif; fill: #1f2a44; }
+      .h2 { font: 700 16px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .txt { font: 600 13px 'Inter', Arial, sans-serif; fill: #24324d; }
+      .sub { font: 500 12px 'Inter', Arial, sans-serif; fill: #3a4a66; }
+      .panel { stroke: #7aa5b7; fill: rgba(225,245,254,0.6); rx: 16; filter: url(#shadow); }
+      .box { stroke: #8aa0b3; fill: #fff; rx: 12; filter: url(#shadow); }
+      .muted { stroke: #c5ced8; fill: #f7f9fc; rx: 12; }
+      .arr { stroke: #5f6f86; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6f86" />
+    </marker>
+  </defs>
+
+  <text x="24" y="36" class="h1">Spring 技术体系概览</text>
+
+  <rect x="24" y="64" width="560" height="600" class="panel"/>
+  <text x="48" y="92" class="h2">核心与基础</text>
+  <rect x="48" y="112" width="520" height="96" class="box"/>
+  <text x="60" y="138" class="txt">IoC / DI</text>
+  <text x="60" y="162" class="sub">Bean、作用域、生命周期、后置处理器</text>
+  <rect x="48" y="224" width="520" height="96" class="box"/>
+  <text x="60" y="250" class="txt">AOP</text>
+  <text x="60" y="274" class="sub">切点、通知、织入、代理（JDK/CGLIB）</text>
+  <rect x="48" y="336" width="520" height="96" class="box"/>
+  <text x="60" y="362" class="txt">配置与环境</text>
+  <text x="60" y="386" class="sub">Environment、属性绑定、@ConfigurationProperties</text>
+  <rect x="48" y="448" width="520" height="96" class="box"/>
+  <text x="60" y="474" class="txt">校验与类型转换</text>
+  <text x="60" y="498" class="sub">Validator、ConversionService</text>
+
+  <rect x="616" y="64" width="560" height="600" class="panel"/>
+  <text x="640" y="92" class="h2">Web 与工程化</text>
+  <rect x="640" y="112" width="520" height="96" class="box"/>
+  <text x="652" y="138" class="txt">Spring MVC</text>
+  <text x="652" y="162" class="sub">请求映射、参数解析、消息转换、异常处理</text>
+  <rect x="640" y="224" width="520" height="96" class="box"/>
+  <text x="652" y="250" class="txt">Spring Boot</text>
+  <text x="652" y="274" class="sub">自动装配、外部化配置、Actuator、启动与生命周期</text>
+  <rect x="640" y="336" width="520" height="96" class="box"/>
+  <text x="652" y="362" class="txt">数据与事务</text>
+  <text x="652" y="386" class="sub">JdbcTemplate / MyBatis、@Transactional、传播与隔离</text>
+  <rect x="640" y="448" width="520" height="96" class="box"/>
+  <text x="652" y="474" class="txt">可选：Spring Cloud</text>
+  <text x="652" y="498" class="sub">注册发现、配置中心、网关、容错与观测</text>
+
+  <path d="M 584 192 L 616 192" class="arr"/>
+  <path d="M 584 420 L 616 420" class="arr"/>
+
+</svg> 

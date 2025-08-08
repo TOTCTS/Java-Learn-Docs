@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
+  <defs>
+    <style>
+      .h1{font:700 20px 'Inter',Arial,sans-serif;fill:#1f2a44}
+      .txt{font:600 13px 'Inter',Arial,sans-serif;fill:#24324d}
+      .sub{font:500 12px 'Inter',Arial,sans-serif;fill:#3a4a66}
+      .panel{stroke:#7aa5b7;fill:rgba(225,245,254,0.6);rx:16}
+      .box{stroke:#8aa0b3;fill:#fff;rx:12}
+    </style>
+  </defs>
+  <text x="24" y="36" class="h1">联合索引与左前缀法则 (a,b,c)</text>
+
+  <rect x="24" y="64" width="1152" height="360" class="panel"/>
+  <text x="48" y="92" class="txt">支持：a | a,b | a,b,c</text>
+  <text x="48" y="116" class="sub">首个范围条件后续列通常无法继续利用有序性</text>
+
+  <rect x="48" y="140" width="1080" height="60" class="box"/>
+  <text x="60" y="176" class="sub">WHERE a=? AND b=? AND c BETWEEN ? AND ? → 利用 a,b；c 范围扫描</text>
+
+  <rect x="48" y="220" width="1080" height="60" class="box"/>
+  <text x="60" y="256" class="sub">WHERE a=? AND b LIKE 'xxx%' AND c=? → 利用 a,b 前缀；c 可能失效</text>
+
+  <rect x="48" y="300" width="1080" height="60" class="box"/>
+  <text x="60" y="336" class="sub">WHERE b=? AND c=? → 不命中左前缀（建议调整列序或新增索引）</text>
+</svg> 

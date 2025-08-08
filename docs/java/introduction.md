@@ -38,7 +38,7 @@
 
 #### **线程基础与管理**
 - [x] [线程的创建、状态与生命周期](./concurrent/thread-lifecycle-and-states.md)
-- [ ] 线程池：ThreadPoolExecutor 与 ForkJoinPool
+- [x] [线程池：ThreadPoolExecutor 与 ForkJoinPool](./concurrent/threadpoolexecutor-and-forkjoinpool-deep-dive.md)
 - [x] [`volatile` 关键字：可见性、有序性与 happens-before 原则](./concurrent/volatile-keyword-deep-dive.md)
 - [x] [Java 内存模型 (JMM) 深度解读](./concurrent/jmm-deep-dive.md)
 
@@ -68,7 +68,7 @@
 - [x] [对象的创建过程、内存布局与访问定位](./jvm/object-creation-and-memory-layout.md)
 - [x] [垃圾回收算法](./jvm/garbage-collection-algorithms.md)：标记-清除、复制、标记-整理
 - [x] [垃圾收集器：Serial、Parallel、CMS、G1、ZGC](./jvm/garbage-collectors-comparison.md)
-- [ ] 内存泄漏与内存溢出的诊断与解决
+- [x] [内存泄漏与内存溢出的诊断与解决](./jvm/memory-leak-and-oom-diagnosis.md)
 
 #### **字节码与执行引擎**
 - [ ] 字节码指令集与操作数栈

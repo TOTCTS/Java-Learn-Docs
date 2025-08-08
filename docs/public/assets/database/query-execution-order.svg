@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="420" viewBox="0 0 1160 420">
+  <rect width="1160" height="420" fill="#fff"/>
+  <text x="40" y="50" font-size="22" font-family="Arial" fill="#0D47A1">SQL 执行顺序</text>
+  <rect x="40" y="70" width="1080" height="300" rx="12" fill="#E3F2FD" stroke="#90CAF9"/>
+  <text x="60" y="110" font-size="16" font-family="Arial">FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</text>
+</svg> 
